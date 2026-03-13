@@ -26,8 +26,8 @@ const mn = '"IBM Plex Mono", monospace';
 // ─── Shared card base ───────────────────────────────────────────────────
 const cardBase = {
   background: C.bgCard,
-  borderRadius: 20,
-  border: `1px solid ${C.border}`,
+  borderRadius: 22,
+  border: '1px solid rgba(41,22,2,0.08)',
   boxShadow: '0 2px 16px rgba(41,22,2,0.05)',
   overflow: 'hidden',
   padding: 32,
@@ -123,7 +123,7 @@ function PrayerStrip() {
   return (
     <div style={{
       position:'sticky', top:64, zIndex:100,
-      background:'rgba(253,252,250,0.95)', backdropFilter:'blur(12px)',
+      background:'rgba(253,252,250,0.97)', backdropFilter:'blur(12px)',
       WebkitBackdropFilter:'blur(12px)',
       borderBottom:`1px solid ${C.border}`,
       padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
@@ -131,7 +131,7 @@ function PrayerStrip() {
       <div className="prayer-dots" style={{ display:'flex', gap:24, alignItems:'center' }}>
         {prayers.map(p => (
           <div key={p.name} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:4 }}>
-            <span style={{ fontFamily:bd, fontSize:10, fontWeight:600, letterSpacing:'0.08em', color:C.textTert }}>{p.name}</span>
+            <span style={{ fontFamily:bd, fontSize:10, fontWeight:700, letterSpacing:'0.08em', color:C.textTert }}>{p.name}</span>
             <span style={{
               width:8, height:8, borderRadius:'50%',
               background: p.done ? C.orange : 'transparent',
@@ -144,7 +144,7 @@ function PrayerStrip() {
       </div>
       <div style={{ display:'flex', alignItems:'center', gap:12 }}>
         <span style={{ fontFamily:bd, fontSize:11, fontWeight:600, letterSpacing:'0.08em', color:C.textTert }}>NEXT: ISHA IN</span>
-        <span style={{ fontFamily:mn, fontSize:20, fontWeight:700, color:C.espresso, letterSpacing:'-0.02em' }}>{cd}</span>
+        <span style={{ fontFamily:mn, fontSize:18, fontWeight:700, color:C.espresso, letterSpacing:'-0.02em' }}>{cd}</span>
       </div>
     </div>
   );
@@ -208,6 +208,7 @@ function CardCountdown() {
       ...cardBase, ...f.style,
       gridColumn:'8 / 13',
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
+      boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
       display:'flex', flexDirection:'column', justifyContent:'space-between',
       position:'relative', overflow:'hidden',
     }}>
@@ -240,7 +241,7 @@ function CardStreak() {
   return (
     <div ref={f.ref} className="card-hover" style={{ ...cardBase, ...f.style, gridColumn:'1 / 5' }}>
       <div style={label()}>CONSISTENCY</div>
-      <div style={{ fontFamily:hd, fontWeight:700, fontSize:22, color:C.espresso, marginBottom:8 }}>Five prayers. One streak.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.espresso, letterSpacing:'-0.01em', marginBottom:8 }}>Five prayers. One streak.</div>
       <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:24 }}>
         Every salah tracked. Every day celebrated. Miss one — pick up where you left off.
       </p>
@@ -287,7 +288,7 @@ function CardQuran() {
   return (
     <div id="features" ref={f.ref} className="card-hover" style={{ ...cardBase, ...f.style, gridColumn:'8 / 13' }}>
       <div style={label(C.turquoiseDk)}>GUIDED READING</div>
-      <div style={{ fontFamily:hd, fontWeight:700, fontSize:22, color:C.espresso, lineHeight:1.2, marginBottom:8 }}>Walk through the Quran with purpose.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.2, marginBottom:8 }}>Walk through the Quran with purpose.</div>
       <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:24 }}>
         Structured journeys through key surahs. Reflect after each session. Return where you left off.
       </p>
@@ -321,9 +322,10 @@ function CardPrivacy() {
       ...cardBase, ...f.style,
       gridColumn:'1 / 5',
       background:C.bgDark, border:'1px solid rgba(245,240,232,0.06)',
+      boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
       <div style={label('rgba(175,228,222,0.6)')}>PRIVACY FIRST</div>
-      <div style={{ fontFamily:hd, fontWeight:700, fontSize:22, color:C.textLight, marginBottom:8 }}>Private by design. Always.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.textLight, letterSpacing:'-0.01em', marginBottom:8 }}>Private by design. Always.</div>
       <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:'rgba(245,240,232,0.45)', marginBottom:24 }}>
         Your journal, cycle data, and prayer history never leave your device. Not to us. Not to anyone.
       </p>
@@ -361,7 +363,7 @@ function CardWomen() {
   return (
     <div ref={f.ref} className="card-hover" style={{
       ...cardBase, ...f.style,
-      gridColumn:'8 / 13', position:'relative', overflow:'hidden',
+      gridColumn:'8 / 13', background:C.bg, position:'relative', overflow:'hidden',
     }}>
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none',
@@ -373,7 +375,7 @@ function CardWomen() {
           color:C.turquoiseDk, border:'1px solid rgba(175,228,222,0.4)',
           borderRadius:999, padding:'4px 12px', display:'inline-block', marginBottom:16,
         }}>FOR MUSLIM WOMEN</span>
-        <div style={{ fontFamily:hd, fontWeight:700, fontSize:20, color:C.espresso, lineHeight:1.25, marginBottom:8 }}>
+        <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.25, marginBottom:8 }}>
           Your streak is protected. Your practice, respected.
         </div>
         <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:20 }}>
@@ -417,7 +419,7 @@ function CardNotifications() {
   return (
     <div ref={f.ref} className="card-hover" style={{ ...cardBase, ...f.style, gridColumn:'6 / 9' }}>
       <div style={label()}>NOTIFICATIONS</div>
-      <div style={{ fontFamily:hd, fontWeight:700, fontSize:20, color:C.espresso, marginBottom:8 }}>Reminders that respect you.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', marginBottom:8 }}>Reminders that respect you.</div>
       <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
         Gentle nudges when it&#39;s time to pray. Never guilt. Never pressure. Never noise.
       </p>
@@ -433,10 +435,11 @@ function CardPricing() {
       ...cardBase, ...f.style,
       gridColumn:'9 / 13',
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
+      boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
       <div style={label('rgba(175,228,222,0.6)')}>PRICING</div>
-      <div style={{ fontFamily:hd, fontWeight:700, fontSize:22, color:C.textLight, marginBottom:4 }}>Free to start.</div>
-      <div style={{ fontFamily:hd, fontWeight:700, fontSize:22, color:C.orange, marginBottom:16 }}>$39.99/year to grow.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.textLight, letterSpacing:'-0.01em', marginBottom:4 }}>Free to start.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.orange, letterSpacing:'-0.01em', marginBottom:16 }}>$39.99/year to grow.</div>
       <div style={{ height:1, background:'rgba(245,240,232,0.08)', marginBottom:16 }}/>
       <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', marginBottom:4 }}>Core features — Always free</div>
       <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', marginBottom:4 }}>Full experience — $4.99/month</div>
@@ -455,6 +458,7 @@ function CardFinalCTA({ onCTA }) {
       gridColumn:'1 / 13',
       background:`linear-gradient(135deg, ${C.bgDark} 0%, ${C.bgDarkSurf} 100%)`,
       border:'1px solid rgba(175,228,222,0.08)',
+      boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
       padding:64, textAlign:'center', position:'relative', overflow:'hidden',
     }}>
       <div style={{
@@ -492,9 +496,9 @@ function BottomBar() {
   return (
     <div style={{
       position:'fixed', bottom:0, left:0, right:0, zIndex:150,
-      background:'rgba(253,252,250,0.95)', backdropFilter:'blur(16px)',
+      background:'rgba(253,252,250,0.97)', backdropFilter:'blur(16px)',
       WebkitBackdropFilter:'blur(16px)',
-      borderTop:`1px solid ${C.border}`,
+      borderTop:'1px solid rgba(41,22,2,0.06)',
       padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
     }}>
       <div className="bottom-left" style={{ display:'flex', alignItems:'center' }}>
@@ -634,7 +638,7 @@ export default function Home() {
         @keyframes dotPulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
         @keyframes drawRing { from { stroke-dashoffset:176; } to { stroke-dashoffset:70; } }
         .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(41,22,2,0.1) !important; }
+        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(41,22,2,0.08) !important; }
         .nav-link:hover { color:${C.espresso} !important; }
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
@@ -655,7 +659,7 @@ export default function Home() {
 
       <div style={{
         maxWidth:1200, margin:'0 auto', padding:'40px 48px 120px',
-        display:'grid', gridTemplateColumns:'repeat(12, 1fr)', gap:12,
+        display:'grid', gridTemplateColumns:'repeat(12, 1fr)', gap:14,
       }} className="bento-grid">
         <CardHero onCTA={open} />
         <CardCountdown />
