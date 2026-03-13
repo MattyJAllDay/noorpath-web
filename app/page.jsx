@@ -22,6 +22,7 @@ const C = {
 const hd = '"Playfair Display", Georgia, serif';
 const bd = '"IBM Plex Sans", sans-serif';
 const mn = '"IBM Plex Mono", monospace';
+const nd = '"Nord", sans-serif';
 
 // ─── Shared card base ───────────────────────────────────────────────────
 const cardBase = {
@@ -31,11 +32,12 @@ const cardBase = {
   boxShadow: '0 2px 16px rgba(41,22,2,0.05)',
   overflow: 'hidden',
   padding: 32,
+  position: 'relative',
 };
 
 const label = (color = C.textTert) => ({
-  fontFamily: bd, fontSize: 10, fontWeight: 600,
-  letterSpacing: '0.1em', textTransform: 'uppercase',
+  fontFamily: nd, fontSize: 10, fontWeight: 400,
+  letterSpacing: '0.12em', textTransform: 'uppercase',
   color, marginBottom: 16,
 });
 
@@ -57,7 +59,7 @@ function useFadeIn(delay = 0) {
     ref,
     style: {
       opacity: vis ? 1 : 0,
-      transform: vis ? 'translateY(0)' : 'translateY(16px)',
+      transform: vis ? 'translateY(0)' : 'translateY(20px)',
       transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
     },
   };
@@ -78,6 +80,21 @@ function useCountdown() {
   return `${h}:${m}:${s}`;
 }
 
+// ─── Expand/collapse indicator ──────────────────────────────────────────
+function ExpandIndicator({ expanded, dark }) {
+  return (
+    <span style={{
+      position: 'absolute', top: 16, right: 16,
+      fontFamily: bd, fontSize: 18, fontWeight: 300,
+      color: dark ? 'rgba(245,240,232,0.4)' : C.textTert,
+      transition: 'opacity 0.2s ease, transform 0.3s ease',
+      lineHeight: 1, pointerEvents: 'none',
+    }}>
+      {expanded ? '−' : '+'}
+    </span>
+  );
+}
+
 // ═════════════════════════════════════════════════════════════════════════
 // NAV
 // ═════════════════════════════════════════════════════════════════════════
@@ -92,11 +109,11 @@ function Nav({ onCTA }) {
     }}>
       <div style={{ display:'flex', alignItems:'center' }}>
         <img src="/logo.png" alt="NoorPath" style={{ height:32, width:'auto' }}/>
-        <span style={{ fontFamily:'"Nord", sans-serif', fontWeight:400, fontSize:18, color:C.espresso, letterSpacing:'0.02em', marginLeft:10 }}>NoorPath</span>
+        <span style={{ fontFamily:nd, fontWeight:400, fontSize:18, color:C.espresso, letterSpacing:'0.02em', marginLeft:10 }}>NoorPath</span>
       </div>
       <div style={{ display:'flex', alignItems:'center' }}>
         {[['Features','#features'],['Privacy','/privacy'],['Terms','/terms']].map(([t,h])=>(
-          <a key={t} href={h} className="nav-link" style={{ fontFamily:bd, fontSize:14, color:C.textSec, textDecoration:'none', marginLeft:28 }}>{t}</a>
+          <a key={t} href={h} className="nav-link" style={{ fontFamily:nd, fontWeight:400, fontSize:13, color:C.textSec, textDecoration:'none', marginLeft:28 }}>{t}</a>
         ))}
         <button onClick={onCTA} style={{
           fontFamily:bd, fontSize:14, fontWeight:600,
@@ -131,7 +148,7 @@ function PrayerStrip() {
       <div className="prayer-dots" style={{ display:'flex', gap:24, alignItems:'center' }}>
         {prayers.map(p => (
           <div key={p.name} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:4 }}>
-            <span style={{ fontFamily:bd, fontSize:10, fontWeight:700, letterSpacing:'0.08em', color:C.textTert }}>{p.name}</span>
+            <span style={{ fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em', color:C.textTert }}>{p.name}</span>
             <span style={{
               width:8, height:8, borderRadius:'50%',
               background: p.done ? C.orange : 'transparent',
@@ -143,7 +160,7 @@ function PrayerStrip() {
         ))}
       </div>
       <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-        <span style={{ fontFamily:bd, fontSize:11, fontWeight:600, letterSpacing:'0.08em', color:C.textTert }}>NEXT: ISHA IN</span>
+        <span style={{ fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em', color:C.textTert }}>NEXT: ISHA IN</span>
         <span style={{ fontFamily:mn, fontSize:18, fontWeight:700, color:C.espresso, letterSpacing:'-0.02em' }}>{cd}</span>
       </div>
     </div>
@@ -158,9 +175,9 @@ function PrayerStrip() {
 function CardHero({ onCTA }) {
   const f = useFadeIn(0);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} className="card-hover card-light" style={{
       ...cardBase, ...f.style,
-      gridColumn:'1 / 8', background:C.bg, padding:48, position:'relative', overflow:'hidden',
+      gridColumn:'1 / 8', background:C.bg, padding:48, overflow:'hidden',
     }}>
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none', zIndex:0,
@@ -170,7 +187,7 @@ function CardHero({ onCTA }) {
         <div style={{
           display:'inline-flex', alignItems:'center', gap:6,
           border:`1px solid ${C.border}`, borderRadius:999, padding:'6px 16px', marginBottom:24,
-          fontFamily:bd, fontSize:11, fontWeight:600, letterSpacing:'0.08em', color:C.textSec,
+          fontFamily:nd, fontSize:11, fontWeight:400, letterSpacing:'0.08em', color:C.textSec,
         }}>
           <span style={{ width:6, height:6, borderRadius:'50%', background:C.turquoise, display:'inline-block', animation:'dotPulse 2s infinite' }}/>
           Coming to the App Store
@@ -200,18 +217,19 @@ function CardHero({ onCTA }) {
 }
 
 // ── Card 2: Live Prayer Countdown ───────────────────────────────────────
-function CardCountdown() {
+function CardCountdown({ expanded, onToggle }) {
   const cd = useCountdown();
-  const f = useFadeIn(80);
+  const f = useFadeIn(60);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} data-card="countdown" className="card-hover card-dark" onClick={onToggle} style={{
       ...cardBase, ...f.style,
-      gridColumn:'8 / 13',
+      gridColumn:'8 / 13', cursor:'pointer',
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
       display:'flex', flexDirection:'column', justifyContent:'space-between',
-      position:'relative', overflow:'hidden',
+      overflow:'hidden',
     }}>
+      <ExpandIndicator expanded={expanded} dark />
       <div style={{ position:'absolute', left:0, top:0, bottom:0, width:4, background:`linear-gradient(180deg, ${C.turquoise}, ${C.turquoiseDk})` }}/>
       <div style={{
         position:'absolute', width:200, height:200, borderRadius:'50%',
@@ -231,44 +249,94 @@ function CardCountdown() {
         }}>CHECK IN</button>
         <div style={{ fontFamily:bd, fontSize:12, color:'rgba(245,240,232,0.25)', marginTop:8 }}>Tap when you&#39;ve prayed</div>
       </div>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(245,240,232,0.08)', margin:'16px 0' }}/>
+        <div style={{ fontFamily:mn, fontSize:13, color:'rgba(245,240,232,0.4)', marginBottom:12 }}>
+          5 prayers · 24 hours · 1 day at a time
+        </div>
+        {[
+          { name:'Fajr', time:'5:12 AM' },
+          { name:'Dhuhr', time:'12:15 PM' },
+          { name:'Asr', time:'3:28 PM' },
+          { name:'Maghrib', time:'5:45 PM' },
+          { name:'Isha', time:'7:02 PM' },
+        ].map(p => (
+          <div key={p.name} style={{ display:'flex', justifyContent:'space-between', marginBottom:6 }}>
+            <span style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.5)' }}>{p.name}</span>
+            <span style={{ fontFamily:mn, fontSize:13, color:'rgba(245,240,232,0.35)' }}>{p.time}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 // ── Card 3: Five Prayers Streak ─────────────────────────────────────────
-function CardStreak() {
-  const f = useFadeIn(0);
+function CardStreak({ expanded, onToggle }) {
+  const f = useFadeIn(120);
+  const [visibleDots, setVisibleDots] = useState(0);
+
+  useEffect(() => {
+    if (visibleDots >= 11) return;
+    const id = setTimeout(() => setVisibleDots(v => v + 1), 80);
+    return () => clearTimeout(id);
+  }, [visibleDots]);
+
   return (
-    <div ref={f.ref} className="card-hover" style={{ ...cardBase, ...f.style, gridColumn:'1 / 5' }}>
+    <div ref={f.ref} data-card="streak" className="card-hover card-light" onClick={onToggle} style={{
+      ...cardBase, ...f.style, gridColumn:'1 / 5', cursor:'pointer',
+    }}>
+      <ExpandIndicator expanded={expanded} />
       <div style={label()}>CONSISTENCY</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.espresso, letterSpacing:'-0.01em', marginBottom:8 }}>Five prayers. One streak.</div>
-      <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:24 }}>
-        Every salah tracked. Every day celebrated. Miss one — pick up where you left off.
-      </p>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:64, color:C.orange, lineHeight:1 }}>11</div>
+      <div style={{ fontFamily:bd, fontSize:13, color:C.textTert, marginBottom:12 }}>day streak</div>
       <div style={{ display:'flex', gap:6, alignItems:'center', marginBottom:8 }}>
-        {Array.from({length:14}).map((_,i) => (
-          <div key={i} style={{
-            width:20, height:20, borderRadius:'50%',
-            background: i < 11 ? C.orange : 'transparent',
-            border: i < 11 ? 'none' : `2px solid ${C.border}`,
-          }}/>
-        ))}
+        {Array.from({length:14}).map((_,i) => {
+          const filled = i < 11;
+          const visible = !filled || i < visibleDots;
+          return (
+            <div key={i} style={{
+              width:20, height:20, borderRadius:'50%',
+              background: filled && visible ? C.orange : 'transparent',
+              border: filled && visible ? 'none' : `2px solid ${C.border}`,
+              opacity: filled ? (visible ? 1 : 0) : 1,
+              transform: filled ? (visible ? 'scale(1)' : 'scale(0.5)') : 'scale(1)',
+              transition: 'opacity 0.3s ease, transform 0.3s ease',
+            }}/>
+          );
+        })}
       </div>
-      <div style={{ fontFamily:mn, fontSize:13, fontWeight:600, color:C.orange }}>11 day streak</div>
-      <div style={{ fontFamily:bd, fontSize:12, color:C.textTert }}>Keep going.</div>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(41,22,2,0.06)', margin:'16px 0' }}/>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
+          Five prayers. Every day. One unbroken chain.
+        </p>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginTop:8 }}>
+          Miss a day? Your streak pauses, not breaks. Pick up where you left off without shame.
+        </p>
+      </div>
     </div>
   );
 }
 
 // ── Card 4: Your Noor ───────────────────────────────────────────────────
-function CardNoor() {
-  const f = useFadeIn(80);
+function CardNoor({ expanded, onToggle }) {
+  const f = useFadeIn(180);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} data-card="noor" className="card-hover card-light" onClick={onToggle} style={{
       ...cardBase, ...f.style,
-      gridColumn:'5 / 8',
+      gridColumn:'5 / 8', cursor:'pointer',
       display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center',
     }}>
+      <ExpandIndicator expanded={expanded} />
       <div style={label()}>YOUR NOOR</div>
       <div style={{
         width:80, height:80, borderRadius:'50%',
@@ -276,29 +344,70 @@ function CardNoor() {
         animation:'orbPulse 3s ease-in-out infinite, float 4s ease-in-out infinite',
         marginBottom:16,
       }}/>
-      <div style={{ fontFamily:bd, fontSize:12, color:C.textTert, letterSpacing:'0.02em', marginBottom:8 }}>Dim → Bright → Radiant → Luminous</div>
-      <div style={{ fontFamily:bd, fontSize:14, lineHeight:1.5, color:C.textSec }}>Your Noor grows as your consistency does.</div>
+      <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.espresso }}>Level 1</div>
+      <div style={{ fontFamily:bd, fontSize:13, color:C.textTert }}>0 XP</div>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+        width: '100%',
+      }}>
+        <div style={{ height:1, background:'rgba(41,22,2,0.06)', margin:'16px 0' }}/>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:8 }}>
+          Your Noor is a living measure of your consistency.
+        </p>
+        {[
+          { level:'Dim', xp:'0 XP', color:C.textTert },
+          { level:'Bright', xp:'100 XP', color:C.orange },
+          { level:'Radiant', xp:'500 XP', color:C.turquoiseDk },
+          { level:'Luminous', xp:'1000 XP', color:'#FFD580' },
+        ].map(l => (
+          <div key={l.level} style={{ display:'flex', gap:8, alignItems:'center', marginBottom:6, justifyContent:'center' }}>
+            <span style={{ width:8, height:8, borderRadius:'50%', background:l.color, display:'inline-block' }}/>
+            <span style={{ fontFamily:bd, fontSize:13, color:C.textSec }}>{l.level} · {l.xp}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
 // ── Card 5: Quran Journeys ──────────────────────────────────────────────
-function CardQuran() {
-  const f = useFadeIn(160);
+function CardQuran({ expanded, onToggle }) {
+  const f = useFadeIn(240);
+  const ringRef = useRef(null);
+
+  useEffect(() => {
+    const svg = ringRef.current;
+    if (!svg) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        const circle = svg.querySelector('.progress-ring');
+        if (circle) {
+          circle.style.transition = 'stroke-dashoffset 1s ease';
+          circle.style.strokeDashoffset = '80';
+        }
+        obs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    obs.observe(svg);
+    return () => obs.disconnect();
+  }, []);
+
   return (
-    <div id="features" ref={f.ref} className="card-hover" style={{ ...cardBase, ...f.style, gridColumn:'8 / 13' }}>
+    <div ref={f.ref} id="features" data-card="quran" className="card-hover card-light" onClick={onToggle} style={{
+      ...cardBase, ...f.style, gridColumn:'8 / 13', cursor:'pointer',
+    }}>
+      <ExpandIndicator expanded={expanded} />
       <div style={label(C.turquoiseDk)}>GUIDED READING</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.2, marginBottom:8 }}>Walk through the Quran with purpose.</div>
-      <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:24 }}>
-        Structured journeys through key surahs. Reflect after each session. Return where you left off.
-      </p>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:48, color:C.espresso, lineHeight:1 }}>8</div>
+      <div style={{ fontFamily:bd, fontSize:12, color:C.textTert, marginBottom:16 }}>sessions per surah</div>
       <div style={{ display:'flex', alignItems:'center', gap:16 }}>
-        <svg width="64" height="64" viewBox="0 0 64 64">
+        <svg ref={ringRef} width="64" height="64" viewBox="0 0 64 64">
           <circle cx="32" cy="32" r="28" fill="none" stroke={C.border} strokeWidth="6"/>
-          <circle cx="32" cy="32" r="28" fill="none" stroke={C.turquoise} strokeWidth="6"
-            strokeDasharray="176" strokeDashoffset="70" strokeLinecap="round"
+          <circle className="progress-ring" cx="32" cy="32" r="28" fill="none" stroke={C.turquoise} strokeWidth="6"
+            strokeDasharray="176" strokeDashoffset="200" strokeLinecap="round"
             transform="rotate(-90 32 32)"
-            style={{ animation:'drawRing 1.5s ease forwards' }}
           />
           <text x="32" y="36" textAnchor="middle" style={{ fontFamily:mn, fontSize:14, fontWeight:700, fill:C.espresso }}>60%</text>
         </svg>
@@ -310,85 +419,133 @@ function CardQuran() {
           </div>
         </div>
       </div>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(41,22,2,0.06)', margin:'16px 0' }}/>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:8 }}>
+          Structured journeys through key surahs. Reflect after each session. Return where you left off.
+        </p>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
+          New journeys added regularly. Your progress is saved forever.
+        </p>
+      </div>
     </div>
   );
 }
 
 // ── Card 6: Private by Design ───────────────────────────────────────────
-function CardPrivacy() {
-  const f = useFadeIn(0);
+function CardPrivacy({ expanded, onToggle }) {
+  const f = useFadeIn(300);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} data-card="privacy" className="card-hover card-dark" onClick={onToggle} style={{
       ...cardBase, ...f.style,
-      gridColumn:'1 / 5',
+      gridColumn:'1 / 5', cursor:'pointer',
       background:C.bgDark, border:'1px solid rgba(245,240,232,0.06)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
+      <ExpandIndicator expanded={expanded} dark />
       <div style={label('rgba(175,228,222,0.6)')}>PRIVACY FIRST</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.textLight, letterSpacing:'-0.01em', marginBottom:8 }}>Private by design. Always.</div>
-      <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:'rgba(245,240,232,0.45)', marginBottom:24 }}>
-        Your journal, cycle data, and prayer history never leave your device. Not to us. Not to anyone.
-      </p>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:64, color:C.turquoise, lineHeight:1 }}>0</div>
+      <div style={{ fontFamily:bd, fontSize:12, color:'rgba(245,240,232,0.4)', marginBottom:16 }}>data points sent to servers</div>
       {['Zero ad tracking','No account required','On-device storage only'].map(t => (
         <div key={t} style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.55)', marginBottom:6 }}>
           <span style={{ color:C.turquoise, marginRight:8 }}>—</span>{t}
         </div>
       ))}
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(245,240,232,0.08)', margin:'16px 0' }}/>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:'rgba(245,240,232,0.5)' }}>
+          Your journal, cycle data, and prayer history live entirely on your device.
+          No account required. No cloud sync. No data harvesting. Ever.
+        </p>
+      </div>
     </div>
   );
 }
 
 // ── Card 7: Zero Ads ────────────────────────────────────────────────────
-function CardZeroAds() {
-  const f = useFadeIn(80);
+function CardZeroAds({ expanded, onToggle }) {
+  const f = useFadeIn(360);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} data-card="zeroAds" className="card-hover card-light" onClick={onToggle} style={{
       ...cardBase, ...f.style,
-      gridColumn:'5 / 8',
+      gridColumn:'5 / 8', cursor:'pointer',
       background:C.bgMuted, border:`1px solid ${C.border}`,
       display:'flex', flexDirection:'column', justifyContent:'center',
     }}>
+      <ExpandIndicator expanded={expanded} />
       <div style={{ fontFamily:hd, fontWeight:700, fontSize:36, color:C.espresso, lineHeight:1, marginBottom:4 }}>Zero ads.</div>
       <div style={{ fontFamily:hd, fontWeight:700, fontStyle:'italic', fontSize:36, color:C.turquoiseDk, lineHeight:1, marginBottom:16 }}>Ever.</div>
-      <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
-        Your prayer time will never be interrupted by an advertisement. We don&#39;t sell attention. We protect it.
-      </p>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(41,22,2,0.06)', margin:'16px 0' }}/>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
+          We don&#39;t run ads. We don&#39;t sell your data to advertisers.
+          We don&#39;t use dark patterns to keep you scrolling.
+          Your prayer time is sacred — we built NoorPath that way from day one.
+        </p>
+      </div>
     </div>
   );
 }
 
 // ── Card 8: For Muslim Women ────────────────────────────────────────────
-function CardWomen() {
-  const f = useFadeIn(160);
+function CardWomen({ expanded, onToggle }) {
+  const f = useFadeIn(420);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} data-card="women" className="card-hover card-light" onClick={onToggle} style={{
       ...cardBase, ...f.style,
-      gridColumn:'8 / 13', background:C.bg, position:'relative', overflow:'hidden',
+      gridColumn:'8 / 13', background:C.bg, cursor:'pointer', overflow:'hidden',
     }}>
+      <ExpandIndicator expanded={expanded} />
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none',
         backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23AFE4DE' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       }}/>
       <div style={{ position:'relative', zIndex:1 }}>
         <span style={{
-          fontFamily:bd, fontSize:10, fontWeight:600, letterSpacing:'0.1em',
+          fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em',
           color:C.turquoiseDk, border:'1px solid rgba(175,228,222,0.4)',
           borderRadius:999, padding:'4px 12px', display:'inline-block', marginBottom:16,
         }}>FOR MUSLIM WOMEN</span>
         <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.25, marginBottom:8 }}>
           Your streak is protected. Your practice, respected.
         </div>
-        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:20 }}>
-          During exempt days, your streak pauses — not breaks. NoorPath honours the full rhythm of your practice.
-        </p>
+        <div style={{ fontFamily:bd, fontSize:15, fontWeight:600, color:C.espresso, marginBottom:12 }}>
+          Your streak pauses. Not breaks.
+        </div>
         <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
           {['Streak protection','Exempt day awareness','Fiqh-considered'].map(t => (
             <span key={t} style={{
-              fontFamily:bd, fontSize:12, color:C.espresso,
+              fontFamily:nd, fontSize:12, fontWeight:400, color:C.espresso,
               border:`1px solid ${C.border}`, borderRadius:999,
               padding:'5px 14px', background:'#fff',
             }}>{t}</span>
           ))}
+        </div>
+        <div style={{
+          maxHeight: expanded ? '400px' : '0px',
+          overflow: 'hidden',
+          transition: 'max-height 0.4s ease',
+        }}>
+          <div style={{ height:1, background:'rgba(41,22,2,0.06)', margin:'16px 0' }}/>
+          <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec, marginBottom:8 }}>
+            During exempt days, NoorPath automatically pauses your streak — protecting your consistency
+            record without you having to do anything. Your practice is honoured in full.
+          </p>
+          <p style={{ fontFamily:bd, fontSize:13, color:C.textTert }}>
+            Designed in consultation with Islamic guidance on women&#39;s practice.
+          </p>
         </div>
       </div>
     </div>
@@ -396,47 +553,75 @@ function CardWomen() {
 }
 
 // ── Card 9: Daily Wisdom ────────────────────────────────────────────────
-function CardWisdom() {
-  const f = useFadeIn(0);
+function CardWisdom({ expanded, onToggle }) {
+  const f = useFadeIn(480);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} data-card="wisdom" className="card-hover card-light" onClick={onToggle} style={{
       ...cardBase, ...f.style,
-      gridColumn:'1 / 6', position:'relative', paddingLeft:40,
+      gridColumn:'1 / 6', cursor:'pointer', paddingLeft:40,
     }}>
+      <ExpandIndicator expanded={expanded} />
       <div style={{ position:'absolute', left:0, top:0, bottom:0, width:4, borderRadius:'0 2px 2px 0', background:`linear-gradient(180deg, ${C.turquoise}, ${C.turquoiseDk})` }}/>
       <div style={label(C.turquoiseDk)}>DAILY WISDOM</div>
       <div style={{ fontFamily:hd, fontStyle:'italic', fontWeight:400, fontSize:22, color:C.espresso, lineHeight:1.4, marginBottom:8 }}>
         &ldquo;A smile on your face for your brother is charity.&rdquo;
       </div>
-      <div style={{ fontFamily:bd, fontSize:13, color:C.textTert }}>Jami at-Tirmidhi · Refreshes daily</div>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(41,22,2,0.06)', margin:'16px 0' }}/>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
+          A new hadith or ayah surfaces each day. Quietly. Without notification.
+          There when you open the app.
+        </p>
+        <p style={{ fontFamily:bd, fontSize:13, color:C.textTert, marginTop:8 }}>
+          Refreshes daily at Fajr.
+        </p>
+      </div>
     </div>
   );
 }
 
 // ── Card 10: No Manipulation ────────────────────────────────────────────
-function CardNotifications() {
-  const f = useFadeIn(80);
+function CardNotifications({ expanded, onToggle }) {
+  const f = useFadeIn(540);
   return (
-    <div ref={f.ref} className="card-hover" style={{ ...cardBase, ...f.style, gridColumn:'6 / 9' }}>
+    <div ref={f.ref} data-card="notifications" className="card-hover card-light" onClick={onToggle} style={{
+      ...cardBase, ...f.style, gridColumn:'6 / 9', cursor:'pointer',
+    }}>
+      <ExpandIndicator expanded={expanded} />
       <div style={label()}>NOTIFICATIONS</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', marginBottom:8 }}>Reminders that respect you.</div>
-      <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
-        Gentle nudges when it&#39;s time to pray. Never guilt. Never pressure. Never noise.
-      </p>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:64, color:C.espresso, lineHeight:1 }}>0</div>
+      <div style={{ fontFamily:bd, fontSize:12, color:C.textTert }}>guilt-based notifications. Ever.</div>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(41,22,2,0.06)', margin:'16px 0' }}/>
+        <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
+          NoorPath sends gentle reminders when prayer time approaches.
+          That&#39;s it. No streak-shame alerts. No &#39;you haven&#39;t opened the app&#39; guilt trips.
+          No pressure. Just a quiet nudge.
+        </p>
+      </div>
     </div>
   );
 }
 
 // ── Card 11: Pricing ────────────────────────────────────────────────────
-function CardPricing() {
-  const f = useFadeIn(160);
+function CardPricing({ expanded, onToggle }) {
+  const f = useFadeIn(600);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} data-card="pricing" className="card-hover card-dark" onClick={onToggle} style={{
       ...cardBase, ...f.style,
-      gridColumn:'9 / 13',
+      gridColumn:'9 / 13', cursor:'pointer',
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
+      <ExpandIndicator expanded={expanded} dark />
       <div style={label('rgba(175,228,222,0.6)')}>PRICING</div>
       <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.textLight, letterSpacing:'-0.01em', marginBottom:4 }}>Free to start.</div>
       <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.orange, letterSpacing:'-0.01em', marginBottom:16 }}>$39.99/year to grow.</div>
@@ -445,21 +630,37 @@ function CardPricing() {
       <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', marginBottom:4 }}>Full experience — $4.99/month</div>
       <div style={{ fontFamily:bd, fontSize:12, color:C.turquoiseDk, marginBottom:16 }}>7-day free trial included</div>
       <a href="#" style={{ fontFamily:bd, fontSize:13, color:'rgba(175,228,222,0.6)', textDecoration:'underline', cursor:'pointer' }}>Learn more</a>
+      <div style={{
+        maxHeight: expanded ? '400px' : '0px',
+        overflow: 'hidden',
+        transition: 'max-height 0.4s ease',
+      }}>
+        <div style={{ height:1, background:'rgba(245,240,232,0.08)', margin:'16px 0' }}/>
+        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', lineHeight:1.8 }}>
+          Prayer times &amp; tracking · Qibla compass · Morning &amp; evening adhkar ·
+          Basic journaling · 5 daily tasks
+        </div>
+        <div style={{ height:1, background:'rgba(245,240,232,0.08)', margin:'12px 0' }}/>
+        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.55)', lineHeight:1.8 }}>
+          Full Quran journeys · Unlimited journal · Prayer analytics ·
+          Sunnah tracking · Cycle-aware tracking · 7-day free trial
+        </div>
+      </div>
     </div>
   );
 }
 
 // ── Card 12: Final CTA ──────────────────────────────────────────────────
 function CardFinalCTA({ onCTA }) {
-  const f = useFadeIn(0);
+  const f = useFadeIn(660);
   return (
-    <div ref={f.ref} className="card-hover" style={{
+    <div ref={f.ref} className="card-hover card-dark" style={{
       ...cardBase, ...f.style,
       gridColumn:'1 / 13',
       background:`linear-gradient(135deg, ${C.bgDark} 0%, ${C.bgDarkSurf} 100%)`,
       border:'1px solid rgba(175,228,222,0.08)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
-      padding:64, textAlign:'center', position:'relative', overflow:'hidden',
+      padding:64, textAlign:'center', overflow:'hidden',
     }}>
       <div style={{
         position:'absolute', width:400, height:400, borderRadius:'50%',
@@ -502,7 +703,7 @@ function BottomBar() {
       padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
     }}>
       <div className="bottom-left" style={{ display:'flex', alignItems:'center' }}>
-        <span style={{ fontFamily:bd, fontSize:13, fontWeight:600, color:C.espresso }}>NoorPath · Coming to iOS</span>
+        <span style={{ fontFamily:nd, fontWeight:400, fontSize:13, color:C.espresso }}>NoorPath · Coming to iOS</span>
         <span style={{ fontFamily:bd, fontSize:13, color:C.textSec, marginLeft:16 }}>Be first to know when we launch.</span>
       </div>
       <div className="bottom-right" style={{ display:'flex', alignItems:'center' }}>
@@ -621,8 +822,19 @@ function Footer() {
 // ═════════════════════════════════════════════════════════════════════════
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [expandedCard, setExpandedCard] = useState(null);
   const open = () => setModalOpen(true);
   const close = () => setModalOpen(false);
+  const toggle = (name) => setExpandedCard(prev => prev === name ? null : name);
+
+  // Scroll expanded card into view
+  useEffect(() => {
+    if (!expandedCard) return;
+    setTimeout(() => {
+      const el = document.querySelector(`[data-card="${expandedCard}"]`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
+  }, [expandedCard]);
 
   return (
     <>
@@ -637,8 +849,9 @@ export default function Home() {
         @keyframes softGlow { 0%,100% { box-shadow:0 0 0 0 rgba(255,136,17,0.3); } 50% { box-shadow:0 0 0 12px rgba(255,136,17,0); } }
         @keyframes dotPulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
         @keyframes drawRing { from { stroke-dashoffset:176; } to { stroke-dashoffset:70; } }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
-        .card-hover:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(41,22,2,0.08) !important; }
+        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; }
+        .card-hover.card-light:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(41,22,2,0.08) !important; filter: brightness(0.98); }
+        .card-hover.card-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(41,22,2,0.08) !important; filter: brightness(1.05); }
         .nav-link:hover { color:${C.espresso} !important; }
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
@@ -662,16 +875,16 @@ export default function Home() {
         display:'grid', gridTemplateColumns:'repeat(12, 1fr)', gap:14,
       }} className="bento-grid">
         <CardHero onCTA={open} />
-        <CardCountdown />
-        <CardStreak />
-        <CardNoor />
-        <CardQuran />
-        <CardPrivacy />
-        <CardZeroAds />
-        <CardWomen />
-        <CardWisdom />
-        <CardNotifications />
-        <CardPricing />
+        <CardCountdown expanded={expandedCard === 'countdown'} onToggle={() => toggle('countdown')} />
+        <CardStreak expanded={expandedCard === 'streak'} onToggle={() => toggle('streak')} />
+        <CardNoor expanded={expandedCard === 'noor'} onToggle={() => toggle('noor')} />
+        <CardQuran expanded={expandedCard === 'quran'} onToggle={() => toggle('quran')} />
+        <CardPrivacy expanded={expandedCard === 'privacy'} onToggle={() => toggle('privacy')} />
+        <CardZeroAds expanded={expandedCard === 'zeroAds'} onToggle={() => toggle('zeroAds')} />
+        <CardWomen expanded={expandedCard === 'women'} onToggle={() => toggle('women')} />
+        <CardWisdom expanded={expandedCard === 'wisdom'} onToggle={() => toggle('wisdom')} />
+        <CardNotifications expanded={expandedCard === 'notifications'} onToggle={() => toggle('notifications')} />
+        <CardPricing expanded={expandedCard === 'pricing'} onToggle={() => toggle('pricing')} />
         <CardFinalCTA onCTA={open} />
       </div>
 
