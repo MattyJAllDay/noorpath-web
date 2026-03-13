@@ -31,26 +31,15 @@ const cardBase = {
   border: '1px solid rgba(41,22,2,0.08)',
   boxShadow: '0 2px 16px rgba(41,22,2,0.05)',
   overflow: 'hidden',
-  padding: 32,
+  padding: 36,
   position: 'relative',
 };
 
 const label = (color = C.textTert) => ({
   fontFamily: nd, fontSize: 10, fontWeight: 400,
   letterSpacing: '0.12em', textTransform: 'uppercase',
-  color, marginBottom: 16,
+  color, marginBottom: 20,
 });
-
-// ─── Click hint dot ─────────────────────────────────────────────────────
-function ClickDot() {
-  return (
-    <div style={{
-      position: 'absolute', bottom: 16, right: 16,
-      width: 6, height: 6, borderRadius: '50%',
-      background: C.turquoise, opacity: 0.6,
-    }} />
-  );
-}
 
 // ─── Scroll-reveal hook ─────────────────────────────────────────────────
 function useFadeIn(delay = 0) {
@@ -70,25 +59,41 @@ function useFadeIn(delay = 0) {
     ref,
     style: {
       opacity: vis ? 1 : 0,
-      transform: vis ? 'translateY(0)' : 'translateY(20px)',
-      transition: `opacity 0.5s ease ${delay}ms, transform 0.5s ease ${delay}ms`,
+      transform: vis ? 'translateY(0)' : 'translateY(28px)',
+      transition: `opacity 0.65s ease ${delay}ms, transform 0.65s ease ${delay}ms`,
     },
   };
 }
 
 // ─── Countdown hook ─────────────────────────────────────────────────────
 function useCountdown() {
-  const [target] = useState(() => Date.now() + 1 * 3600000 + 2 * 60000 + 47 * 1000);
-  const [now, setNow] = useState(() => Date.now());
+  const [countdown, setCountdown] = useState('--:--:--');
   useEffect(() => {
-    const id = setInterval(() => setNow(Date.now()), 1000);
-    return () => clearInterval(id);
+    const now = new Date();
+    const target = new Date();
+    target.setHours(20, 27, 0, 0);
+    if (target <= now) target.setDate(target.getDate() + 1);
+
+    const tick = () => {
+      const diff = target - new Date();
+      if (diff <= 0) {
+        setCountdown('00:00:00');
+        return;
+      }
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      setCountdown(
+        String(h).padStart(2, '0') + ':' +
+        String(m).padStart(2, '0') + ':' +
+        String(s).padStart(2, '0')
+      );
+    };
+    tick();
+    const interval = setInterval(tick, 1000);
+    return () => clearInterval(interval);
   }, []);
-  const d = Math.max(0, target - now);
-  const h = String(Math.floor(d / 3600000)).padStart(2, '0');
-  const m = String(Math.floor((d % 3600000) / 60000)).padStart(2, '0');
-  const s = String(Math.floor((d % 60000) / 1000)).padStart(2, '0');
-  return `${h}:${m}:${s}`;
+  return countdown;
 }
 
 // ─── Card data for overlay ──────────────────────────────────────────────
@@ -351,7 +356,7 @@ function Nav({ onCTA }) {
       </div>
       <div style={{ display:'flex', alignItems:'center' }}>
         {[['Features','#features'],['Privacy','/privacy'],['Terms','/terms']].map(([t,h])=>(
-          <a key={t} href={h} className="nav-link" style={{ fontFamily:nd, fontWeight:400, fontSize:13, color:C.textSec, textDecoration:'none', marginLeft:28 }}>{t}</a>
+          <a key={t} href={h} className="nav-link" style={{ fontFamily:nd, fontWeight:400, fontSize:13, letterSpacing:'0.01em', color:C.textSec, textDecoration:'none', marginLeft:28 }}>{t}</a>
         ))}
         <button onClick={onCTA} style={{
           fontFamily:bd, fontSize:14, fontWeight:600,
@@ -415,7 +420,7 @@ function CardHero({ onCTA }) {
   return (
     <div ref={f.ref} className="card-hover card-light" style={{
       ...cardBase, ...f.style,
-      gridColumn:'1 / 8', background:C.bg, padding:48, overflow:'hidden',
+      gridColumn:'1 / 8', background:C.bg, padding:56, overflow:'hidden',
     }}>
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none', zIndex:0,
@@ -432,14 +437,14 @@ function CardHero({ onCTA }) {
         </div>
 
         <h1 style={{
-          fontFamily:hd, fontWeight:700, fontSize:'clamp(32px, 3.5vw, 52px)',
+          fontFamily:hd, fontWeight:700, fontSize:'clamp(38px, 4.5vw, 64px)',
           color:C.espresso, lineHeight:1.05, letterSpacing:'-0.02em', marginBottom:16,
         }}>
           From intention to consistent salah —{' '}
           <em style={{ fontStyle:'italic', color:C.turquoiseDk }}>gently.</em>
         </h1>
 
-        <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:32 }}>
+        <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:40 }}>
           NoorPath is a calm, private, and ad-free companion for your daily prayers. Built for Muslims who want to show up consistently — without pressure.
         </p>
 
@@ -457,7 +462,7 @@ function CardHero({ onCTA }) {
 // ── Card 2: Live Prayer Countdown ───────────────────────────────────────
 function CardCountdown({ onOpen }) {
   const cd = useCountdown();
-  const f = useFadeIn(60);
+  const f = useFadeIn(0);
   return (
     <div ref={f.ref} className="card-hover card-dark" onClick={onOpen} style={{
       ...cardBase, ...f.style,
@@ -467,7 +472,6 @@ function CardCountdown({ onOpen }) {
       display:'flex', flexDirection:'column', justifyContent:'space-between',
       overflow:'hidden',
     }}>
-      <ClickDot />
       <div style={{ position:'absolute', left:0, top:0, bottom:0, width:4, background:`linear-gradient(180deg, ${C.turquoise}, ${C.turquoiseDk})` }}/>
       <div style={{
         position:'absolute', width:200, height:200, borderRadius:'50%',
@@ -477,8 +481,8 @@ function CardCountdown({ onOpen }) {
       <div>
         <div style={{ ...label('rgba(175,228,222,0.6)') }}>NEXT PRAYER</div>
         <div style={{ fontFamily:bd, fontSize:32, fontWeight:800, color:C.orange, lineHeight:1, marginBottom:4 }}>ISHA</div>
-        <div style={{ fontFamily:mn, fontSize:'clamp(40px,4vw,64px)', fontWeight:700, color:C.textLight, letterSpacing:'-0.03em', lineHeight:1, marginBottom:16 }}>{cd}</div>
-        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)', marginBottom:24 }}>📍 Sydney, AU</div>
+        <div style={{ fontFamily:mn, fontSize:'clamp(40px,4vw,64px)', fontWeight:700, color:C.textLight, letterSpacing:'-0.03em', lineHeight:1, marginBottom:12 }}>{cd}</div>
+        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)' }}>📍 Sydney, AU</div>
       </div>
       <div>
         <button style={{
@@ -493,7 +497,7 @@ function CardCountdown({ onOpen }) {
 
 // ── Card 3: Five Prayers Streak ─────────────────────────────────────────
 function CardStreak({ onOpen }) {
-  const f = useFadeIn(120);
+  const f = useFadeIn(150);
   const [visibleDots, setVisibleDots] = useState(0);
 
   useEffect(() => {
@@ -506,9 +510,8 @@ function CardStreak({ onOpen }) {
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style, gridColumn:'1 / 5', cursor:'pointer',
     }}>
-      <ClickDot />
       <div style={label()}>CONSISTENCY</div>
-      <div style={{ fontFamily:mn, fontWeight:700, fontSize:64, color:C.orange, lineHeight:1 }}>11</div>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:72, color:C.orange, lineHeight:1 }}>11</div>
       <div style={{ fontFamily:bd, fontSize:13, color:C.textTert, marginBottom:12 }}>day streak</div>
       <div style={{ display:'flex', gap:6, alignItems:'center' }}>
         {Array.from({length:14}).map((_,i) => {
@@ -532,14 +535,13 @@ function CardStreak({ onOpen }) {
 
 // ── Card 4: Your Noor ───────────────────────────────────────────────────
 function CardNoor({ onOpen }) {
-  const f = useFadeIn(180);
+  const f = useFadeIn(230);
   return (
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style,
       gridColumn:'5 / 8', cursor:'pointer',
       display:'flex', flexDirection:'column', alignItems:'center', textAlign:'center',
     }}>
-      <ClickDot />
       <div style={label()}>YOUR NOOR</div>
       <div style={{
         width:80, height:80, borderRadius:'50%',
@@ -555,7 +557,7 @@ function CardNoor({ onOpen }) {
 
 // ── Card 5: Quran Journeys ──────────────────────────────────────────────
 function CardQuran({ onOpen }) {
-  const f = useFadeIn(240);
+  const f = useFadeIn(310);
   const ringRef = useRef(null);
 
   useEffect(() => {
@@ -579,9 +581,8 @@ function CardQuran({ onOpen }) {
     <div ref={f.ref} id="features" className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style, gridColumn:'8 / 13', cursor:'pointer',
     }}>
-      <ClickDot />
       <div style={label(C.turquoiseDk)}>GUIDED READING</div>
-      <div style={{ fontFamily:mn, fontWeight:700, fontSize:48, color:C.espresso, lineHeight:1 }}>8</div>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:64, color:C.espresso, lineHeight:1 }}>8</div>
       <div style={{ fontFamily:bd, fontSize:12, color:C.textTert, marginBottom:16 }}>sessions per surah</div>
       <div style={{ display:'flex', alignItems:'center', gap:16 }}>
         <svg ref={ringRef} width="64" height="64" viewBox="0 0 64 64">
@@ -606,7 +607,7 @@ function CardQuran({ onOpen }) {
 
 // ── Card 6: Private by Design ───────────────────────────────────────────
 function CardPrivacy({ onOpen }) {
-  const f = useFadeIn(300);
+  const f = useFadeIn(150);
   return (
     <div ref={f.ref} className="card-hover card-dark" onClick={onOpen} style={{
       ...cardBase, ...f.style,
@@ -614,9 +615,8 @@ function CardPrivacy({ onOpen }) {
       background:C.bgDark, border:'1px solid rgba(245,240,232,0.06)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
-      <ClickDot />
       <div style={label('rgba(175,228,222,0.6)')}>PRIVACY FIRST</div>
-      <div style={{ fontFamily:mn, fontWeight:700, fontSize:64, color:C.turquoise, lineHeight:1 }}>0</div>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:72, color:C.turquoise, lineHeight:1 }}>0</div>
       <div style={{ fontFamily:bd, fontSize:12, color:'rgba(245,240,232,0.4)', marginBottom:16 }}>data points sent to servers</div>
       {['Zero ad tracking','No account required','On-device storage only'].map(t => (
         <div key={t} style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.55)', marginBottom:6 }}>
@@ -629,7 +629,7 @@ function CardPrivacy({ onOpen }) {
 
 // ── Card 7: Zero Ads ────────────────────────────────────────────────────
 function CardZeroAds({ onOpen }) {
-  const f = useFadeIn(360);
+  const f = useFadeIn(230);
   return (
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style,
@@ -637,22 +637,20 @@ function CardZeroAds({ onOpen }) {
       background:C.bgMuted, border:`1px solid ${C.border}`,
       display:'flex', flexDirection:'column', justifyContent:'center',
     }}>
-      <ClickDot />
-      <div style={{ fontFamily:hd, fontWeight:700, fontSize:36, color:C.espresso, lineHeight:1, marginBottom:4 }}>Zero ads.</div>
-      <div style={{ fontFamily:hd, fontWeight:700, fontStyle:'italic', fontSize:36, color:C.turquoiseDk, lineHeight:1 }}>Ever.</div>
+      <div style={{ fontFamily:hd, fontWeight:700, fontSize:42, color:C.espresso, lineHeight:1, marginBottom:4 }}>Zero ads.</div>
+      <div style={{ fontFamily:hd, fontWeight:700, fontStyle:'italic', fontSize:42, color:C.turquoiseDk, lineHeight:1 }}>Ever.</div>
     </div>
   );
 }
 
 // ── Card 8: For Muslim Women ────────────────────────────────────────────
 function CardWomen({ onOpen }) {
-  const f = useFadeIn(420);
+  const f = useFadeIn(310);
   return (
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style,
       gridColumn:'8 / 13', background:C.bg, cursor:'pointer', overflow:'hidden',
     }}>
-      <ClickDot />
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none',
         backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23AFE4DE' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
@@ -685,13 +683,12 @@ function CardWomen({ onOpen }) {
 
 // ── Card 9: Daily Wisdom ────────────────────────────────────────────────
 function CardWisdom({ onOpen }) {
-  const f = useFadeIn(480);
+  const f = useFadeIn(150);
   return (
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style,
       gridColumn:'1 / 6', cursor:'pointer', paddingLeft:40,
     }}>
-      <ClickDot />
       <div style={{ position:'absolute', left:0, top:0, bottom:0, width:4, borderRadius:'0 2px 2px 0', background:`linear-gradient(180deg, ${C.turquoise}, ${C.turquoiseDk})` }}/>
       <div style={label(C.turquoiseDk)}>DAILY WISDOM</div>
       <div style={{ fontFamily:hd, fontStyle:'italic', fontWeight:400, fontSize:22, color:C.espresso, lineHeight:1.4 }}>
@@ -703,14 +700,13 @@ function CardWisdom({ onOpen }) {
 
 // ── Card 10: No Manipulation ────────────────────────────────────────────
 function CardNotifications({ onOpen }) {
-  const f = useFadeIn(540);
+  const f = useFadeIn(230);
   return (
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style, gridColumn:'6 / 9', cursor:'pointer',
     }}>
-      <ClickDot />
       <div style={label()}>NOTIFICATIONS</div>
-      <div style={{ fontFamily:mn, fontWeight:700, fontSize:64, color:C.espresso, lineHeight:1 }}>0</div>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:72, color:C.espresso, lineHeight:1 }}>0</div>
       <div style={{ fontFamily:bd, fontSize:12, color:C.textTert }}>guilt-based notifications. Ever.</div>
     </div>
   );
@@ -718,7 +714,7 @@ function CardNotifications({ onOpen }) {
 
 // ── Card 11: Pricing ────────────────────────────────────────────────────
 function CardPricing({ onOpen }) {
-  const f = useFadeIn(600);
+  const f = useFadeIn(310);
   return (
     <div ref={f.ref} className="card-hover card-dark" onClick={onOpen} style={{
       ...cardBase, ...f.style,
@@ -726,10 +722,9 @@ function CardPricing({ onOpen }) {
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
-      <ClickDot />
       <div style={label('rgba(175,228,222,0.6)')}>PRICING</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.textLight, letterSpacing:'-0.01em', marginBottom:4 }}>Free to start.</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:22, color:C.orange, letterSpacing:'-0.01em', marginBottom:16 }}>$39.99/year to grow.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:24, color:C.textLight, letterSpacing:'-0.01em', marginBottom:4 }}>Free to start.</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:24, color:C.orange, letterSpacing:'-0.01em', marginBottom:16 }}>$39.99/year to grow.</div>
       <div style={{ height:1, background:'rgba(245,240,232,0.08)', marginBottom:16 }}/>
       <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', marginBottom:4 }}>Core features — Always free</div>
       <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', marginBottom:4 }}>Full experience — $4.99/month</div>
@@ -741,7 +736,7 @@ function CardPricing({ onOpen }) {
 
 // ── Card 12: Final CTA ──────────────────────────────────────────────────
 function CardFinalCTA({ onCTA }) {
-  const f = useFadeIn(660);
+  const f = useFadeIn(0);
   return (
     <div ref={f.ref} className="card-hover card-dark" style={{
       ...cardBase, ...f.style,
@@ -749,7 +744,7 @@ function CardFinalCTA({ onCTA }) {
       background:`linear-gradient(135deg, ${C.bgDark} 0%, ${C.bgDarkSurf} 100%)`,
       border:'1px solid rgba(175,228,222,0.08)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
-      padding:64, textAlign:'center', overflow:'hidden',
+      padding:80, textAlign:'center', overflow:'hidden',
     }}>
       <div style={{
         position:'absolute', width:400, height:400, borderRadius:'50%',
@@ -758,66 +753,19 @@ function CardFinalCTA({ onCTA }) {
       }}/>
       <div style={{ position:'relative', zIndex:1 }}>
         <h2 style={{
-          fontFamily:hd, fontWeight:700, fontSize:'clamp(28px, 4vw, 52px)',
-          color:C.textLight, lineHeight:1.1, marginBottom:16,
+          fontFamily:hd, fontWeight:700, fontSize:'clamp(32px, 5vw, 68px)',
+          color:C.textLight, lineHeight:1.1, marginBottom:0,
         }}>Every prayer begins with a first step.</h2>
-        <p style={{ fontFamily:bd, fontSize:17, color:'rgba(245,240,232,0.4)', marginBottom:40 }}>
-          NoorPath is coming to the App Store. Be first.
-        </p>
         <button onClick={onCTA} style={{
           display:'inline-flex', background:C.orange, color:'#fff',
           fontFamily:bd, fontSize:15, fontWeight:700,
           padding:'14px 32px', borderRadius:999, border:'none', cursor:'pointer',
           animation:'softGlow 3s ease-in-out infinite',
+          marginTop:48,
         }}>Join the Waitlist</button>
-      </div>
-    </div>
-  );
-}
-
-// ═════════════════════════════════════════════════════════════════════════
-// STICKY BOTTOM BAR
-// ═════════════════════════════════════════════════════════════════════════
-function BottomBar() {
-  const [email, setEmail] = useState('');
-  const [done, setDone] = useState(false);
-  const submit = () => { if (email.includes('@')) setDone(true); };
-
-  return (
-    <div style={{
-      position:'fixed', bottom:0, left:0, right:0, zIndex:150,
-      background:'rgba(253,252,250,0.97)', backdropFilter:'blur(16px)',
-      WebkitBackdropFilter:'blur(16px)',
-      borderTop:'1px solid rgba(41,22,2,0.06)',
-      padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
-    }}>
-      <div className="bottom-left" style={{ display:'flex', alignItems:'center' }}>
-        <span style={{ fontFamily:nd, fontWeight:400, fontSize:13, color:C.espresso }}>NoorPath · Coming to iOS</span>
-        <span style={{ fontFamily:bd, fontSize:13, color:C.textSec, marginLeft:16 }}>Be first to know when we launch.</span>
-      </div>
-      <div className="bottom-right" style={{ display:'flex', alignItems:'center' }}>
-        {!done ? (
-          <>
-            <input
-              type="email" placeholder="Your email" value={email}
-              onChange={e => setEmail(e.target.value)}
-              onKeyDown={e => { if (e.key === 'Enter') submit(); }}
-              style={{
-                padding:'10px 20px', border:`1px solid ${C.border}`, borderRadius:999,
-                fontFamily:bd, fontSize:14, color:C.espresso, width:240, marginRight:8, outline:'none',
-              }}
-              onFocus={e => e.target.style.borderColor = C.turquoise}
-              onBlur={e => e.target.style.borderColor = C.border}
-            />
-            <button onClick={submit} style={{
-              background:C.orange, color:'#fff', fontFamily:bd, fontSize:14, fontWeight:700,
-              padding:'10px 24px', borderRadius:999, border:'none', cursor:'pointer',
-              animation:'softGlow 3s ease-in-out infinite',
-            }}>Notify Me</button>
-          </>
-        ) : (
-          <span style={{ fontFamily:bd, fontSize:13, color:C.turquoiseDk }}>You&#39;re on the list — JazakAllah khair</span>
-        )}
+        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.25)', marginTop:16 }}>
+          Coming to iOS · Free to download
+        </div>
       </div>
     </div>
   );
@@ -892,14 +840,13 @@ function Modal({ open, onClose }) {
 function Footer() {
   return (
     <footer style={{
-      padding:'24px 48px', borderTop:`1px solid ${C.border}`,
+      padding:'32px 48px',
       display:'flex', justifyContent:'space-between', alignItems:'center',
-      flexWrap:'wrap', gap:16, marginBottom:60,
     }}>
-      <span style={{ fontFamily:bd, fontSize:13, color:C.textTert }}>© 2026 NoorPath</span>
+      <span style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)' }}>© 2026 NoorPath</span>
       <div>
         {[['Privacy Policy','/privacy'],['Terms of Service','/terms'],['Contact','mailto:matt@kthg.com.au']].map(([t,h]) => (
-          <a key={t} href={h} style={{ fontFamily:bd, fontSize:13, color:C.textTert, textDecoration:'none', marginLeft:24 }}>{t}</a>
+          <a key={t} href={h} style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)', textDecoration:'none', marginLeft:24 }}>{t}</a>
         ))}
       </div>
     </footer>
@@ -930,9 +877,9 @@ export default function Home() {
         @keyframes drawRing { from { stroke-dashoffset:176; } to { stroke-dashoffset:70; } }
         @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
         @keyframes cardZoom { from { opacity:0; transform: scale(0.92); } to { opacity:1; transform: scale(1); } }
-        .card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; }
-        .card-hover.card-light:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(41,22,2,0.08) !important; filter: brightness(0.98); }
-        .card-hover.card-dark:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(41,22,2,0.08) !important; filter: brightness(1.05); }
+        .card-hover { transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, filter 0.2s ease; }
+        .card-hover.card-light:hover { transform: translateY(-3px) scale(1.005); box-shadow: 0 16px 48px rgba(41,22,2,0.09) !important; filter: brightness(0.98); }
+        .card-hover.card-dark:hover { transform: translateY(-3px) scale(1.005); box-shadow: 0 16px 48px rgba(0,0,0,0.4) !important; filter: brightness(1.05); }
         .nav-link:hover { color:${C.espresso} !important; }
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
@@ -940,10 +887,6 @@ export default function Home() {
           .prayer-dots { display:none !important; }
           .bento-grid { grid-template-columns:repeat(4,1fr) !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; }
-          .bottom-left span:last-child { display:none; }
-          .bottom-right { flex-direction:column; width:100%; }
-          .bottom-right input { width:100% !important; margin-bottom:8px; margin-right:0 !important; }
-          .bottom-right button { width:100%; }
           section, footer { padding-left:20px !important; padding-right:20px !important; }
         }
       `}</style>
@@ -952,8 +895,8 @@ export default function Home() {
       <PrayerStrip />
 
       <div style={{
-        maxWidth:1200, margin:'0 auto', padding:'40px 48px 120px',
-        display:'grid', gridTemplateColumns:'repeat(12, 1fr)', gap:14,
+        maxWidth:1200, margin:'0 auto', padding:'40px 48px 80px',
+        display:'grid', gridTemplateColumns:'repeat(12, 1fr)', gap:20,
       }} className="bento-grid">
         <CardHero onCTA={open} />
         <CardCountdown onOpen={() => setActiveCard(cardData.countdown)} />
@@ -970,7 +913,6 @@ export default function Home() {
       </div>
 
       <Footer />
-      <BottomBar />
       <CardOverlay card={activeCard} onClose={() => setActiveCard(null)} />
       <Modal open={modalOpen} onClose={close} />
     </>
