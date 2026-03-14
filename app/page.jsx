@@ -414,34 +414,47 @@ function PrayerStrip() {
 // BENTO CARDS
 // ═════════════════════════════════════════════════════════════════════════
 
+// ── Card 0: Logo Card ───────────────────────────────────────────────────
+function CardLogo() {
+  const f = useFadeIn(0);
+  return (
+    <div ref={f.ref} className="card-hover card-dark" style={{
+      ...cardBase, ...f.style,
+      gridColumn:'1 / 4', background:C.bgDark,
+      border:'1px solid rgba(175,228,222,0.12)', borderRadius:20,
+      display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
+    }}>
+      <img src="/logo.svg" alt="NoorPath" style={{ width:200, height:'auto', marginBottom:16 }}/>
+      <div style={{
+        fontFamily:nd, fontSize:10, fontWeight:400,
+        letterSpacing:'0.12em', textTransform:'uppercase',
+        color:C.textTert,
+      }}>Islamic prayer companion</div>
+    </div>
+  );
+}
+
 // ── Card 1: Hero Headline ───────────────────────────────────────────────
 function CardHero({ onCTA }) {
   const f = useFadeIn(0);
   return (
     <div ref={f.ref} className="card-hover card-light" style={{
       ...cardBase, ...f.style,
-      gridColumn:'1 / 8', background:C.bg, padding:56, overflow:'hidden',
+      gridColumn:'4 / 13', background:C.bg, padding:56, overflow:'hidden',
     }}>
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none', zIndex:0,
         backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23AFE4DE' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       }}/>
       <div style={{ position:'relative', zIndex:1 }}>
-        <div style={{
-          display:'inline-flex', alignItems:'center', gap:6,
-          border:`1px solid ${C.border}`, borderRadius:999, padding:'6px 16px', marginBottom:24,
-          fontFamily:nd, fontSize:11, fontWeight:400, letterSpacing:'0.08em', color:C.textSec,
-        }}>
-          <span style={{ width:6, height:6, borderRadius:'50%', background:C.turquoise, display:'inline-block', animation:'dotPulse 2s infinite' }}/>
-          Coming to the App Store
-        </div>
+        <div style={label()}>DAILY PRACTICE</div>
 
         <h1 style={{
-          fontFamily:hd, fontWeight:700, fontSize:'clamp(38px, 4.5vw, 64px)',
+          fontFamily:hd, fontWeight:400, fontSize:'clamp(38px, 4.5vw, 64px)',
           color:C.espresso, lineHeight:1.05, letterSpacing:'-0.02em', marginBottom:16,
         }}>
-          From intention to consistent salah —{' '}
-          <em style={{ fontStyle:'italic', color:C.turquoiseDk }}>gently.</em>
+          From intention to prayer.{' '}
+          <em style={{ fontStyle:'italic', color:C.orange }}>Every day.</em>
         </h1>
 
         <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:40 }}>
@@ -453,7 +466,10 @@ function CardHero({ onCTA }) {
           fontFamily:bd, fontSize:15, fontWeight:700,
           padding:'14px 32px', borderRadius:999, border:'none', cursor:'pointer',
           animation:'softGlow 3s ease-in-out infinite',
-        }}>Get Early Access</button>
+        }}>Get notified</button>
+        <div style={{ fontFamily:bd, fontSize:12, color:C.textTert, marginTop:12 }}>
+          Free to download · Premium features from $4.99/month
+        </div>
       </div>
     </div>
   );
@@ -895,13 +911,14 @@ export default function Home() {
       <PrayerStrip />
 
       <div style={{
-        maxWidth:1200, margin:'0 auto', padding:'40px 48px 80px',
+        maxWidth:1200, margin:'80px auto 0', padding:'0 48px 80px',
         display:'grid', gridTemplateColumns:'repeat(12, 1fr)', gap:20,
       }} className="bento-grid">
+        <CardLogo />
         <CardHero onCTA={open} />
-        <CardCountdown onOpen={() => setActiveCard(cardData.countdown)} />
         <CardStreak onOpen={() => setActiveCard(cardData.streak)} />
         <CardNoor onOpen={() => setActiveCard(cardData.noor)} />
+        <CardCountdown onOpen={() => setActiveCard(cardData.countdown)} />
         <CardQuran onOpen={() => setActiveCard(cardData.quran)} />
         <CardPrivacy onOpen={() => setActiveCard(cardData.privacy)} />
         <CardZeroAds onOpen={() => setActiveCard(cardData.ads)} />
