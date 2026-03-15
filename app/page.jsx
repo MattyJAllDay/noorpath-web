@@ -344,15 +344,18 @@ function CardOverlay({ card, onClose }) {
 function Nav({ onCTA }) {
   return (
     <nav style={{
-      position:'fixed', top:0, width:'100%', height:64, zIndex:200,
+      position:'fixed', top:0, width:'100%', zIndex:200,
       background:'rgba(253,252,250,0.92)', backdropFilter:'blur(16px)',
       WebkitBackdropFilter:'blur(16px)',
       borderBottom:`1px solid ${C.border}`,
-      padding:'0 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
+      padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
     }}>
       <div style={{ display:'flex', alignItems:'center' }}>
         <img src="/logo.png" alt="NoorPath" style={{ height:32, width:'auto' }}/>
-        <span style={{ fontFamily:nd, fontWeight:400, fontSize:18, color:C.espresso, letterSpacing:'0.02em', marginLeft:10 }}>NoorPath</span>
+        <div style={{ marginLeft:10 }}>
+          <span style={{ fontFamily:nd, fontWeight:400, fontSize:18, color:C.espresso, letterSpacing:'0.02em', display:'block' }}>NoorPath</span>
+          <span style={{ fontFamily:nd, fontWeight:400, fontSize:9, letterSpacing:'0.12em', textTransform:'uppercase', color:C.textTert, display:'block' }}>Islamic prayer companion</span>
+        </div>
       </div>
       <div style={{ display:'flex', alignItems:'center' }}>
         {[['Features','#features'],['Privacy','/privacy'],['Terms','/terms']].map(([t,h])=>(
@@ -424,12 +427,7 @@ function CardLogo() {
       border:'1px solid rgba(175,228,222,0.12)', borderRadius:20,
       display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
     }}>
-      <img src="/logo.svg" alt="NoorPath" style={{ width:200, height:'auto', marginBottom:16 }}/>
-      <div style={{
-        fontFamily:nd, fontSize:10, fontWeight:400,
-        letterSpacing:'0.12em', textTransform:'uppercase',
-        color:C.textTert,
-      }}>Islamic prayer companion</div>
+      <img src="/logo.svg" alt="NoorPath" style={{ width:220, height:'auto' }}/>
     </div>
   );
 }
@@ -919,9 +917,9 @@ export default function Home() {
         <CardStreak onOpen={() => setActiveCard(cardData.streak)} />
         <CardNoor onOpen={() => setActiveCard(cardData.noor)} />
         <CardCountdown onOpen={() => setActiveCard(cardData.countdown)} />
-        <CardQuran onOpen={() => setActiveCard(cardData.quran)} />
         <CardPrivacy onOpen={() => setActiveCard(cardData.privacy)} />
         <CardZeroAds onOpen={() => setActiveCard(cardData.ads)} />
+        <CardQuran onOpen={() => setActiveCard(cardData.quran)} />
         <CardWomen onOpen={() => setActiveCard(cardData.women)} />
         <CardWisdom onOpen={() => setActiveCard(cardData.wisdom)} />
         <CardNotifications onOpen={() => setActiveCard(cardData.notifications)} />
