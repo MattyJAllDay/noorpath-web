@@ -663,32 +663,39 @@ function CardWomen({ onOpen }) {
   return (
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style,
-      gridColumn:'8 / 13', background:C.bg, cursor:'pointer', overflow:'hidden',
+      gridColumn:'1 / 13', background:C.bg, cursor:'pointer', overflow:'hidden',
     }}>
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none',
         backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23AFE4DE' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       }}/>
-      <div style={{ position:'relative', zIndex:1 }}>
-        <span style={{
-          fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em',
-          color:C.turquoiseDk, border:'1px solid rgba(175,228,222,0.4)',
-          borderRadius:999, padding:'4px 12px', display:'inline-block', marginBottom:16,
-        }}>FOR MUSLIM WOMEN</span>
-        <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.25, marginBottom:8 }}>
-          Your streak is protected. Your practice, respected.
+      <div style={{ position:'relative', zIndex:1, display:'flex', gap:40 }}>
+        <div style={{ flex:'0 0 60%' }}>
+          <span style={{
+            fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em',
+            color:C.turquoiseDk, border:'1px solid rgba(175,228,222,0.4)',
+            borderRadius:999, padding:'4px 12px', display:'inline-block', marginBottom:16,
+          }}>FOR MUSLIM WOMEN</span>
+          <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.25, marginBottom:8 }}>
+            Your streak is protected. Your practice, respected.
+          </div>
+          <div style={{ fontFamily:bd, fontSize:15, fontWeight:600, color:C.espresso, marginBottom:12 }}>
+            Your streak pauses. Not breaks.
+          </div>
+          <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
+            {['Streak protection','Exempt day awareness','Fiqh-considered'].map(t => (
+              <span key={t} style={{
+                fontFamily:nd, fontSize:12, fontWeight:400, color:C.espresso,
+                border:`1px solid ${C.border}`, borderRadius:999,
+                padding:'5px 14px', background:'#fff',
+              }}>{t}</span>
+            ))}
+          </div>
         </div>
-        <div style={{ fontFamily:bd, fontSize:15, fontWeight:600, color:C.espresso, marginBottom:12 }}>
-          Your streak pauses. Not breaks.
-        </div>
-        <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
-          {['Streak protection','Exempt day awareness','Fiqh-considered'].map(t => (
-            <span key={t} style={{
-              fontFamily:nd, fontSize:12, fontWeight:400, color:C.espresso,
-              border:`1px solid ${C.border}`, borderRadius:999,
-              padding:'5px 14px', background:'#fff',
-            }}>{t}</span>
-          ))}
+        <div style={{ flex:'0 0 40%', display:'flex', alignItems:'center' }}>
+          <p style={{ fontFamily:bd, fontSize:15, lineHeight:1.6, color:C.textSec }}>
+            Your practice doesn&#39;t pause for life. NoorPath does.
+          </p>
         </div>
       </div>
     </div>
