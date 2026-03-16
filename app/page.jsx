@@ -240,6 +240,7 @@ function PricingOverlayContent() {
     ['Complete Spiritual History', 'Every prayer, every month, every year'],
     ['Cloud Backup', 'Your streak and progress, always safe'],
     ['Premium Widgets', 'Light orb + full dashboard on your home screen'],
+    ['Focus Mode', 'A calm prayer companion screen at every prayer time'],
     ['Dark mode, done beautifully', null],
   ];
   const breakdown = [
@@ -248,8 +249,9 @@ function PricingOverlayContent() {
     ['Complete Spiritual History', '$2.99/mo'],
     ['Cloud Backup', '$1.99/mo'],
     ['Premium Widgets', '$1.99/mo'],
+    ['Focus Mode', '$1.99/mo'],
     ['Dark Mode', '$0.99/mo'],
-    ['Total value', '$19.61/mo'],
+    ['Total value', '$21.60/mo'],
   ];
   const dl = 'rgba(245,240,232,0.08)';
   const dt = 'rgba(245,240,232,0.45)';
