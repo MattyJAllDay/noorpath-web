@@ -220,22 +220,109 @@ const cardData = {
   },
   pricing: {
     label: 'PRICING',
-    title: 'Free to start. Premium to grow.',
+    title: 'Your deen. Every day.',
     stat: null,
     statLabel: null,
     dark: true,
-    body: [
-      'Core features are free, forever. You can track your prayers, find Qibla, and use morning & evening adhkar without ever paying a cent.',
-      'Premium unlocks the full NoorPath experience — Quran journeys, unlimited journal history, prayer analytics, and more.',
-      '7-day free trial included. Cancel anytime. 30-day satisfaction guarantee.',
-    ],
-    list: [
-      'Free: Prayer times & tracking · Qibla compass · Morning & evening adhkar · Basic journaling',
-      'Premium: Full Quran journeys · Unlimited journal · Prayer analytics · Sunnah tracking · Cycle-aware tracking',
-      '$39.99/year (save 33%) or $4.99/month',
-    ],
+    custom: true,
+    body: ['Build a daily practice that outlasts the month.'],
+    list: null,
   },
 };
+
+// ═════════════════════════════════════════════════════════════════════════
+// PRICING OVERLAY CONTENT
+// ═════════════════════════════════════════════════════════════════════════
+function PricingOverlayContent() {
+  const features = [
+    ['Monthly Quran Journeys', 'A new guided 7-day journey every month'],
+    ['Premium Adhan Collection', 'Four world-class recitations'],
+    ['Complete Spiritual History', 'Every prayer, every month, every year'],
+    ['Cloud Backup', 'Your streak and progress, always safe'],
+    ['Premium Widgets', 'Light orb + full dashboard on your home screen'],
+    ['Dark mode, done beautifully', null],
+  ];
+  const breakdown = [
+    ['Monthly Quran Journeys', '$9.99/mo'],
+    ['Premium Adhan Collection', '$1.66/mo'],
+    ['Complete Spiritual History', '$2.99/mo'],
+    ['Cloud Backup', '$1.99/mo'],
+    ['Premium Widgets', '$1.99/mo'],
+    ['Dark Mode', '$0.99/mo'],
+    ['Total value', '$19.61/mo'],
+  ];
+  const dl = 'rgba(245,240,232,0.08)';
+  const dt = 'rgba(245,240,232,0.45)';
+  const dm = 'rgba(245,240,232,0.6)';
+
+  return (
+    <>
+      {/* What's Included */}
+      <div style={{ fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(175,228,222,0.6)', marginBottom:16 }}>
+        WHAT&apos;S INCLUDED
+      </div>
+      {features.map(([name, desc], i) => (
+        <div key={i} style={{ display:'flex', alignItems:'flex-start', gap:12, marginBottom:14 }}>
+          <span style={{ color:C.turquoise, fontSize:16, lineHeight:1, marginTop:2 }}>{'\u2713'}</span>
+          <div>
+            <span style={{ fontFamily:bd, fontSize:15, color:C.textLight, fontWeight:600 }}>{name}</span>
+            {desc && <span style={{ fontFamily:bd, fontSize:14, color:dt, marginLeft:8 }}>— {desc}</span>}
+          </div>
+        </div>
+      ))}
+
+      {/* Value breakdown */}
+      <div style={{ height:1, background:dl, margin:'24px 0' }}/>
+      <div style={{ fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(175,228,222,0.6)', marginBottom:16 }}>
+        VALUE BREAKDOWN
+      </div>
+      {breakdown.map(([item, price], i) => {
+        const isTotal = i === breakdown.length - 1;
+        return (
+          <div key={i} style={{
+            display:'flex', justifyContent:'space-between', alignItems:'center',
+            marginBottom:8, paddingTop: isTotal ? 8 : 0,
+            borderTop: isTotal ? `1px solid ${dl}` : 'none',
+          }}>
+            <span style={{ fontFamily:bd, fontSize:13, color: isTotal ? C.textLight : dt, fontWeight: isTotal ? 600 : 400 }}>{item}</span>
+            <span style={{ fontFamily:mn, fontSize:13, color: isTotal ? C.textLight : dt, fontWeight: isTotal ? 700 : 400 }}>{price}</span>
+          </div>
+        );
+      })}
+
+      {/* Plan options */}
+      <div style={{ height:1, background:dl, margin:'24px 0' }}/>
+      <div style={{
+        background:'rgba(175,228,222,0.06)', border:'1px solid rgba(175,228,222,0.15)',
+        borderRadius:16, padding:'20px 24px', marginBottom:12, position:'relative',
+      }}>
+        <span style={{
+          position:'absolute', top:12, right:16,
+          fontFamily:nd, fontSize:9, fontWeight:400, letterSpacing:'0.1em',
+          textTransform:'uppercase', color:C.bgDark, background:C.turquoise,
+          borderRadius:999, padding:'3px 10px',
+        }}>BEST VALUE</span>
+        <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>$39.99 / year</div>
+        <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Just $3.33 per month — save 33% annually</div>
+      </div>
+      <div style={{
+        background:'rgba(245,240,232,0.04)', border:'1px solid rgba(245,240,232,0.06)',
+        borderRadius:16, padding:'20px 24px', marginBottom:24,
+      }}>
+        <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>$4.99 / month</div>
+        <div style={{ fontFamily:bd, fontSize:13, color:dt }}>Full flexibility</div>
+      </div>
+
+      {/* Footer */}
+      <div style={{ fontFamily:bd, fontSize:13, color:dt, textAlign:'center', marginBottom:6 }}>
+        7-day free trial · 30-day money-back guarantee · Cancel anytime
+      </div>
+      <div style={{ fontFamily:bd, fontSize:12, color:C.turquoiseDk, textAlign:'center' }}>
+        Founding member pricing — your rate locks in today
+      </div>
+    </>
+  );
+}
 
 // ═════════════════════════════════════════════════════════════════════════
 // CARD OVERLAY
@@ -318,7 +405,9 @@ function CardOverlay({ card, onClose }) {
           </p>
         ))}
 
-        {card.list && (
+        {card.custom && <PricingOverlayContent />}
+
+        {!card.custom && card.list && (
           <div style={{ marginTop: 8 }}>
             {card.list.map((item, i) => (
               <div key={i} style={{
@@ -351,11 +440,8 @@ function Nav({ onCTA }) {
       padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
     }}>
       <div style={{ display:'flex', alignItems:'center' }}>
-        <img src="/logo.png" alt="NoorPath" style={{ height:32, width:'auto' }}/>
-        <div style={{ marginLeft:10 }}>
-          <span style={{ fontFamily:nd, fontWeight:400, fontSize:18, color:C.espresso, letterSpacing:'0.02em', display:'block' }}>NoorPath</span>
-          <span style={{ fontFamily:nd, fontWeight:400, fontSize:9, letterSpacing:'0.12em', textTransform:'uppercase', color:C.textTert, display:'block' }}>Islamic prayer companion</span>
-        </div>
+        <img src="/logo.svg" alt="NoorPath" style={{ height:32, width:'auto' }}/>
+        <span style={{ marginLeft:10, fontFamily:nd, fontWeight:700, fontSize:16, letterSpacing:3, textTransform:'uppercase', color:C.espresso }}>NOORPATH</span>
       </div>
       <div style={{ display:'flex', alignItems:'center' }}>
         {[['Features','#features'],['Privacy','/privacy'],['Terms','/terms']].map(([t,h])=>(
@@ -677,24 +763,21 @@ function CardWomen({ onOpen }) {
             borderRadius:999, padding:'4px 12px', display:'inline-block', marginBottom:16,
           }}>FOR MUSLIM WOMEN</span>
           <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.25, marginBottom:8 }}>
-            Your streak is protected. Your practice, respected.
+            Your practice understands you.
           </div>
-          <div style={{ fontFamily:bd, fontSize:15, fontWeight:600, color:C.espresso, marginBottom:12 }}>
-            Your streak pauses. Not breaks.
+          <div style={{ fontFamily:bd, fontSize:15, fontWeight:600, color:C.espresso, marginBottom:16 }}>
+            Cycle-aware. Streak-protected. Fiqh-considered.
           </div>
-          <div style={{ display:'flex', flexWrap:'wrap', gap:6 }}>
-            {['Streak protection','Exempt day awareness','Fiqh-considered'].map(t => (
-              <span key={t} style={{
-                fontFamily:nd, fontSize:12, fontWeight:400, color:C.espresso,
-                border:`1px solid ${C.border}`, borderRadius:999,
-                padding:'5px 14px', background:'#fff',
-              }}>{t}</span>
-            ))}
-          </div>
+          {['Prayers pause on exempt days — automatically','Your streak stays intact throughout','"I prayed today" override, always available'].map(t => (
+            <div key={t} style={{ display:'flex', alignItems:'center', gap:10, marginBottom:8 }}>
+              <span style={{ width:6, height:6, borderRadius:'50%', background:C.turquoise, flexShrink:0 }}/>
+              <span style={{ fontFamily:bd, fontSize:13, color:C.textSec }}>{t}</span>
+            </div>
+          ))}
         </div>
         <div style={{ flex:'0 0 40%', display:'flex', alignItems:'center' }}>
-          <p style={{ fontFamily:bd, fontSize:15, lineHeight:1.6, color:C.textSec }}>
-            Your practice doesn&#39;t pause for life. NoorPath does.
+          <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
+            Most apps don&#39;t know you exist. NoorPath tracks your true consistency — the days you could pray, not just the days you did. Predictions, analytics, and a practice that works with your body, not against it.
           </p>
         </div>
       </div>
@@ -743,14 +826,12 @@ function CardPricing({ onOpen }) {
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
-      <div style={label('rgba(175,228,222,0.6)')}>PRICING</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:24, color:C.textLight, letterSpacing:'-0.01em', marginBottom:4 }}>Free to start.</div>
-      <div style={{ fontFamily:bd, fontWeight:700, fontSize:24, color:C.orange, letterSpacing:'-0.01em', marginBottom:16 }}>$39.99/year to grow.</div>
-      <div style={{ height:1, background:'rgba(245,240,232,0.08)', marginBottom:16 }}/>
-      <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', marginBottom:4 }}>Core features — Always free</div>
-      <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.45)', marginBottom:4 }}>Full experience — $4.99/month</div>
-      <div style={{ fontFamily:bd, fontSize:12, color:C.turquoiseDk, marginBottom:16 }}>7-day free trial included</div>
-      <a href="#" onClick={e => e.stopPropagation()} style={{ fontFamily:bd, fontSize:13, color:'rgba(175,228,222,0.6)', textDecoration:'underline', cursor:'pointer' }}>Learn more</a>
+      <div style={label()}>PRICING</div>
+      <div style={{ fontFamily:mn, fontWeight:700, fontSize:52, color:'#FFFFFF', lineHeight:1, letterSpacing:'-0.02em', marginBottom:8 }}>$3.33</div>
+      <div style={{ fontFamily:bd, fontSize:13, color:C.textSec, marginBottom:20 }}>per month, billed annually</div>
+      <div style={{ height:1, background:'rgba(255,255,255,0.08)', marginBottom:16 }}/>
+      <div style={{ fontFamily:bd, fontSize:13, color:C.textLight, marginBottom:4 }}>Free to start</div>
+      <div style={{ fontFamily:bd, fontSize:12, color:C.textSec }}>7-day trial included</div>
     </div>
   );
 }
