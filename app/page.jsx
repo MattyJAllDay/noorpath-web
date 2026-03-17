@@ -107,9 +107,9 @@ const cardData = {
     body: [
       'NoorPath shows you exactly how long until your next prayer — with your local prayer times calculated for your location.',
       'Tap CHECK IN when you\'ve prayed. That\'s all it takes to maintain your streak.',
-      'Prayer times are calculated using established Islamic methods. You can choose your preferred calculation method in settings.',
+      'Prayer times are calculated precisely for your location, using your chosen Islamic method.',
     ],
-    list: ['Fajr · Dawn', 'Dhuhr · Midday', 'Asr · Afternoon', 'Maghrib · Sunset', 'Isha · Night'],
+    list: null,
   },
   streak: {
     label: 'CONSISTENCY',
@@ -147,7 +147,7 @@ const cardData = {
     body: [
       'NoorPath offers structured journeys through key surahs and themes. Each journey is broken into focused sessions you can complete at your own pace.',
       'After each session, a reflection prompt helps you connect with what you\'ve read. Your progress is saved so you always return to the right place.',
-      'New journeys are added regularly.',
+      'New guided journeys added monthly — each one a different theme.',
     ],
     list: null,
   },
@@ -160,7 +160,7 @@ const cardData = {
     dark: true,
     body: [
       'Your journal entries, prayer history, cycle data — none of it ever leaves your device. Not to us. Not to anyone.',
-      'There is no NoorPath account. There is no cloud sync. There is no data to breach.',
+      'There is no NoorPath account required. Your data stays on your device. Your spiritual practice belongs to you alone.',
       'We built NoorPath this way deliberately. Your spiritual practice is between you and Allah.',
     ],
     list: ['Zero ad tracking', 'No account required', 'On-device storage only', 'No data harvesting'],
@@ -172,9 +172,8 @@ const cardData = {
     statLabel: null,
     dark: false,
     body: [
-      'We don\'t run ads. We don\'t sell your data to advertisers. We don\'t use dark patterns to keep you scrolling.',
-      'NoorPath makes money through a simple, honest subscription. That\'s it. Your prayer time will never be interrupted by an advertisement.',
-      'We built NoorPath the way we\'d want an app built for ourselves.',
+      'We don\'t run ads. We don\'t sell your data to advertisers.',
+      'NoorPath is sustained by a simple subscription — nothing more. Your prayer time will never be interrupted by an advertisement.',
     ],
     list: null,
   },
@@ -200,7 +199,6 @@ const cardData = {
     body: [
       'A new hadith or ayah surfaces each day. Quietly. Without notification. There when you open the app.',
       'Drawn from trusted collections. Attributed accurately. Refreshes daily at Fajr.',
-      'It\'s a small thing. But small things, done consistently, are the whole point.',
     ],
     list: null,
   },
@@ -241,6 +239,7 @@ function PricingOverlayContent() {
     ['Cloud Backup', 'Your streak and progress, always safe'],
     ['Premium Widgets', 'Light orb + full dashboard on your home screen'],
     ['Focus Mode', 'A calm prayer companion screen at every prayer time'],
+    ['Cycle-Aware Tracking', 'True consistency, fiqh-considered'],
     ['Dark mode, done beautifully', null],
   ];
   const breakdown = [
@@ -250,8 +249,9 @@ function PricingOverlayContent() {
     ['Cloud Backup', '$1.99/mo'],
     ['Premium Widgets', '$1.99/mo'],
     ['Focus Mode', '$1.99/mo'],
+    ['Cycle Tracking', '$1.99/mo'],
     ['Dark Mode', '$0.99/mo'],
-    ['Total value', '$21.60/mo'],
+    ['Total value', '$23.59/mo'],
   ];
   const dl = 'rgba(245,240,232,0.08)';
   const dt = 'rgba(245,240,232,0.45)';
@@ -752,13 +752,14 @@ function CardWomen({ onOpen }) {
     <div ref={f.ref} className="card-hover card-light" onClick={onOpen} style={{
       ...cardBase, ...f.style,
       gridColumn:'1 / 13', background:C.bg, cursor:'pointer', overflow:'hidden',
+      paddingLeft:36, paddingRight:36, paddingTop:32, paddingBottom:32, alignSelf:'stretch',
     }}>
       <div style={{
         position:'absolute', inset:0, pointerEvents:'none',
         backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23AFE4DE' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       }}/>
-      <div style={{ position:'relative', zIndex:1, display:'flex', gap:40 }}>
-        <div style={{ flex:'0 0 60%' }}>
+      <div style={{ position:'relative', zIndex:1, display:'flex', alignItems:'stretch', minHeight:160, gap:40 }}>
+        <div style={{ flex:'1 1 60%', display:'flex', flexDirection:'column', justifyContent:'center' }}>
           <span style={{
             fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em',
             color:C.turquoiseDk, border:'1px solid rgba(175,228,222,0.4)',
@@ -776,10 +777,14 @@ function CardWomen({ onOpen }) {
               <span style={{ fontFamily:bd, fontSize:13, color:C.textSec }}>{t}</span>
             </div>
           ))}
+          <div style={{ width:48, height:2, background:'#AFE4DE', borderRadius:2, marginTop:24 }} />
         </div>
-        <div style={{ flex:'0 0 40%', display:'flex', alignItems:'center' }}>
-          <p style={{ fontFamily:bd, fontSize:14, lineHeight:1.6, color:C.textSec }}>
-            Most apps don&#39;t know you exist. NoorPath tracks your true consistency — the days you could pray, not just the days you did. Predictions, analytics, and a practice that works with your body, not against it.
+        <div style={{ flex:'0 0 40%', display:'flex', flexDirection:'column', justifyContent:'center', paddingTop:32, paddingLeft:56, paddingRight:48 }}>
+          <div style={{ fontFamily:hd, fontStyle:'italic', fontSize:20, fontWeight:400, color:'#291602', marginBottom:12 }}>
+            Most apps don&#39;t know you exist.
+          </div>
+          <p style={{ fontFamily:bd, fontSize:15, fontWeight:400, color:'#7A6E62', lineHeight:1.6 }}>
+            NoorPath tracks your true consistency — the days you could pray, not just the days you did. Predictions, analytics, and a practice that works with your body, not against it.
           </p>
         </div>
       </div>
@@ -904,7 +909,7 @@ function Modal({ open, onClose }) {
 
         {!done ? (
           <>
-            <h3 style={{ fontFamily:hd, fontWeight:700, fontSize:28, color:C.espresso, marginBottom:8 }}>Be first to walk your noor.</h3>
+            <h3 style={{ fontFamily:hd, fontWeight:700, fontSize:28, color:C.espresso, marginBottom:8 }}>Your practice starts here.</h3>
             <p style={{ fontFamily:bd, fontSize:15, color:C.textSec, marginBottom:28 }}>One email when NoorPath launches. No spam, ever.</p>
             <input
               type="email" placeholder="Your email address" value={email}
