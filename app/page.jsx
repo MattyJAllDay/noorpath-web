@@ -886,8 +886,27 @@ function CardFinalCTA({ onCTA }) {
 function Modal({ open, onClose }) {
   const [email, setEmail] = useState('');
   const [done, setDone] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   if (!open) return null;
-  const submit = () => { if (email.includes('@')) setDone(true); };
+  const submit = async () => {
+    if (!email.includes('@')) return;
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error('Failed to join');
+      setDone(true);
+    } catch {
+      setError('Something went wrong — please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div onClick={onClose} style={{
@@ -922,11 +941,12 @@ function Modal({ open, onClose }) {
               onFocus={e => e.target.style.borderColor = C.turquoise}
               onBlur={e => e.target.style.borderColor = C.border}
             />
-            <button onClick={submit} style={{
-              width:'100%', padding:15, background:C.orange, color:'#fff',
+            <button onClick={submit} disabled={loading} style={{
+              width:'100%', padding:15, background:loading ? C.textTert : C.orange, color:'#fff',
               fontFamily:bd, fontSize:15, fontWeight:700, borderRadius:999, border:'none',
-              cursor:'pointer', animation:'softGlow 3s infinite',
-            }}>Notify Me</button>
+              cursor: loading ? 'default' : 'pointer', animation: loading ? 'none' : 'softGlow 3s infinite',
+            }}>{loading ? 'Joining…' : 'Notify Me'}</button>
+            {error && <p style={{ fontFamily:bd, fontSize:13, color:'#c0392b', textAlign:'center', marginTop:8 }}>{error}</p>}
             <p style={{ fontFamily:bd, fontSize:13, color:C.textTert, textAlign:'center', marginTop:8 }}>
               No spam. One email when NoorPath launches.
             </p>
