@@ -758,8 +758,8 @@ function CardWomen({ onOpen }) {
         position:'absolute', inset:0, pointerEvents:'none',
         backgroundImage:"url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23AFE4DE' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
       }}/>
-      <div style={{ position:'relative', zIndex:1, display:'flex', alignItems:'stretch', minHeight:160, gap:40 }}>
-        <div style={{ flex:'1 1 60%', display:'flex', flexDirection:'column', justifyContent:'center' }}>
+      <div className="women-card-inner" style={{ position:'relative', zIndex:1, display:'flex', alignItems:'stretch', minHeight:160, gap:40 }}>
+        <div className="women-card-left" style={{ flex:'1 1 60%', display:'flex', flexDirection:'column', justifyContent:'center' }}>
           <span style={{
             fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em',
             color:C.turquoiseDk, border:'1px solid rgba(175,228,222,0.4)',
@@ -779,7 +779,7 @@ function CardWomen({ onOpen }) {
           ))}
           <div style={{ width:48, height:2, background:'#AFE4DE', borderRadius:2, marginTop:24 }} />
         </div>
-        <div style={{ flex:'0 0 40%', display:'flex', flexDirection:'column', justifyContent:'center', paddingTop:32, paddingLeft:56, paddingRight:48 }}>
+        <div className="women-card-right" style={{ flex:'0 0 40%', display:'flex', flexDirection:'column', justifyContent:'center', paddingTop:32, paddingLeft:56, paddingRight:48 }}>
           <div style={{ fontFamily:hd, fontStyle:'italic', fontSize:20, fontWeight:400, color:'#291602', marginBottom:12 }}>
             Most apps don&#39;t know you exist.
           </div>
@@ -871,7 +871,7 @@ function CardFinalCTA({ onCTA }) {
           padding:'14px 32px', borderRadius:999, border:'none', cursor:'pointer',
           animation:'softGlow 3s ease-in-out infinite',
           marginTop:48,
-        }}>Join the Waitlist</button>
+        }} className="cta-waitlist-btn">Join the Waitlist</button>
         <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.25)', marginTop:16 }}>
           Coming to iOS · Free to download
         </div>
@@ -1017,6 +1017,10 @@ export default function Home() {
           .bento-grid { grid-template-columns:repeat(4,1fr) !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; }
           section, footer { padding-left:20px !important; padding-right:20px !important; }
+          .women-card-inner { flex-direction:column !important; gap:0 !important; }
+          .women-card-left { flex:1 1 100% !important; padding-bottom:2rem !important; }
+          .women-card-right { flex:1 1 100% !important; padding-left:0 !important; padding-top:0 !important; padding-right:0 !important; }
+          .cta-waitlist-btn { white-space:nowrap !important; min-width:280px !important; justify-content:center !important; }
         }
       `}</style>
 
