@@ -441,10 +441,10 @@ function Nav({ onCTA }) {
       borderBottom:`1px solid ${C.border}`,
       padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
     }}>
-      <div style={{ display:'flex', alignItems:'center' }}>
+      <a href="/" style={{ textDecoration:'none', display:'flex', alignItems:'center' }}>
         <img src="/logo.svg" alt="NoorPath" style={{ height:32, width:'auto' }}/>
         <span style={{ marginLeft:10, fontFamily:nd, fontWeight:700, fontSize:16, letterSpacing:3, textTransform:'uppercase', color:C.espresso }}>NOORPATH</span>
-      </div>
+      </a>
       <div style={{ display:'flex', alignItems:'center' }}>
         {[['Features','#features'],['Privacy','/privacy'],['Terms','/terms']].map(([t,h])=>(
           <a key={t} href={h} className="nav-link" style={{ fontFamily:nd, fontWeight:400, fontSize:13, letterSpacing:'0.01em', color:C.textSec, textDecoration:'none', marginLeft:28 }}>{t}</a>
