@@ -305,7 +305,7 @@ function PricingOverlayContent() {
           borderRadius:999, padding:'3px 10px',
         }}>BEST VALUE</span>
         <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>$39.99 / year</div>
-        <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Just $3.33 per month — save 33% annually</div>
+        <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Only $3.33 per month — save 33% annually</div>
       </div>
       <div style={{
         background:'rgba(245,240,232,0.04)', border:'1px solid rgba(245,240,232,0.06)',
