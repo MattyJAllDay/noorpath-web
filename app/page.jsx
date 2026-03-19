@@ -217,7 +217,7 @@ const cardData = {
     list: null,
   },
   pricing: {
-    label: 'PRICING',
+    label: 'PREMIUM PRICING',
     title: 'Your deen. Every day.',
     stat: null,
     statLabel: null,
@@ -552,9 +552,9 @@ function CardHero({ onCTA }) {
           fontFamily:bd, fontSize:15, fontWeight:700,
           padding:'14px 32px', borderRadius:999, border:'none', cursor:'pointer',
           animation:'softGlow 3s ease-in-out infinite',
-        }}>Get notified</button>
-        <div style={{ fontFamily:bd, fontSize:12, color:C.textTert, marginTop:12 }}>
-          Free to download · Premium features from $4.99/month
+        }} className="hero-cta-btn">Get notified</button>
+        <div className="hero-sub-text" style={{ fontFamily:bd, fontSize:12, color:C.textTert, marginTop:12 }}>
+          <span>Free to download</span><span className="hero-sub-separator"> · </span><span>Premium features from $4.99/month</span>
         </div>
       </div>
     </div>
@@ -584,7 +584,7 @@ function CardCountdown({ onOpen }) {
         <div style={{ ...label('rgba(175,228,222,0.6)') }}>NEXT PRAYER</div>
         <div style={{ fontFamily:bd, fontSize:32, fontWeight:800, color:C.orange, lineHeight:1, marginBottom:4 }}>ISHA</div>
         <div style={{ fontFamily:mn, fontSize:'clamp(40px,4vw,64px)', fontWeight:700, color:C.textLight, letterSpacing:'-0.03em', lineHeight:1, marginBottom:12 }}>{cd}</div>
-        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)' }}>📍 Sydney, AU</div>
+        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)' }}>Sydney, AU</div>
       </div>
       <div>
         <button style={{
@@ -766,7 +766,7 @@ function CardWomen({ onOpen }) {
             borderRadius:999, padding:'4px 12px', display:'inline-block', marginBottom:16,
           }}>FOR MUSLIM WOMEN</span>
           <div style={{ fontFamily:bd, fontWeight:700, fontSize:20, color:C.espresso, letterSpacing:'-0.01em', lineHeight:1.25, marginBottom:8 }}>
-            Your practice understands you.
+            Your practice<br/>understands you.
           </div>
           <div style={{ fontFamily:bd, fontSize:15, fontWeight:600, color:C.espresso, marginBottom:16 }}>
             Cycle-aware. Streak-protected. Fiqh-considered.
@@ -781,7 +781,7 @@ function CardWomen({ onOpen }) {
         </div>
         <div className="women-card-right" style={{ flex:'0 0 40%', display:'flex', flexDirection:'column', justifyContent:'center', paddingTop:32, paddingLeft:56, paddingRight:48 }}>
           <div style={{ fontFamily:hd, fontStyle:'italic', fontSize:20, fontWeight:400, color:'#291602', marginBottom:12 }}>
-            Most apps don&#39;t know you exist.
+            Most apps don&#39;t<br/>know you exist.
           </div>
           <p style={{ fontFamily:bd, fontSize:15, fontWeight:400, color:'#7A6E62', lineHeight:1.6 }}>
             NoorPath tracks your true consistency — the days you could pray, not just the days you did. Predictions, analytics, and a practice that works with your body, not against it.
@@ -833,7 +833,7 @@ function CardPricing({ onOpen }) {
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
-      <div style={label()}>PRICING</div>
+      <div style={label()}>PREMIUM PRICING</div>
       <div style={{ fontFamily:mn, fontWeight:700, fontSize:52, color:'#FFFFFF', lineHeight:1, letterSpacing:'-0.02em', marginBottom:8 }}>$3.33</div>
       <div style={{ fontFamily:bd, fontSize:13, color:C.textSec, marginBottom:20 }}>per month, billed annually</div>
       <div style={{ height:1, background:'rgba(255,255,255,0.08)', marginBottom:16 }}/>
@@ -1013,21 +1013,25 @@ export default function Home() {
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
           nav .nav-link { display:none !important; }
-          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; }
+          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:relative !important; }
           .prayer-dots { display:flex !important; gap:12px !important; justify-content:center !important; }
           .prayer-dots span { font-size:10px !important; }
-          .prayer-countdown { justify-content:center !important; font-size:13px !important; }
+          .prayer-countdown { justify-content:center !important; }
           .prayer-countdown span { font-size:13px !important; }
           .hero-headline { font-size:36px !important; }
+          .hero-cta-btn { display:block !important; margin:0 auto !important; width:fit-content !important; }
+          .hero-sub-text { text-align:center !important; }
           .bento-grid { grid-template-columns:repeat(4,1fr) !important; }
-          .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; }
+          .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; padding:24px !important; }
           section, footer { padding-left:20px !important; padding-right:20px !important; }
           .women-card-inner { flex-direction:column !important; gap:0 !important; }
           .women-card-left { flex:1 1 100% !important; padding-bottom:2rem !important; }
           .women-card-right { flex:1 1 100% !important; padding-left:0 !important; padding-top:0 !important; padding-right:0 !important; }
-          .final-cta-headline { font-size:32px !important; }
-          .cta-waitlist-btn { white-space:nowrap !important; width:auto !important; min-width:240px !important; max-width:280px !important; display:block !important; margin:48px auto 0 !important; text-align:center !important; padding:16px 40px !important; }
+          .final-cta-headline { font-size:28px !important; }
+          .cta-waitlist-btn { white-space:nowrap !important; width:auto !important; min-width:200px !important; max-width:260px !important; display:block !important; margin:48px auto 0 !important; text-align:center !important; padding:16px 32px !important; }
           .cta-subtitle { white-space:nowrap !important; }
+          .hero-sub-text span { display:block !important; text-align:center !important; }
+          .hero-sub-separator { display:none !important; }
         }
       `}</style>
 
