@@ -1013,14 +1013,15 @@ export default function Home() {
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
           nav .nav-link { display:none !important; }
-          .prayer-dots { display:none !important; }
+          .prayer-dots { display:flex !important; overflow-x:auto !important; white-space:nowrap !important; gap:16px !important; -ms-overflow-style:none; scrollbar-width:none; }
+          .prayer-dots::-webkit-scrollbar { display:none; }
           .bento-grid { grid-template-columns:repeat(4,1fr) !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; }
           section, footer { padding-left:20px !important; padding-right:20px !important; }
           .women-card-inner { flex-direction:column !important; gap:0 !important; }
           .women-card-left { flex:1 1 100% !important; padding-bottom:2rem !important; }
           .women-card-right { flex:1 1 100% !important; padding-left:0 !important; padding-top:0 !important; padding-right:0 !important; }
-          .cta-waitlist-btn { white-space:nowrap !important; min-width:280px !important; justify-content:center !important; }
+          .cta-waitlist-btn { white-space:nowrap !important; width:auto !important; min-width:0 !important; display:inline-flex !important; padding:16px 48px !important; }
         }
       `}</style>
 
