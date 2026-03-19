@@ -478,8 +478,8 @@ function PrayerStrip() {
       WebkitBackdropFilter:'blur(12px)',
       borderBottom:`1px solid ${C.border}`,
       padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
-    }}>
-      <div className="prayer-dots" style={{ display:'flex', gap:24, alignItems:'center' }}>
+    }} className="prayer-strip">
+      <div className="prayer-dots" style={{ display:'flex', gap:24, alignItems:'center', flexShrink:0 }}>
         {prayers.map(p => (
           <div key={p.name} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:4 }}>
             <span style={{ fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em', color:C.textTert }}>{p.name}</span>
@@ -493,7 +493,7 @@ function PrayerStrip() {
           </div>
         ))}
       </div>
-      <div style={{ display:'flex', alignItems:'center', gap:12 }}>
+      <div className="prayer-countdown" style={{ display:'flex', alignItems:'center', gap:12 }}>
         <span style={{ fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em', color:C.textTert }}>NEXT: ISHA IN</span>
         <span style={{ fontFamily:mn, fontSize:18, fontWeight:700, color:C.espresso, letterSpacing:'-0.02em' }}>{cd}</span>
       </div>
@@ -535,7 +535,7 @@ function CardHero({ onCTA }) {
       <div style={{ position:'relative', zIndex:1 }}>
         <div style={label()}>DAILY PRACTICE</div>
 
-        <h1 style={{
+        <h1 className="hero-headline" style={{
           fontFamily:hd, fontWeight:400, fontSize:'clamp(38px, 4.5vw, 64px)',
           color:C.espresso, lineHeight:1.05, letterSpacing:'-0.02em', marginBottom:16,
         }}>
@@ -861,7 +861,7 @@ function CardFinalCTA({ onCTA }) {
         top:'50%', left:'50%', transform:'translate(-50%,-50%)', pointerEvents:'none',
       }}/>
       <div style={{ position:'relative', zIndex:1 }}>
-        <h2 style={{
+        <h2 className="final-cta-headline" style={{
           fontFamily:hd, fontWeight:700, fontSize:'clamp(32px, 5vw, 68px)',
           color:C.textLight, lineHeight:1.1, marginBottom:0,
         }}>Every prayer begins with a first step.</h2>
@@ -872,7 +872,7 @@ function CardFinalCTA({ onCTA }) {
           animation:'softGlow 3s ease-in-out infinite',
           marginTop:48,
         }} className="cta-waitlist-btn">Join the Waitlist</button>
-        <div style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.25)', marginTop:16 }}>
+        <div className="cta-subtitle" style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.25)', marginTop:16 }}>
           Coming to iOS · Free to download
         </div>
       </div>
@@ -1013,15 +1013,21 @@ export default function Home() {
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
           nav .nav-link { display:none !important; }
-          .prayer-dots { display:flex !important; overflow-x:auto !important; white-space:nowrap !important; gap:16px !important; -ms-overflow-style:none; scrollbar-width:none; }
-          .prayer-dots::-webkit-scrollbar { display:none; }
+          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; }
+          .prayer-dots { display:flex !important; gap:12px !important; justify-content:center !important; }
+          .prayer-dots span { font-size:10px !important; }
+          .prayer-countdown { justify-content:center !important; font-size:13px !important; }
+          .prayer-countdown span { font-size:13px !important; }
+          .hero-headline { font-size:36px !important; }
           .bento-grid { grid-template-columns:repeat(4,1fr) !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; }
           section, footer { padding-left:20px !important; padding-right:20px !important; }
           .women-card-inner { flex-direction:column !important; gap:0 !important; }
           .women-card-left { flex:1 1 100% !important; padding-bottom:2rem !important; }
           .women-card-right { flex:1 1 100% !important; padding-left:0 !important; padding-top:0 !important; padding-right:0 !important; }
-          .cta-waitlist-btn { white-space:nowrap !important; width:auto !important; min-width:0 !important; display:inline-flex !important; padding:16px 48px !important; }
+          .final-cta-headline { font-size:32px !important; }
+          .cta-waitlist-btn { white-space:nowrap !important; width:auto !important; min-width:240px !important; max-width:280px !important; display:block !important; margin:48px auto 0 !important; text-align:center !important; padding:16px 40px !important; }
+          .cta-subtitle { white-space:nowrap !important; }
         }
       `}</style>
 
