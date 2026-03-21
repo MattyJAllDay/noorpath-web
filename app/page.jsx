@@ -584,7 +584,7 @@ function CardCountdown({ onOpen }) {
         <div style={{ ...label('rgba(175,228,222,0.6)') }}>NEXT PRAYER</div>
         <div style={{ fontFamily:bd, fontSize:32, fontWeight:800, color:C.orange, lineHeight:1, marginBottom:4 }}>ISHA</div>
         <div style={{ fontFamily:mn, fontSize:'clamp(40px,4vw,64px)', fontWeight:700, color:C.textLight, letterSpacing:'-0.03em', lineHeight:1, marginBottom:4 }}>{cd}</div>
-        <div className="next-prayer-location" style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)', marginTop:8 }}>Sydney, AU</div>
+        <div className="next-prayer-location" style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)', marginTop:4 }}>Sydney, AU</div>
       </div>
       <div>
         <button style={{
@@ -1013,12 +1013,12 @@ export default function Home() {
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
           nav .nav-link { display:none !important; }
-          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:static !important; display:block !important; width:100% !important; text-align:center !important; }
+          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:static !important; display:block !important; width:100% !important; text-align:center !important; margin-top:60px !important; }
           .prayer-dots { display:flex !important; gap:12px !important; justify-content:center !important; margin-bottom:8px !important; }
           .prayer-dots span { font-size:10px !important; }
           .prayer-countdown { display:flex !important; justify-content:center !important; }
           .prayer-countdown span { font-size:13px !important; }
-          .bento-grid { grid-template-columns:repeat(4,1fr) !important; margin-top:20px !important; padding-top:60px !important; }
+          .bento-grid { grid-template-columns:repeat(4,1fr) !important; margin-top:20px !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; padding:24px !important; }
           .hero-headline { font-size:36px !important; }
           .hero-cta-btn { display:block !important; margin:0 auto !important; width:fit-content !important; }
