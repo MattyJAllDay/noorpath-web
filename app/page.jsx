@@ -1011,9 +1011,9 @@ export default function Home() {
         .card-hover.card-dark:hover { transform: translateY(-3px) scale(1.005); box-shadow: 0 16px 48px rgba(0,0,0,0.4) !important; filter: brightness(1.05); }
         .nav-link:hover { color:${C.espresso} !important; }
         @media (max-width: 768px) {
-          nav { padding:0 20px !important; }
+          nav { padding:12px 20px !important; }
           nav .nav-link { display:none !important; }
-          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:static !important; display:block !important; width:100% !important; text-align:center !important; margin-top:60px !important; }
+          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:static !important; display:block !important; width:100% !important; text-align:center !important; margin-top:80px !important; }
           .prayer-dots { display:flex !important; gap:12px !important; justify-content:center !important; margin-bottom:8px !important; }
           .prayer-dots span { font-size:10px !important; }
           .prayer-countdown { display:flex !important; justify-content:center !important; }
