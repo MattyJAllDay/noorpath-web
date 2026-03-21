@@ -434,20 +434,24 @@ function CardOverlay({ card, onClose }) {
         {card.noorGrid && (
           <div style={{ marginTop: 16 }}>
             {card.noorGrid.map((row, i) => (
-              <div key={i} style={{
-                display: 'flex', alignItems: 'center',
-                borderLeft: '2px solid #AFE4DE',
-                padding: '10px 0 10px 12px',
-                borderBottom: i < card.noorGrid.length - 1 ? `1px solid ${C.border}` : 'none',
-              }}>
-                <span style={{
-                  fontFamily: bd, fontSize: 15, fontWeight: 600,
-                  color: C.espresso, minWidth: 100,
-                }}>{row.state}</span>
-                <span style={{
-                  fontFamily: bd, fontSize: 15, fontWeight: 400,
-                  color: C.textSec,
-                }}>{row.desc}</span>
+              <div key={i}>
+                <div style={{
+                  display: 'flex', alignItems: 'center',
+                  borderLeft: '3px solid #AFE4DE',
+                  padding: '14px 0 14px 16px',
+                }}>
+                  <span style={{
+                    fontFamily: bd, fontSize: 15, fontWeight: 600,
+                    color: C.espresso, minWidth: 100,
+                  }}>{row.state}</span>
+                  <span style={{
+                    fontFamily: bd, fontSize: 15, fontWeight: 400,
+                    color: C.textSec,
+                  }}>{row.desc}</span>
+                </div>
+                {i < card.noorGrid.length - 1 && (
+                  <div style={{ height: 1, background: C.border, marginLeft: 19 }} />
+                )}
               </div>
             ))}
           </div>
