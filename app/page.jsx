@@ -590,8 +590,8 @@ function CardCountdown({ onOpen }) {
         <button style={{
           background:C.orange, color:'#fff', fontFamily:bd, fontSize:13, fontWeight:700,
           padding:'10px 24px', borderRadius:999, border:'none', cursor:'pointer', width:'fit-content',
-        }}>CHECK IN</button>
-        <div style={{ fontFamily:bd, fontSize:12, color:'rgba(245,240,232,0.25)', marginTop:8 }}>Tap when you&#39;ve prayed</div>
+        }} className="checkin-btn">CHECK IN</button>
+        <div className="checkin-hint" style={{ fontFamily:bd, fontSize:12, color:'rgba(245,240,232,0.25)', marginTop:8 }}>Tap when you&#39;ve prayed</div>
       </div>
     </div>
   );
@@ -968,12 +968,12 @@ function Modal({ open, onClose }) {
 // ═════════════════════════════════════════════════════════════════════════
 function Footer() {
   return (
-    <footer style={{
+    <footer className="site-footer" style={{
       padding:'32px 48px',
       display:'flex', justifyContent:'space-between', alignItems:'center',
     }}>
       <span style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)' }}>© 2026 NoorPath</span>
-      <div>
+      <div className="footer-links">
         {[['Privacy Policy','/privacy'],['Terms of Service','/terms'],['Contact','mailto:matt@kthg.com.au']].map(([t,h]) => (
           <a key={t} href={h} style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)', textDecoration:'none', marginLeft:24 }}>{t}</a>
         ))}
@@ -1013,26 +1013,31 @@ export default function Home() {
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
           nav .nav-link { display:none !important; }
-          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:relative !important; top:0 !important; }
+          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:static !important; }
           .prayer-dots { display:flex !important; gap:12px !important; justify-content:center !important; }
           .prayer-dots span { font-size:10px !important; }
           .prayer-countdown { justify-content:center !important; }
           .prayer-countdown span { font-size:13px !important; }
-          .bento-grid { grid-template-columns:repeat(4,1fr) !important; margin-top:20px !important; }
+          .bento-grid { grid-template-columns:repeat(4,1fr) !important; padding-top:0 !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; padding:24px !important; }
           .hero-headline { font-size:36px !important; }
           .hero-cta-btn { display:block !important; margin:0 auto !important; width:fit-content !important; }
           .hero-sub-text { text-align:center !important; }
           .hero-sub-text span { display:block !important; text-align:center !important; }
+          .hero-sub-text span + span { margin-top:8px !important; }
           .hero-sub-separator { display:none !important; }
           .next-prayer-location { margin-bottom:16px !important; }
-          section, footer { padding-left:20px !important; padding-right:20px !important; }
+          .checkin-btn { margin-bottom:12px !important; }
+          section { padding-left:20px !important; padding-right:20px !important; }
           .women-card-inner { flex-direction:column !important; gap:0 !important; }
           .women-card-left { flex:1 1 100% !important; padding-bottom:2rem !important; }
           .women-card-right { flex:1 1 100% !important; padding-left:0 !important; padding-top:0 !important; padding-right:0 !important; }
           .final-cta-headline { font-size:28px !important; }
           .cta-waitlist-btn { white-space:nowrap !important; width:auto !important; min-width:200px !important; max-width:260px !important; display:block !important; margin:48px auto 0 !important; text-align:center !important; padding:16px 32px !important; }
           .cta-subtitle { white-space:nowrap !important; }
+          .site-footer { flex-direction:column !important; align-items:center !important; gap:8px !important; padding:24px 16px !important; }
+          .footer-links { margin:0 !important; }
+          .footer-links a { margin-left:0 !important; margin-right:12px !important; font-size:13px !important; }
         }
       `}</style>
 
