@@ -583,8 +583,8 @@ function CardCountdown({ onOpen }) {
       <div>
         <div style={{ ...label('rgba(175,228,222,0.6)') }}>NEXT PRAYER</div>
         <div style={{ fontFamily:bd, fontSize:32, fontWeight:800, color:C.orange, lineHeight:1, marginBottom:4 }}>ISHA</div>
-        <div style={{ fontFamily:mn, fontSize:'clamp(40px,4vw,64px)', fontWeight:700, color:C.textLight, letterSpacing:'-0.03em', lineHeight:1, marginBottom:12 }}>{cd}</div>
-        <div className="next-prayer-location" style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)' }}>Sydney, AU</div>
+        <div style={{ fontFamily:mn, fontSize:'clamp(40px,4vw,64px)', fontWeight:700, color:C.textLight, letterSpacing:'-0.03em', lineHeight:1, marginBottom:4 }}>{cd}</div>
+        <div className="next-prayer-location" style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.35)', marginTop:8 }}>Sydney, AU</div>
       </div>
       <div>
         <button style={{
@@ -1013,21 +1013,21 @@ export default function Home() {
         @media (max-width: 768px) {
           nav { padding:0 20px !important; }
           nav .nav-link { display:none !important; }
-          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:static !important; }
-          .prayer-dots { display:flex !important; gap:12px !important; justify-content:center !important; }
+          .prayer-strip { flex-direction:column !important; gap:8px !important; padding:10px 20px !important; position:static !important; display:block !important; width:100% !important; text-align:center !important; }
+          .prayer-dots { display:flex !important; gap:12px !important; justify-content:center !important; margin-bottom:8px !important; }
           .prayer-dots span { font-size:10px !important; }
-          .prayer-countdown { justify-content:center !important; }
+          .prayer-countdown { display:flex !important; justify-content:center !important; }
           .prayer-countdown span { font-size:13px !important; }
-          .bento-grid { grid-template-columns:repeat(4,1fr) !important; padding-top:0 !important; }
+          .bento-grid { grid-template-columns:repeat(4,1fr) !important; margin-top:20px !important; padding-top:60px !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; padding:24px !important; }
           .hero-headline { font-size:36px !important; }
           .hero-cta-btn { display:block !important; margin:0 auto !important; width:fit-content !important; }
           .hero-sub-text { text-align:center !important; }
-          .hero-sub-text span { display:block !important; text-align:center !important; }
-          .hero-sub-text span + span { margin-top:8px !important; }
           .hero-sub-separator { display:none !important; }
-          .next-prayer-location { margin-bottom:16px !important; }
-          .checkin-btn { margin-bottom:12px !important; }
+          .hero-sub-text > span:first-child { display:block !important; text-align:center !important; }
+          .hero-sub-text > span:last-child { display:block !important; text-align:center !important; margin-top:4px !important; }
+          .next-prayer-location { margin-bottom:24px !important; }
+          .checkin-btn { margin-bottom:8px !important; }
           section { padding-left:20px !important; padding-right:20px !important; }
           .women-card-inner { flex-direction:column !important; gap:0 !important; }
           .women-card-left { flex:1 1 100% !important; padding-bottom:2rem !important; }
