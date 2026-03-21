@@ -100,7 +100,7 @@ function useCountdown() {
 const cardData = {
   countdown: {
     label: 'NEXT PRAYER',
-    title: 'Five prayers. Every day.',
+    title: <>Five prayers.<br/>Every day.</>,
     stat: null,
     statLabel: null,
     dark: true,
@@ -113,7 +113,7 @@ const cardData = {
   },
   streak: {
     label: 'CONSISTENCY',
-    title: 'Five prayers. One streak.',
+    title: <>Five prayers.<br/>One streak.</>,
     stat: '11',
     statLabel: 'day streak',
     statColor: C.orange,
