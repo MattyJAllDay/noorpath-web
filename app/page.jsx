@@ -120,7 +120,7 @@ const cardData = {
     dark: false,
     body: [
       'Every salah you pray is tracked with a single tap. Your streak counts consecutive days where you\'ve prayed all five.',
-      'Miss a day? Your streak pauses — not breaks. You can pick up where you left off without shame or guilt.',
+      'Your streak is designed to pause, not break. Pick up where you left off — without shame or guilt.',
       'Consistency is built slowly. NoorPath celebrates every prayer, not just perfect days.',
     ],
     list: null,
@@ -135,7 +135,13 @@ const cardData = {
       'Your Noor is a living orb that reflects your spiritual consistency. It starts dim and grows brighter as you build your practice.',
       'It\'s not a score. It\'s not a competition. It\'s a quiet, personal reflection of your journey.',
     ],
-    list: ['Dim · Just starting out', 'Bright · Building momentum', 'Radiant · Consistent practice', 'Luminous · Deeply established'],
+    noorGrid: [
+      { state: 'Dim', desc: 'Just starting out' },
+      { state: 'Bright', desc: 'Building momentum' },
+      { state: 'Radiant', desc: 'Consistent practice' },
+      { state: 'Luminous', desc: 'Deeply established' },
+    ],
+    list: null,
   },
   quran: {
     label: 'GUIDED READING',
@@ -210,9 +216,9 @@ const cardData = {
     statColor: C.espresso,
     dark: false,
     body: [
-      'NoorPath sends a gentle reminder when prayer time approaches. That\'s it.',
-      'No "you haven\'t opened the app in 3 days" guilt trips. No aggressive streak-shame alerts. No pressure tactics.',
-      'We believe reminders should serve you — not manipulate you.',
+      'NoorPath sends one gentle reminder before each prayer. That\'s it.',
+      'No guilt trips. No pressure tactics. No reminders that you haven\'t opened the app.',
+      'Just a quiet nudge toward something that matters.',
     ],
     list: null,
   },
@@ -420,6 +426,28 @@ function CardOverlay({ card, onClose }) {
                   fontFamily: bd, fontSize: 15, lineHeight: 1.6,
                   color: card.dark ? 'rgba(245,240,232,0.55)' : C.textSec,
                 }}>{item}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {card.noorGrid && (
+          <div style={{ marginTop: 16 }}>
+            {card.noorGrid.map((row, i) => (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'center',
+                borderLeft: '2px solid #AFE4DE',
+                padding: '10px 0 10px 12px',
+                borderBottom: i < card.noorGrid.length - 1 ? `1px solid ${C.border}` : 'none',
+              }}>
+                <span style={{
+                  fontFamily: bd, fontSize: 15, fontWeight: 600,
+                  color: C.espresso, minWidth: 100,
+                }}>{row.state}</span>
+                <span style={{
+                  fontFamily: bd, fontSize: 15, fontWeight: 400,
+                  color: C.textSec,
+                }}>{row.desc}</span>
               </div>
             ))}
           </div>
@@ -929,7 +957,10 @@ function Modal({ open, onClose }) {
         {!done ? (
           <>
             <h3 style={{ fontFamily:hd, fontWeight:700, fontSize:28, color:C.espresso, marginBottom:8 }}>Your practice starts here.</h3>
-            <p style={{ fontFamily:bd, fontSize:15, color:C.textSec, marginBottom:28 }}>One email when NoorPath launches. No spam, ever.</p>
+            <p style={{ fontFamily:bd, fontSize:15, color:C.textSec, marginBottom:28 }}>
+              <span style={{ display:'block' }}>One email when NoorPath launches.</span>
+              <span style={{ display:'block', marginTop:4 }}>No spam, ever.</span>
+            </p>
             <input
               type="email" placeholder="Your email address" value={email}
               onChange={e => setEmail(e.target.value)}
