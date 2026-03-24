@@ -478,7 +478,7 @@ function Nav({ onCTA }) {
         <span style={{ marginLeft:10, fontFamily:nd, fontWeight:700, fontSize:16, letterSpacing:3, textTransform:'uppercase', color:C.espresso }}>NOORPATH</span>
       </a>
       <div style={{ display:'flex', alignItems:'center' }}>
-        {[['Features','#features'],['Privacy','/privacy'],['Terms','/terms']].map(([t,h])=>(
+        {[['Features','#features'],['Privacy','/legal/privacy'],['Terms','/legal/terms']].map(([t,h])=>(
           <a key={t} href={h} className="nav-link" style={{ fontFamily:nd, fontWeight:400, fontSize:13, letterSpacing:'0.01em', color:C.textSec, textDecoration:'none', marginLeft:28 }}>{t}</a>
         ))}
         <button onClick={onCTA} style={{
@@ -1009,7 +1009,7 @@ function Footer() {
     }}>
       <span style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)' }}>© 2026 NoorPath</span>
       <div className="footer-links">
-        {[['Privacy Policy','/privacy'],['Terms of Service','/terms'],['Contact','mailto:matt@kthg.com.au']].map(([t,h]) => (
+        {[['Privacy Policy','/legal/privacy'],['Terms of Service','/legal/terms'],['Contact','mailto:matt@kthg.com.au']].map(([t,h]) => (
           <a key={t} href={h} style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)', textDecoration:'none', marginLeft:24 }}>{t}</a>
         ))}
       </div>
