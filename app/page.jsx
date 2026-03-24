@@ -1026,6 +1026,17 @@ export default function Home() {
   const open = () => setModalOpen(true);
   const close = () => setModalOpen(false);
 
+  useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        if (activeCard) setActiveCard(null);
+        else if (modalOpen) setModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [activeCard, modalOpen]);
+
   return (
     <>
       <style>{`
