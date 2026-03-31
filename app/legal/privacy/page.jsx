@@ -26,7 +26,7 @@ export default function PrivacyPolicy() {
         WebkitBackdropFilter: 'blur(16px)',
       }}>
         <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', width: 'fit-content' }}>
-          <img src="/logo.svg" alt="NoorPath" style={{ height: 28, width: 'auto' }} />
+          <img src="/logo.svg" alt="NoorPath" width={28} height={28} style={{ height: 28, width: 'auto' }} />
           <span style={{ marginLeft: 10, fontFamily: nd, fontWeight: 700, fontSize: 14, letterSpacing: 3, textTransform: 'uppercase', color: C.espresso }}>NoorPath</span>
         </a>
       </header>

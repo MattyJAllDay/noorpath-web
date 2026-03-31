@@ -474,7 +474,7 @@ function Nav({ onCTA }) {
       padding:'12px 48px', display:'flex', justifyContent:'space-between', alignItems:'center',
     }}>
       <a href="/" style={{ textDecoration:'none', display:'flex', alignItems:'center' }}>
-        <img src="/logo.svg" alt="NoorPath" style={{ height:32, width:'auto' }}/>
+        <img src="/logo.svg" alt="NoorPath" width={32} height={32} style={{ height:32, width:'auto' }}/>
         <span style={{ marginLeft:10, fontFamily:nd, fontWeight:700, fontSize:16, letterSpacing:3, textTransform:'uppercase', color:C.espresso }}>NOORPATH</span>
       </a>
       <div style={{ display:'flex', alignItems:'center' }}>
@@ -547,7 +547,7 @@ function CardLogo() {
       border:'1px solid rgba(175,228,222,0.12)', borderRadius:20,
       display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
     }}>
-      <img src="/logo.svg" alt="NoorPath" style={{ width:220, height:'auto' }}/>
+      <img src="/logo.svg" alt="NoorPath" width={220} height={220} style={{ width:220, height:'auto' }}/>
     </div>
   );
 }
@@ -956,7 +956,7 @@ function Modal({ open, onClose }) {
           color:C.textTert, border:'none', background:'none', cursor:'pointer', lineHeight:1,
         }}>×</button>
 
-        <img src="/logo.png" alt="NoorPath" style={{ height:28, width:'auto', marginBottom:20 }}/>
+        <img src="/logo.png" alt="NoorPath" width={28} height={28} style={{ height:28, width:'auto', marginBottom:20 }}/>
 
         {!done ? (
           <>
