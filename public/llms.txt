@@ -1,0 +1,13 @@
+# NoorPath
+> A premium Islamic prayer companion iOS app for Muslims who want to build a consistent prayer habit — calmly, privately, and on their own terms.
+
+## Pages
+- Homepage: https://noorpath.app
+- Privacy Policy: https://noorpath.app/legal/privacy
+- Terms of Service: https://noorpath.app/legal/terms
+
+## About
+NoorPath helps Muslims track their 5 daily prayers, build streaks, explore Quran Journeys, and grow their spiritual practice. Available on iOS.
+
+## Contact
+support@noorpath.app
