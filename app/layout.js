@@ -59,6 +59,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <meta name="google-site-verification" content="zpQ-Z0kqrGmvtn1GPkJ2OZ1T8tQ5T1KE9CN3wue2l9k" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" as="image" href="/logo.svg" type="image/svg+xml" />
