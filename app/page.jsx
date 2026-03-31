@@ -547,7 +547,7 @@ function CardLogo() {
       border:'1px solid rgba(175,228,222,0.12)', borderRadius:20,
       display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
     }}>
-      <img src="/logo.svg" alt="NoorPath" width={220} height={220} style={{ width:220, height:'auto' }}/>
+      <img src="/logo.svg" alt="NoorPath" width={220} height={220} fetchPriority="high" loading="eager" style={{ width:220, height:'auto' }}/>
     </div>
   );
 }
