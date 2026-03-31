@@ -15,6 +15,9 @@ export const metadata = {
   title: "NoorPath — Your Daily Prayer Companion",
   description: "A calm, private, ad-free Islamic prayer companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
   metadataBase: new URL("https://noorpath.app"),
+  alternates: {
+    canonical: "https://noorpath.app",
+  },
   openGraph: {
     title: "NoorPath — Your Daily Prayer Companion",
     description: "A calm, private, ad-free Islamic prayer companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
