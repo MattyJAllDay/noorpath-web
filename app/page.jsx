@@ -243,7 +243,7 @@ function PricingOverlayContent() {
     ['Complete Prayer History', 'Your full record — every prayer, every month, every year.'],
     ['Cycle-Aware Tracking', 'Prayer tracking that honours your cycle. No gaps, no guilt.'],
     ['Focus Mode', 'Compass, adhan, and calm — at every prayer time.'],
-    ['Premium Adhan Collection', 'Six world-class recitations. Find the one that moves you.'],
+    ['Premium Adhan Collection', 'Six recitations from the world\'s finest voices.'],
     ['Premium Widgets', 'Your practice on your home screen, every day.'],
     ['Streak Protection', 'Switch phones. Your streak comes with you.'],
   ];
