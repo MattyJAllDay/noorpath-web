@@ -229,7 +229,7 @@ const cardData = {
     statLabel: null,
     dark: true,
     custom: true,
-    body: ['Build a daily practice that outlasts the month.'],
+    body: ['Your complete Islamic practice, in one place.'],
     list: null,
   },
 };
@@ -239,25 +239,23 @@ const cardData = {
 // ═════════════════════════════════════════════════════════════════════════
 function PricingOverlayContent() {
   const features = [
-    ['Monthly Quran Journeys', 'A new guided 7-day journey every month'],
-    ['Premium Adhan Collection', 'Four world-class recitations'],
-    ['Complete Spiritual History', 'Every prayer, every month, every year'],
-    ['Cloud Backup', 'Your streak and progress, always safe'],
-    ['Premium Widgets', 'Light orb + full dashboard on your home screen'],
-    ['Focus Mode', 'A calm prayer companion screen at every prayer time'],
-    ['Cycle-Aware Tracking', 'True consistency, fiqh-considered'],
-    ['Dark mode, done beautifully', null],
+    ['Monthly Quran Journeys', 'A new 7-day guided journey, every month.'],
+    ['Complete Prayer History', 'Your full record — every prayer, every month, every year.'],
+    ['Cycle-Aware Tracking', 'Prayer tracking that honours your cycle. No gaps, no guilt.'],
+    ['Focus Mode', 'Compass, adhan, and calm — at every prayer time.'],
+    ['Premium Adhan Collection', 'Six world-class recitations. Find the one that moves you.'],
+    ['Premium Widgets', 'Your practice on your home screen, every day.'],
+    ['Streak Protection', 'Switch phones. Your streak comes with you.'],
   ];
   const breakdown = [
     ['Monthly Quran Journeys', '$9.99/mo'],
-    ['Premium Adhan Collection', '$1.66/mo'],
-    ['Complete Spiritual History', '$2.99/mo'],
-    ['Cloud Backup', '$1.99/mo'],
-    ['Premium Widgets', '$1.99/mo'],
+    ['Complete Prayer History', '$2.99/mo'],
+    ['Cycle-Aware Tracking', '$1.99/mo'],
     ['Focus Mode', '$1.99/mo'],
-    ['Cycle Tracking', '$1.99/mo'],
-    ['Dark Mode', '$0.99/mo'],
-    ['Total value', '$23.59/mo'],
+    ['Premium Adhan Collection', '$1.99/mo'],
+    ['Premium Widgets', '$1.99/mo'],
+    ['Streak Protection', '$1.99/mo'],
+    ['Total value', '$22.93/mo'],
   ];
   const dl = 'rgba(245,240,232,0.08)';
   const dt = 'rgba(245,240,232,0.45)';
