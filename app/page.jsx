@@ -1116,13 +1116,13 @@ export default function Home() {
             A prayer companion that grows with you.
           </h2>
           <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640, marginBottom:16 }}>
-            Most Islamic prayer tracker apps stop at reminders. NoorPath goes further — logging every salah, building your history, and showing you patterns you&#39;d never notice on your own. Your Fajr consistency. Your strongest day of the week. The prayers that slip most often.
+            Most prayer apps stop at reminders. NoorPath goes further — logging every salah, building your history, and showing you patterns you&#39;d never notice on your own. Your Fajr consistency. Your strongest day of the week. The prayers that slip most often.
           </p>
           <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640, marginBottom:16 }}>
             Your practice is personal. NoorPath keeps it that way — no social feeds, no public profiles, no comparison. Just you, your prayers, and a record of every step you&#39;ve taken.
           </p>
           <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640 }}>
-            Built for Muslims who take their deen seriously. Available free, with premium features for those who want to go deeper.
+            Built for Muslims who want to show up — on their own terms. Free to start. Premium for those who want to go deeper.
           </p>
         </div>
         <CardWisdom onOpen={() => setActiveCard(cardData.wisdom)} />
