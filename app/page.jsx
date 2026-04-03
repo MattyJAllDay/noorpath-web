@@ -242,20 +242,20 @@ function PricingOverlayContent() {
     ['Monthly Quran Journeys', 'A new 7-day guided journey, every month.'],
     ['Complete Prayer History', 'Your full record — every prayer, every month, every year.'],
     ['Cycle-Aware Tracking', 'Prayer tracking that honours your cycle. No gaps, no guilt.'],
-    ['Focus Mode', 'Compass, adhan, and calm — at every prayer time.'],
     ['Premium Adhan Collection', 'Six recitations from the world\'s finest voices.'],
     ['Premium Widgets', 'Your practice on your home screen, every day.'],
     ['Streak Protection', 'Switch phones. Your streak comes with you.'],
+    ['Focus Mode', 'Compass, adhan, and calm — at every prayer time.'],
   ];
   const breakdown = [
     ['Monthly Quran Journeys', '$9.99/mo'],
     ['Complete Prayer History', '$2.99/mo'],
     ['Cycle-Aware Tracking', '$1.99/mo'],
-    ['Focus Mode', '$1.99/mo'],
-    ['Premium Adhan Collection', '$1.99/mo'],
+    ['Premium Adhan Collection', '$1.66/mo'],
     ['Premium Widgets', '$1.99/mo'],
+    ['Focus Mode', '$1.99/mo'],
     ['Streak Protection', '$1.99/mo'],
-    ['Total value', '$22.93/mo'],
+    ['Total value', '$20.61/mo'],
   ];
   const dl = 'rgba(245,240,232,0.08)';
   const dt = 'rgba(245,240,232,0.45)';
@@ -300,15 +300,16 @@ function PricingOverlayContent() {
       <div style={{ height:1, background:dl, margin:'24px 0' }}/>
       <div style={{
         background:'rgba(175,228,222,0.06)', border:'1px solid rgba(175,228,222,0.15)',
-        borderRadius:16, padding:'20px 24px', marginBottom:12, position:'relative',
+        borderRadius:16, padding:'20px 24px', marginBottom:12,
       }}>
-        <span style={{
-          position:'absolute', top:12, right:16,
-          fontFamily:nd, fontSize:9, fontWeight:400, letterSpacing:'0.1em',
-          textTransform:'uppercase', color:C.bgDark, background:C.turquoise,
-          borderRadius:999, padding:'3px 10px',
-        }}>BEST VALUE</span>
-        <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>$39.99 / year</div>
+        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8 }}>
+          <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight }}>$39.99 / year</div>
+          <span style={{
+            fontFamily:nd, fontSize:9, fontWeight:400, letterSpacing:'0.1em',
+            textTransform:'uppercase', color:C.bgDark, background:C.turquoise,
+            borderRadius:999, padding:'3px 10px',
+          }}>BEST VALUE</span>
+        </div>
         <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Only $3.33 per month — save 33% annually</div>
       </div>
       <div style={{
@@ -320,11 +321,16 @@ function PricingOverlayContent() {
       </div>
 
       {/* Footer */}
-      <div style={{ fontFamily:bd, fontSize:13, color:dt, textAlign:'center', marginBottom:6 }}>
-        7-day free trial · 30-day money-back guarantee · Cancel anytime
-      </div>
-      <div style={{ fontFamily:bd, fontSize:12, color:C.turquoiseDk, textAlign:'center' }}>
-        Founding member pricing — your rate locks in today
+      <div style={{
+        background:'rgba(255,255,255,0.06)', borderTop:'1px solid rgba(255,255,255,0.12)',
+        borderRadius:12, padding:16, marginTop:16, textAlign:'center',
+      }}>
+        <div style={{ fontFamily:bd, fontSize:12, color:dt, marginBottom:6 }}>
+          7-day free trial · 30-day money-back guarantee · Cancel anytime
+        </div>
+        <div style={{ fontFamily:bd, fontSize:12, color:C.turquoiseDk }}>
+          Founding member pricing — your rate locks in today
+        </div>
       </div>
     </>
   );
