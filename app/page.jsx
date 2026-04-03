@@ -345,7 +345,7 @@ function CardOverlay({ card, onClose }) {
       padding: 24,
       animation: 'fadeIn 0.25s ease forwards',
     }}>
-      <div onClick={e => e.stopPropagation()} style={{
+      <div onClick={e => e.stopPropagation()} className="overlay-inner" style={{
         background: card.dark ? C.bgDark : '#FFFFFF',
         borderRadius: 28, padding: 48,
         width: '100%', maxWidth: 680, maxHeight: '85vh',
@@ -573,8 +573,11 @@ function CardHero({ onCTA }) {
           <em style={{ fontStyle:'italic', color:C.orange }}>Every day.</em>
         </h1>
 
-        <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:40 }}>
+        <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:16 }}>
           NoorPath is a calm, private, and ad-free companion for your daily prayers. Built for Muslims who want to show up consistently — without pressure.
+        </p>
+        <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:40 }}>
+          NoorPath is the Islamic prayer tracker built for real life — not the ideal version of it. Whether you pray all five or you&#39;re working back toward consistency, NoorPath meets you where you are.
         </p>
 
         <button onClick={onCTA} style={{
@@ -877,7 +880,7 @@ function CardPricing({ onOpen }) {
 function CardFinalCTA({ onCTA }) {
   const f = useFadeIn(0);
   return (
-    <div ref={f.ref} className="card-hover card-dark" style={{
+    <div ref={f.ref} className="card-hover card-dark final-cta-card" style={{
       ...cardBase, ...f.style,
       gridColumn:'1 / 13',
       background:`linear-gradient(135deg, ${C.bgDark} 0%, ${C.bgDarkSurf} 100%)`,
@@ -944,7 +947,7 @@ function Modal({ open, onClose }) {
       backdropFilter:'blur(8px)', WebkitBackdropFilter:'blur(8px)',
       zIndex:1000, display:'flex', alignItems:'center', justifyContent:'center',
     }}>
-      <div onClick={e => e.stopPropagation()} style={{
+      <div onClick={e => e.stopPropagation()} className="modal-inner" style={{
         background:C.bg, borderRadius:24, padding:48,
         maxWidth:420, width:'calc(100% - 48px)', position:'relative',
         boxShadow:'0 24px 80px rgba(0,0,0,0.25)',
@@ -1038,7 +1041,6 @@ export default function Home() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
         *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior:smooth; }
         body { background:${C.bg}; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
@@ -1062,7 +1064,7 @@ export default function Home() {
           .prayer-dots span { font-size:10px !important; }
           .prayer-countdown { display:flex !important; justify-content:center !important; }
           .prayer-countdown span { font-size:13px !important; }
-          .bento-grid { grid-template-columns:repeat(4,1fr) !important; margin-top:20px !important; }
+          .bento-grid { grid-template-columns:repeat(4,1fr) !important; margin-top:20px !important; padding:0 20px 48px !important; }
           .bento-grid > div { grid-column:1 / 5 !important; grid-row:auto !important; padding:24px !important; }
           .hero-headline { font-size:36px !important; }
           .hero-cta-btn { display:block !important; margin:0 auto !important; width:fit-content !important; }
@@ -1082,6 +1084,9 @@ export default function Home() {
           .site-footer { flex-direction:column !important; align-items:center !important; gap:8px !important; padding:24px 16px !important; }
           .footer-links { margin:0 !important; }
           .footer-links a { margin-left:0 !important; margin-right:12px !important; font-size:13px !important; }
+          .final-cta-card { padding:40px !important; }
+          .modal-inner { padding:24px !important; }
+          .overlay-inner { padding:24px !important; }
         }
       `}</style>
 
@@ -1101,6 +1106,20 @@ export default function Home() {
         <CardZeroAds onOpen={() => setActiveCard(cardData.ads)} />
         <CardQuran onOpen={() => setActiveCard(cardData.quran)} />
         <CardWomen onOpen={() => setActiveCard(cardData.women)} />
+        <div className="seo-section" style={{ gridColumn:'1 / 13', padding:'48px 0 24px' }}>
+          <h2 style={{ fontFamily:hd, fontWeight:700, fontSize:'clamp(28px, 3.5vw, 42px)', color:C.espresso, lineHeight:1.15, marginBottom:24 }}>
+            A prayer companion that grows with you.
+          </h2>
+          <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640, marginBottom:16 }}>
+            Most Islamic prayer tracker apps stop at reminders. NoorPath goes further — logging every salah, building your history, and showing you patterns you&#39;d never notice on your own. Your Fajr consistency. Your strongest day of the week. The prayers that slip most often.
+          </p>
+          <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640, marginBottom:16 }}>
+            Your practice is personal. NoorPath keeps it that way — no social feeds, no public profiles, no comparison. Just you, your prayers, and a record of every step you&#39;ve taken.
+          </p>
+          <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640 }}>
+            Built for Muslims who take their deen seriously. Available free, with premium features for those who want to go deeper.
+          </p>
+        </div>
         <CardWisdom onOpen={() => setActiveCard(cardData.wisdom)} />
         <CardNotifications onOpen={() => setActiveCard(cardData.notifications)} />
         <CardPricing onOpen={() => setActiveCard(cardData.pricing)} />

@@ -15,14 +15,14 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "NoorPath — Your Daily Prayer Companion",
-  description: "A calm, private, ad-free Islamic prayer companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
+  description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
   metadataBase: new URL("https://noorpath.app"),
   alternates: {
     canonical: "https://noorpath.app",
   },
   openGraph: {
     title: "NoorPath — Your Daily Prayer Companion",
-    description: "A calm, private, ad-free Islamic prayer companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
+    description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
     url: "https://noorpath.app",
     siteName: "NoorPath",
     images: [
@@ -39,7 +39,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "NoorPath — Your Daily Prayer Companion",
-    description: "A calm, private, ad-free Islamic prayer companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
+    description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
     images: ["/og-image.png"],
   },
   icons: {
@@ -60,9 +60,24 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="zpQ-Z0kqrGmvtn1GPkJ2OZ1T8tQ5T1KE9CN3wue2l9k" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" as="image" href="/logo.svg" type="image/svg+xml" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MobileApplication",
+            "name": "NoorPath",
+            "description": "Islamic prayer tracker and daily practice companion for Muslims",
+            "operatingSystem": "iOS",
+            "applicationCategory": "LifestyleApplication",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            },
+            "url": "https://noorpath.app"
+          })}}
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
