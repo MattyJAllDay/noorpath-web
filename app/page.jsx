@@ -300,16 +300,15 @@ function PricingOverlayContent() {
       <div style={{ height:1, background:dl, margin:'24px 0' }}/>
       <div style={{
         background:'rgba(175,228,222,0.06)', border:'1px solid rgba(175,228,222,0.15)',
-        borderRadius:16, padding:'20px 24px', marginBottom:12,
+        borderRadius:16, padding:'20px 24px', marginBottom:12, position:'relative', overflow:'visible',
       }}>
-        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:8 }}>
-          <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight }}>$39.99 / year</div>
-          <span style={{
-            fontFamily:nd, fontSize:9, fontWeight:400, letterSpacing:'0.1em',
-            textTransform:'uppercase', color:C.bgDark, background:C.turquoise,
-            borderRadius:999, padding:'3px 10px',
-          }}>BEST VALUE</span>
-        </div>
+        <span style={{
+          position:'absolute', top:-14, right:16,
+          fontFamily:nd, fontSize:9, fontWeight:400, letterSpacing:'0.1em',
+          textTransform:'uppercase', color:C.bgDark, background:C.turquoise,
+          borderRadius:999, padding:'3px 10px',
+        }}>BEST VALUE</span>
+        <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>$39.99 / year</div>
         <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Only $3.33 per month — save 33% annually</div>
       </div>
       <div style={{
