@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
           <p style={{
             fontFamily: bd, fontSize: 14, color: C.textTert,
           }}>
-            Last updated: March 2026
+            Last updated: May 2026
           </p>
         </div>
 
@@ -61,8 +61,9 @@ export default function PrivacyPolicy() {
             'Your chosen display name and avatar, stored locally on your device',
             'Prayer check-in records and streak data',
             'Reflection entries you write within the app',
-            'Cycle tracking information, if you choose to enable this feature',
+            'Cycle tracking information, if you choose to enable this feature (treated as sensitive health data — see Section 3)',
             'Your email address, if you sign up for updates or communications',
+            'Subscription status, managed by Apple and our subscription management service (see Section 5)',
           ]} />
 
           <SubHead>Information collected automatically:</SubHead>
@@ -81,36 +82,65 @@ export default function PrivacyPolicy() {
             'Prayer data, streaks, and history are stored on your device and, for Premium subscribers with Cloud Backup enabled, securely backed up to encrypted cloud storage.',
             'Your email address is used only for communications you have opted into. It is never used for advertising or shared with third parties.',
             'Cycle tracking data is stored on your device only and is never transmitted externally.',
+            'Subscription data is used solely to provide access to Premium features.',
           ]} />
         </Section>
 
-        <Section n="3" title="Data Storage and Security">
-          <Para>Most NoorPath data is stored locally on your device and does not leave it. Premium subscribers who enable Cloud Backup have their prayer history and streak data encrypted and stored with a trusted cloud infrastructure provider. Adhan audio is bundled within the app. Widget data is shared only between the app and your home screen via your device's secure App Group — it does not leave your device.</Para>
+        <Section n="3" title="Sensitive Health Data">
+          <Para>Cycle tracking information is sensitive health data and we treat it with extra care. This data is stored only on your device. It is never transmitted to NoorPath's servers, included in Cloud Backup, shared with third parties, or used for any purpose other than helping you track your practice during your cycle. You can disable cycle tracking at any time, and the data will be deleted from your device.</Para>
         </Section>
 
-        <Section n="4" title="Third-Party Services">
+        <Section n="4" title="Data Storage and Security">
+          <Para>Most NoorPath data is stored locally on your device and does not leave it.</Para>
+          <Para>Premium subscribers who enable Cloud Backup have their prayer history and streak data encrypted and stored with our cloud infrastructure provider. Data in Cloud Backup is encrypted in transit and at rest.</Para>
+          <Para>Adhan audio is bundled within the app. Widget data is shared only between the app and your home screen via your device's secure App Group — it does not leave your device.</Para>
+          <Para>We retain personal data only for as long as you use the app. If you uninstall NoorPath and have not enabled Cloud Backup, your data is permanently deleted from your device. If you have Cloud Backup enabled and request account deletion, your backed-up data is permanently deleted within 30 days. You may request deletion at any time by contacting <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>.</Para>
+        </Section>
+
+        <Section n="5" title="Third-Party Services">
           <Para>NoorPath uses a small number of trusted third-party services to operate:</Para>
           <List items={[
-            'Secure cloud storage (Premium Cloud Backup)',
-            'Email delivery (waitlist and communications only)',
-            'Payment processing (managed by Apple for all in-app purchases)',
+            'A cloud infrastructure provider (encrypted storage for Premium Cloud Backup)',
+            'A subscription management service (receipt validation and entitlement)',
+            'Apple (payment processing for all in-app purchases — Apple is the merchant of record)',
+            'An email delivery service (for opted-in communications only)',
           ]} />
-          <Para>We do not use advertising networks, social media trackers, or analytics platforms.</Para>
+          <Para>We do not use advertising networks, social media trackers, or analytics platforms. We can provide the names of our specific service providers on request — contact <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>.</Para>
         </Section>
 
-        <Section n="5" title="Children's Privacy">
-          <Para>NoorPath is not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us and we will investigate promptly and take appropriate action.</Para>
+        <Section n="6" title="Children and Family Use">
+          <Para>NoorPath is designed for users of all ages. We recognise that Muslim families often use prayer companion apps together, including with young children learning salah.</Para>
+          <Para>By agreeing to our Terms of Service, the person who owns the device and account confirms they are 13 years of age or older. Where a child under 13 uses NoorPath on a parent or guardian's device, the parent or guardian is responsible for reviewing this policy and supervising the child's use.</Para>
+          <Para>NoorPath does not knowingly create accounts for children under 13 or direct any marketing communications to children. If you believe a child under 13 has independently provided us with personal information outside of a parent or guardian's device, please contact us at <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a> and we will investigate promptly and take appropriate action.</Para>
         </Section>
 
-        <Section n="6" title="Your Rights">
-          <Para>You have the right to access, correct, or request deletion of any personal data we hold about you. To exercise any of these rights, contact us at support@noorpath.app. We will respond within a reasonable timeframe.</Para>
+        <Section n="7" title="International Data Transfer">
+          <Para>NoorPath is operated by Motivational Fitness Pty Ltd, based in Australia. Limited data stored in Cloud Backup may be processed in regions where our infrastructure provider operates. By using NoorPath, you consent to this transfer where local law permits.</Para>
         </Section>
 
-        <Section n="7" title="Changes to This Policy">
+        <Section n="8" title="Your Rights">
+          <Para>You have the right to:</Para>
+          <List items={[
+            <><strong>Access</strong> any personal data we hold about you</>,
+            <><strong>Correct</strong> information that is inaccurate</>,
+            <><strong>Delete</strong> your personal data ("right to be forgotten")</>,
+            <><strong>Port</strong> your data in a structured, machine-readable format</>,
+            <><strong>Object</strong> to or <strong>restrict</strong> specific processing activities</>,
+            <><strong>Withdraw consent</strong> for opt-in communications at any time</>,
+          ]} />
+          <Para>Depending on your jurisdiction, additional rights may apply. California residents have rights under the CCPA, including the right not to have personal information sold (we do not sell personal information). European users have rights under the GDPR.</Para>
+          <Para>To exercise any of these rights, contact us at <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>. We will respond within a reasonable timeframe and at most within 30 days.</Para>
+        </Section>
+
+        <Section n="9" title="Data Breach Notification">
+          <Para>If a data breach affecting your personal data occurs, we will notify you within 72 hours of becoming aware of it, by email if we hold your email address and through an in-app notice. We will explain what happened, what data was affected, and what steps we are taking.</Para>
+        </Section>
+
+        <Section n="10" title="Changes to This Policy">
           <Para>We may update this policy from time to time. We will notify you of significant changes by posting a notice within the app or by email if you have opted in. Your continued use of NoorPath after changes take effect constitutes your acceptance of the updated policy.</Para>
         </Section>
 
-        <Section n="8" title="Contact">
+        <Section n="11" title="Contact">
           <Para>
             Email: <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a><br />
             Website: <a href="https://noorpath.app" style={link}>noorpath.app</a>

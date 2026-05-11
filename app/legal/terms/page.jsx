@@ -47,7 +47,7 @@ export default function TermsOfService() {
           <p style={{
             fontFamily: bd, fontSize: 14, color: C.textTert,
           }}>
-            Last updated: March 2026
+            Last updated: May 2026
           </p>
         </div>
 
@@ -57,69 +57,79 @@ export default function TermsOfService() {
 
         <Section n="1" title="Acceptance of Terms">
           <Para>By accessing or using NoorPath, you confirm that you are at least 13 years of age and have the legal capacity to enter into this agreement.</Para>
+          <Para>NoorPath is suitable for users of all ages. Where a child under 13 uses NoorPath on a parent or guardian's device, the account holder (the parent or guardian) is responsible for the child's use, has agreed to these Terms on the child's behalf, and supervises the child's interaction with the app.</Para>
         </Section>
 
         <Section n="2" title="Description of Service">
-          <Para>NoorPath is a prayer companion application for Muslims, offering prayer time tracking, Qibla direction, Quran journeys, streak tracking, reflection tools, and related features. A free tier is available to all users. Additional features are available through a paid Premium subscription.</Para>
+          <Para>NoorPath is a prayer companion application for Muslims, offering prayer time tracking, Qibla direction, Quran journeys, streak tracking, reflection tools, and related features. A free tier with all core practice features is available to all users. Additional features are available through a paid Premium subscription.</Para>
         </Section>
 
-        <Section n="3" title="User Accounts">
+        <Section n="3" title="Religious Content Disclaimer">
+          <Para>NoorPath is a personal practice companion. It is not a source of religious rulings (fatwa) and does not offer religious guidance, opinions, or advice. All content within the app — including prayer time calculations, Quran translations, recitations, adhkar, and reflection material — is provided for personal practice support only.</Para>
+          <Para>For questions on matters of fiqh, aqidah, or any religious ruling, please consult a qualified scholar within your tradition. Prayer times are calculated algorithmically and are provided as a guide; they may vary from locally observed times, and you should consult your local mosque or qualified authority where precision matters for your practice.</Para>
+        </Section>
+
+        <Section n="4" title="User Accounts">
           <Para>NoorPath uses anonymous authentication. No email address or password is required to use the app. Your data is tied to your device. If you uninstall the app or erase your device data without Cloud Backup enabled, your data may be permanently lost. We are not responsible for data loss resulting from device changes, app deletion, or failure to enable backup.</Para>
         </Section>
 
-        <Section n="4" title="Subscription Terms">
+        <Section n="5" title="Subscription Terms">
           <SubHead>Free tier</SubHead>
-          <Para>Core features of NoorPath are free and will remain free.</Para>
+          <Para>The core practice features of NoorPath are free and will remain free. This includes prayer times, qibla, adhan, daily prayer tracking, and access to the essential features needed to use the app as a prayer companion.</Para>
 
           <SubHead>Premium subscription</SubHead>
-          <Para>Premium features are available for $4.99 USD per month or $39.99 USD per year.</Para>
+          <Para>Additional features are available for $4.99 USD per month or $39.99 USD per year (regional pricing varies).</Para>
 
           <SubHead>Free trial</SubHead>
-          <Para>New Premium subscribers receive a 7-day free trial. You will not be charged until the trial ends. Cancel any time during the trial at no cost.</Para>
+          <Para>New Premium subscribers receive a 7-day free trial. You will not be charged until the trial ends.</Para>
+
+          <SubHead>Cancelling before being charged</SubHead>
+          <Para>To cancel before your trial converts to a paid subscription, go to Settings → [Your Name] → Subscriptions on your Apple device, and select NoorPath. You must cancel at least 24 hours before the trial ends to avoid being charged.</Para>
 
           <SubHead>Billing</SubHead>
           <Para>All payments are processed by Apple through the App Store. By subscribing, you also agree to Apple's terms of service.</Para>
 
           <SubHead>Auto-renewal</SubHead>
-          <Para>Subscriptions renew automatically unless cancelled at least 7 days before the renewal date. Manage or cancel your subscription at any time through your Apple ID settings.</Para>
+          <Para>Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period. Manage or cancel your subscription at any time through your Apple ID settings.</Para>
 
           <SubHead>Refunds</SubHead>
-          <Para>We want you to love NoorPath. If you're not satisfied within 30 days of your first paid charge, contact us at support@noorpath.app and we will do everything we can to make it right, including assisting with a refund request through Apple. All refunds are subject to Apple's refund policies as they are the merchant of record.</Para>
+          <Para>We want you to love NoorPath. If you're not satisfied within 30 days of your first paid charge, contact us at <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a> and we will do everything we can to make it right, including assisting with a refund request through Apple. All refunds are subject to Apple's refund policies as they are the merchant of record.</Para>
 
           <SubHead>Pricing changes</SubHead>
           <Para>We reserve the right to adjust subscription pricing at any time. We will notify active subscribers of any price changes before they take effect, giving you the opportunity to cancel if you do not wish to continue at the new rate.</Para>
         </Section>
 
-        <Section n="5" title="User Conduct">
+        <Section n="6" title="User Conduct">
           <Para>You agree not to use NoorPath for any unlawful purpose, attempt to reverse engineer or modify the app, or interfere with the security or integrity of the service.</Para>
         </Section>
 
-        <Section n="6" title="Intellectual Property">
+        <Section n="7" title="Intellectual Property">
           <Para>All content within NoorPath — including design, text, graphics, Quran journey content, and software — is owned by NoorPath or its licensors and protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from NoorPath content without express written permission.</Para>
-          <Para>Quranic text and translations are used in accordance with their respective licences and remain the property of their respective rights holders.</Para>
+          <Para>Quranic text and translations are used in accordance with their respective licences and remain the property of their respective rights holders. Adhan recitations are licensed from their respective reciters and rights holders.</Para>
         </Section>
 
-        <Section n="7" title="Disclaimer of Warranties">
-          <Para>NoorPath is provided "as is" without warranties of any kind. We do not warrant that the app will be uninterrupted or error-free. Prayer times are calculated algorithmically and are provided as a guide — they may vary from locally observed times.</Para>
+        <Section n="8" title="Disclaimer of Warranties">
+          <Para>NoorPath is provided "as is" without warranties of any kind. We do not warrant that the app will be uninterrupted or error-free.</Para>
         </Section>
 
-        <Section n="8" title="Limitation of Liability">
+        <Section n="9" title="Limitation of Liability">
           <Para>To the maximum extent permitted by applicable law, NoorPath shall not be liable for any indirect, incidental, or consequential damages arising from your use of the app, including loss of data or loss of revenue. Our total liability for any claim shall not exceed the amount you paid for the service in the 12 months preceding the claim.</Para>
+          <Para>Nothing in these Terms limits or excludes any liability that cannot be limited or excluded under applicable consumer protection law, including the Australian Consumer Law where it applies to your use.</Para>
         </Section>
 
-        <Section n="9" title="Termination">
+        <Section n="10" title="Termination">
           <Para>We may suspend or terminate access to NoorPath if you violate these Terms. You may stop using the service at any time by uninstalling the app and cancelling any active subscription through your Apple ID settings.</Para>
         </Section>
 
-        <Section n="10" title="Governing Law">
-          <Para>These Terms are governed by the laws applicable in the jurisdiction where you reside, to the extent permitted by law. Where not determined by local law, any disputes will be resolved by binding arbitration or the applicable courts.</Para>
+        <Section n="11" title="Governing Law">
+          <Para>These Terms are governed by the laws of New South Wales, Australia, where Motivational Fitness Pty Ltd (the entity operating NoorPath) is based. Where you are a consumer in another jurisdiction with mandatory consumer-protection laws, those laws also apply to your use of NoorPath, and you may bring claims in your local courts where the law allows.</Para>
         </Section>
 
-        <Section n="11" title="Changes to Terms">
-          <Para>We may update these Terms from time to time. We will notify you of material changes within the app. Continued use after changes take effect constitutes acceptance.</Para>
+        <Section n="12" title="Changes to Terms">
+          <Para>We may update these Terms from time to time. We will notify you of material changes within the app or by email where you have provided one. Continued use after changes take effect constitutes acceptance.</Para>
         </Section>
 
-        <Section n="12" title="Contact">
+        <Section n="13" title="Contact">
           <Para>
             Email: <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a><br />
             Website: <a href="https://noorpath.app" style={link}>noorpath.app</a>
