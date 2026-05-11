@@ -1015,7 +1015,7 @@ function Footer() {
     }}>
       <span style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)' }}>© 2026 NoorPath</span>
       <div className="footer-links">
-        {[['Privacy Policy','/legal/privacy'],['Terms of Service','/legal/terms'],['Contact','mailto:matt@kthg.com.au']].map(([t,h]) => (
+        {[['Privacy Policy','/legal/privacy'],['Terms of Service','/legal/terms'],['Contact','mailto:support@noorpath.app']].map(([t,h]) => (
           <a key={t} href={h} style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)', textDecoration:'none', marginLeft:24 }}>{t}</a>
         ))}
       </div>
