@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
           <p style={{
             fontFamily: bd, fontSize: 14, color: C.textTert,
           }}>
-            Last updated: May 2026
+            Last updated: June 2026
           </p>
         </div>
 
@@ -62,25 +62,30 @@ export default function PrivacyPolicy() {
             'Prayer check-in records and streak data',
             'Reflection entries you write within the app',
             'Cycle tracking information, if you choose to enable this feature (treated as sensitive health data — see Section 3)',
-            'Your email address, if you sign up for updates or communications',
+            'Your email address, if you create an account (used to sign you in and enable Cloud Backup) or sign up for updates',
             'Subscription status, managed by Apple and our subscription management service (see Section 5)',
           ]} />
 
           <SubHead>Information collected automatically:</SubHead>
           <List items={[
-            'Your device location, used solely to calculate prayer times and Qibla direction. This calculation happens entirely on your device. Your location coordinates are never transmitted to our servers.',
+            'Your device location, used to calculate prayer times and Qibla direction (this calculation runs on your device) and to show your city or region name. To turn your coordinates into a place name, they are sent to a third-party geocoding service (see Section 5). NoorPath does not store your location on its own servers.',
           ]} />
 
           <SubHead>What we do not collect:</SubHead>
           <List items={[
-            'We do not collect behavioural analytics, advertising identifiers, crash diagnostics linked to your identity, or any form of usage tracking. We do not build profiles on our users.',
+            'We do not use advertising identifiers, cross-app tracking, or third-party advertising networks, and we do not sell your data or build advertising profiles about you.',
+          ]} />
+
+          <SubHead>Anonymous usage data:</SubHead>
+          <List items={[
+            'To see which features are used and improve the app, we collect anonymous, aggregated usage data — for example, which onboarding steps are completed. This is not linked to your identity and is never used for advertising or profiling.',
           ]} />
         </Section>
 
         <Section n="2" title="How We Use Your Information">
           <List items={[
             'Prayer data, streaks, and history are stored on your device and, for Premium subscribers with Cloud Backup enabled, securely backed up to encrypted cloud storage.',
-            'Your email address is used only for communications you have opted into. It is never used for advertising or shared with third parties.',
+            'If you create an account, your email address is used to sign you in and to operate features like Cloud Backup. If you opt into updates, it is also used to send those. It is never used for advertising or sold to third parties.',
             'Cycle tracking data is stored on your device only and is never transmitted externally.',
             'Subscription data is used solely to provide access to Premium features.',
           ]} />
@@ -104,8 +109,9 @@ export default function PrivacyPolicy() {
             'A subscription management service (receipt validation and entitlement)',
             'Apple (payment processing for all in-app purchases — Apple is the merchant of record)',
             'An email delivery service (for opted-in communications only)',
+            'A geocoding service that converts your device coordinates into a city or region name for display (used when location features are active)',
           ]} />
-          <Para>We do not use advertising networks, social media trackers, or analytics platforms. We can provide the names of our specific service providers on request — contact <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>.</Para>
+          <Para>We do not use advertising networks or social media trackers, and we do not sell your data. The limited, anonymous usage analytics we collect (see Section 1) are stored in our own infrastructure, not a third-party analytics platform. We can provide the names of our specific service providers on request — contact <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>.</Para>
         </Section>
 
         <Section n="6" title="Children and Family Use">
@@ -115,7 +121,7 @@ export default function PrivacyPolicy() {
         </Section>
 
         <Section n="7" title="International Data Transfer">
-          <Para>NoorPath is operated by Motivational Fitness Pty Ltd, based in Australia. Limited data stored in Cloud Backup may be processed in regions where our infrastructure provider operates. By using NoorPath, you consent to this transfer where local law permits.</Para>
+          <Para>NoorPath is operated by the NoorPath team. Data stored in Cloud Backup may be processed in regions where our infrastructure provider operates. By using NoorPath, you consent to this transfer where local law permits.</Para>
         </Section>
 
         <Section n="8" title="Your Rights">
@@ -129,6 +135,7 @@ export default function PrivacyPolicy() {
             <><strong>Withdraw consent</strong> for opt-in communications at any time</>,
           ]} />
           <Para>Depending on your jurisdiction, additional rights may apply. California residents have rights under the CCPA, including the right not to have personal information sold (we do not sell personal information). European users have rights under the GDPR.</Para>
+          <Para>You can export a copy of your data, and delete it, at any time from within the app.</Para>
           <Para>To exercise any of these rights, contact us at <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>. We will respond within a reasonable timeframe and at most within 30 days.</Para>
         </Section>
 
