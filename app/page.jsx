@@ -435,7 +435,7 @@ function CardOverlay({ card, onClose }) {
 // ═════════════════════════════════════════════════════════════════════════
 // NAV
 // ═════════════════════════════════════════════════════════════════════════
-function Nav({ onCTA }) {
+function Nav() {
   return (
     <nav style={{
       position:'fixed', top:0, width:'100%', zIndex:200,
@@ -527,7 +527,7 @@ function CardLogo() {
 }
 
 // ── Card 1: Hero Headline ───────────────────────────────────────────────
-function CardHero({ onCTA }) {
+function CardHero() {
   const f = useFadeIn(0);
   return (
     <div ref={f.ref} className="card-hover card-light" style={{
@@ -854,7 +854,7 @@ function CardPricing({ onOpen }) {
 }
 
 // ── Card 12: Final CTA ──────────────────────────────────────────────────
-function CardFinalCTA({ onCTA }) {
+function CardFinalCTA() {
   const f = useFadeIn(0);
   return (
     <div ref={f.ref} className="card-hover card-dark final-cta-card" style={{
@@ -891,92 +891,6 @@ function CardFinalCTA({ onCTA }) {
 }
 
 // ═════════════════════════════════════════════════════════════════════════
-// MODAL
-// ═════════════════════════════════════════════════════════════════════════
-function Modal({ open, onClose }) {
-  const [email, setEmail] = useState('');
-  const [done, setDone] = useState(false);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  if (!open) return null;
-  const submit = async () => {
-    if (!email.includes('@')) return;
-    setLoading(true);
-    setError('');
-    try {
-      const res = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      if (!res.ok) throw new Error('Failed to join');
-      setDone(true);
-    } catch {
-      setError('Something went wrong — please try again.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div onClick={onClose} style={{
-      position:'fixed', inset:0, background:'rgba(41,22,2,0.5)',
-      backdropFilter:'blur(8px)', WebkitBackdropFilter:'blur(8px)',
-      zIndex:1000, display:'flex', alignItems:'center', justifyContent:'center',
-    }}>
-      <div onClick={e => e.stopPropagation()} className="modal-inner" style={{
-        background:C.bg, borderRadius:24, padding:48,
-        maxWidth:420, width:'calc(100% - 48px)', position:'relative',
-        boxShadow:'0 24px 80px rgba(0,0,0,0.25)',
-      }}>
-        <button onClick={onClose} style={{
-          position:'absolute', top:16, right:20, fontFamily:bd, fontSize:24,
-          color:C.textTert, border:'none', background:'none', cursor:'pointer', lineHeight:1,
-        }}>×</button>
-
-        <img src="/logo.png" alt="NoorPath" width={28} height={28} style={{ height:28, width:'auto', marginBottom:20 }}/>
-
-        {!done ? (
-          <>
-            <h3 style={{ fontFamily:hd, fontWeight:700, fontSize:28, color:C.espresso, marginBottom:8 }}>Your practice starts here.</h3>
-            <p style={{ fontFamily:bd, fontSize:15, color:C.textSec, marginBottom:28 }}>
-              <span style={{ display:'block' }}>One email when NoorPath launches.</span>
-              <span style={{ display:'block', marginTop:4 }}>No spam, ever.</span>
-            </p>
-            <input
-              type="email" placeholder="Your email address" value={email}
-              onChange={e => setEmail(e.target.value)}
-              onKeyDown={e => { if (e.key === 'Enter') submit(); }}
-              style={{
-                width:'100%', padding:'14px 20px', border:`1px solid ${C.border}`, borderRadius:999,
-                fontFamily:bd, fontSize:15, color:C.espresso, marginBottom:12, outline:'none',
-              }}
-              onFocus={e => e.target.style.borderColor = C.turquoise}
-              onBlur={e => e.target.style.borderColor = C.border}
-            />
-            <button onClick={submit} disabled={loading} style={{
-              width:'100%', padding:15, background:loading ? C.textTert : C.orange, color:'#fff',
-              fontFamily:bd, fontSize:15, fontWeight:700, borderRadius:999, border:'none',
-              cursor: loading ? 'default' : 'pointer', animation: loading ? 'none' : 'softGlow 3s infinite',
-            }}>{loading ? 'Joining…' : 'Notify Me'}</button>
-            {error && <p style={{ fontFamily:bd, fontSize:13, color:'#c0392b', textAlign:'center', marginTop:8 }}>{error}</p>}
-            <p style={{ fontFamily:bd, fontSize:13, color:C.textTert, textAlign:'center', marginTop:8 }}>
-              No spam. One email when NoorPath launches.
-            </p>
-          </>
-        ) : (
-          <div style={{ textAlign:'center', padding:'20px 0' }}>
-            <div style={{ fontFamily:hd, fontStyle:'italic', fontSize:18, color:C.espresso }}>
-              You&#39;re on the list — JazakAllah khair.
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// ═════════════════════════════════════════════════════════════════════════
 // FOOTER
 // ═════════════════════════════════════════════════════════════════════════
 function Footer() {
@@ -999,21 +913,17 @@ function Footer() {
 // PAGE
 // ═════════════════════════════════════════════════════════════════════════
 export default function Home() {
-  const [modalOpen, setModalOpen] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
-  const open = () => setModalOpen(true);
-  const close = () => setModalOpen(false);
 
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') {
         if (activeCard) setActiveCard(null);
-        else if (modalOpen) setModalOpen(false);
       }
     };
     window.addEventListener('keydown', handleEsc);
     return () => window.removeEventListener('keydown', handleEsc);
-  }, [activeCard, modalOpen]);
+  }, [activeCard]);
 
   return (
     <>
@@ -1061,12 +971,11 @@ export default function Home() {
           .footer-links { margin:0 !important; }
           .footer-links a { margin-left:0 !important; margin-right:12px !important; font-size:13px !important; }
           .final-cta-card { padding:40px !important; }
-          .modal-inner { padding:24px !important; }
           .overlay-inner { padding:24px !important; }
         }
       `}</style>
 
-      <Nav onCTA={open} />
+      <Nav />
       <PrayerStrip />
 
       <div style={{
@@ -1074,7 +983,7 @@ export default function Home() {
         display:'grid', gridTemplateColumns:'repeat(12, 1fr)', gap:20,
       }} className="bento-grid">
         <CardLogo />
-        <CardHero onCTA={open} />
+        <CardHero />
         <CardStreak onOpen={() => setActiveCard(cardData.streak)} />
         <CardNoor onOpen={() => setActiveCard(cardData.noor)} />
         <CardCountdown onOpen={() => setActiveCard(cardData.countdown)} />
@@ -1099,12 +1008,11 @@ export default function Home() {
         <CardWisdom onOpen={() => setActiveCard(cardData.wisdom)} />
         <CardNotifications onOpen={() => setActiveCard(cardData.notifications)} />
         <CardPricing onOpen={() => setActiveCard(cardData.pricing)} />
-        <CardFinalCTA onCTA={open} />
+        <CardFinalCTA />
       </div>
 
       <Footer />
       <CardOverlay card={activeCard} onClose={() => setActiveCard(null)} />
-      <Modal open={modalOpen} onClose={close} />
     </>
   );
 }
