@@ -484,11 +484,14 @@ function Nav({ onCTA }) {
         {[['Features','#features'],['Privacy','/legal/privacy'],['Terms','/legal/terms']].map(([t,h])=>(
           <a key={t} href={h} className="nav-link" style={{ fontFamily:nd, fontWeight:400, fontSize:13, letterSpacing:'0.01em', color:C.textSec, textDecoration:'none', marginLeft:28 }}>{t}</a>
         ))}
-        <button onClick={onCTA} style={{
+        <a href="https://apps.apple.com/app/noorpath-prayer-companion/id6758610154"
+           target="_blank" rel="noopener noreferrer"
+           style={{
           fontFamily:bd, fontSize:14, fontWeight:600,
           background:C.orange, color:'#fff',
-          padding:'9px 20px', borderRadius:999, border:'none', cursor:'pointer', marginLeft:28,
-        }}>Get Early Access</button>
+          padding:'9px 20px', borderRadius:999, marginLeft:28,
+          textDecoration:'none', display:'inline-block', lineHeight:1,
+        }}>Download</a>
       </div>
     </nav>
   );
