@@ -279,14 +279,14 @@ function PricingOverlayContent() {
           textTransform:'uppercase', color:C.bgDark, background:C.turquoise,
           borderRadius:999, padding:'3px 10px',
         }}>BEST VALUE</span>
-        <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>$39.99 / year</div>
-        <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Only $3.33 per month — save 33% annually</div>
+        <div style={{ fontFamily:bd, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>Annual</div>
+        <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Best value — save when you pay yearly</div>
       </div>
       <div style={{
         background:'rgba(245,240,232,0.04)', border:'1px solid rgba(245,240,232,0.06)',
         borderRadius:16, padding:'20px 24px', marginBottom:24,
       }}>
-        <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>$4.99 / month</div>
+        <div style={{ fontFamily:bd, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>Monthly</div>
         <div style={{ fontFamily:bd, fontSize:13, color:dt }}>Full flexibility</div>
       </div>
 
