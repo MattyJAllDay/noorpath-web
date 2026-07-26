@@ -907,15 +907,15 @@ function CardFinalCTA({ onCTA }) {
           fontFamily:hd, fontWeight:700, fontSize:'clamp(32px, 5vw, 68px)',
           color:C.textLight, lineHeight:1.1, marginBottom:0,
         }}>Every prayer begins with a first step.</h2>
-        <button onClick={onCTA} style={{
-          display:'inline-flex', background:C.orange, color:'#fff',
-          fontFamily:bd, fontSize:15, fontWeight:700,
-          padding:'14px 32px', borderRadius:999, border:'none', cursor:'pointer',
-          animation:'softGlow 3s ease-in-out infinite',
-          marginTop:48,
-        }} className="cta-waitlist-btn">Join the Waitlist</button>
+        <a href="https://apps.apple.com/app/noorpath-prayer-companion/id6758610154"
+           target="_blank" rel="noopener noreferrer"
+           style={{ display:'inline-block', marginTop:48 }}>
+          <img src="/app-store-badge-white.svg"
+               alt="Download NoorPath on the App Store"
+               style={{ height:72, width:'auto', display:'block' }} />
+        </a>
         <div className="cta-subtitle" style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.25)', marginTop:16 }}>
-          Coming to iOS · Free to download
+          Free to download · Available on iPhone
         </div>
       </div>
     </div>
@@ -1088,7 +1088,6 @@ export default function Home() {
           .women-card-left { flex:1 1 100% !important; padding-bottom:2rem !important; }
           .women-card-right { flex:1 1 100% !important; padding-left:0 !important; padding-top:0 !important; padding-right:0 !important; }
           .final-cta-headline { font-size:28px !important; }
-          .cta-waitlist-btn { white-space:nowrap !important; width:auto !important; min-width:200px !important; max-width:260px !important; display:block !important; margin:48px auto 0 !important; text-align:center !important; padding:16px 32px !important; }
           .cta-subtitle { white-space:nowrap !important; }
           .site-footer { flex-direction:column !important; align-items:center !important; gap:8px !important; padding:24px 16px !important; }
           .footer-links { margin:0 !important; }
