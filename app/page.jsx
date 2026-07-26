@@ -585,14 +585,15 @@ function CardHero({ onCTA }) {
           NoorPath is the Islamic prayer tracker built for real life — not the ideal version of it. Whether you pray all five or you&#39;re working back toward consistency, NoorPath meets you where you are.
         </p>
 
-        <button onClick={onCTA} style={{
-          display:'inline-flex', background:C.orange, color:'#fff',
-          fontFamily:bd, fontSize:15, fontWeight:700,
-          padding:'14px 32px', borderRadius:999, border:'none', cursor:'pointer',
-          animation:'softGlow 3s ease-in-out infinite',
-        }} className="hero-cta-btn">Get notified</button>
+        <a href="https://apps.apple.com/app/noorpath-prayer-companion/id6758610154"
+           target="_blank" rel="noopener noreferrer"
+           style={{ display:'inline-block' }}>
+          <img src="/app-store-badge.svg"
+               alt="Download NoorPath on the App Store"
+               style={{ height:72, width:'auto', display:'block' }} />
+        </a>
         <div className="hero-sub-text" style={{ fontFamily:bd, fontSize:12, color:C.textTert, marginTop:12 }}>
-          <span>Free to download</span><span className="hero-sub-separator"> · </span><span>Premium features from $4.99/month</span>
+          <span>Free to download</span><span className="hero-sub-separator"> · </span><span>7-day free trial on Premium</span>
         </div>
       </div>
     </div>
