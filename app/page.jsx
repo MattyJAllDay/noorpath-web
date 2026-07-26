@@ -295,11 +295,8 @@ function PricingOverlayContent() {
         background:'rgba(255,255,255,0.06)', borderTop:'1px solid rgba(255,255,255,0.12)',
         borderRadius:12, padding:16, marginTop:16, textAlign:'center',
       }}>
-        <div style={{ fontFamily:bd, fontSize:12, color:dt, marginBottom:6 }}>
-          7-day free trial · 30-day money-back guarantee · Cancel anytime
-        </div>
-        <div style={{ fontFamily:bd, fontSize:12, color:C.turquoiseDk }}>
-          Founding member pricing — your rate locks in today
+        <div style={{ fontFamily:bd, fontSize:12, color:dt }}>
+          7-day free trial · Cancel anytime
         </div>
       </div>
     </>
