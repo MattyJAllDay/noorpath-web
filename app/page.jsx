@@ -875,11 +875,11 @@ function CardPricing({ onOpen }) {
       background:C.bgDark, border:'1px solid rgba(175,228,222,0.1)',
       boxShadow:'0 2px 16px rgba(41,22,2,0.05), inset 0 1px 0 rgba(245,240,232,0.04)',
     }}>
-      <div style={label()}>PREMIUM PRICING</div>
-      <div style={{ fontFamily:mn, fontWeight:700, fontSize:52, color:'#FFFFFF', lineHeight:1, letterSpacing:'-0.02em', marginBottom:8 }}>$3.33</div>
-      <div style={{ fontFamily:bd, fontSize:13, color:C.textSec, marginBottom:20 }}>per month, billed annually</div>
+      <div style={label()}>GETTING STARTED</div>
+      <div style={{ fontFamily:bd, fontWeight:700, fontSize:52, color:'#FFFFFF', lineHeight:1, letterSpacing:'-0.02em', marginBottom:8 }}>Free</div>
+      <div style={{ fontFamily:bd, fontSize:13, color:C.textSec, marginBottom:20 }}>to download</div>
       <div style={{ height:1, background:'rgba(255,255,255,0.08)', marginBottom:16 }}/>
-      <div style={{ fontFamily:bd, fontSize:13, color:C.textLight, marginBottom:4 }}>Free to start</div>
+      <div style={{ fontFamily:bd, fontSize:13, color:C.textLight, marginBottom:4 }}>Premium available</div>
       <div style={{ fontFamily:bd, fontSize:12, color:C.textSec }}>7-day trial included</div>
     </div>
   );
