@@ -247,16 +247,6 @@ function PricingOverlayContent() {
     ['Streak Protection', 'Switch phones. Your streak comes with you.'],
     ['Focus Mode', 'Compass, adhan, and calm — at every prayer time.'],
   ];
-  const breakdown = [
-    ['Monthly Quran Journeys', '$9.99/mo'],
-    ['Complete Prayer History', '$2.99/mo'],
-    ['Cycle-Aware Tracking', '$1.99/mo'],
-    ['Premium Adhan Collection', '$1.66/mo'],
-    ['Premium Widgets', '$1.99/mo'],
-    ['Focus Mode', '$1.99/mo'],
-    ['Streak Protection', '$1.99/mo'],
-    ['Total value', '$20.61/mo'],
-  ];
   const dl = 'rgba(245,240,232,0.08)';
   const dt = 'rgba(245,240,232,0.45)';
   const dm = 'rgba(245,240,232,0.6)';
@@ -276,25 +266,6 @@ function PricingOverlayContent() {
           </div>
         </div>
       ))}
-
-      {/* Value breakdown */}
-      <div style={{ height:1, background:dl, margin:'24px 0' }}/>
-      <div style={{ fontFamily:nd, fontSize:10, fontWeight:400, letterSpacing:'0.12em', textTransform:'uppercase', color:'rgba(175,228,222,0.6)', marginBottom:16 }}>
-        VALUE BREAKDOWN
-      </div>
-      {breakdown.map(([item, price], i) => {
-        const isTotal = i === breakdown.length - 1;
-        return (
-          <div key={i} style={{
-            display:'flex', justifyContent:'space-between', alignItems:'center',
-            marginBottom:8, paddingTop: isTotal ? 8 : 0,
-            borderTop: isTotal ? `1px solid ${dl}` : 'none',
-          }}>
-            <span style={{ fontFamily:bd, fontSize:13, color: isTotal ? C.textLight : dt, fontWeight: isTotal ? 600 : 400 }}>{item}</span>
-            <span style={{ fontFamily:mn, fontSize:13, color: isTotal ? C.textLight : dt, fontWeight: isTotal ? 700 : 400 }}>{price}</span>
-          </div>
-        );
-      })}
 
       {/* Plan options */}
       <div style={{ height:1, background:dl, margin:'24px 0' }}/>
