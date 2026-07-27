@@ -25,14 +25,6 @@ export const metadata = {
     description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
     url: "https://noorpath.app",
     siteName: "NoorPath",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "NoorPath — Your Daily Prayer Companion",
-      },
-    ],
     locale: "en_AU",
     type: "website",
   },
@@ -40,7 +32,6 @@ export const metadata = {
     card: "summary_large_image",
     title: "NoorPath — Your Daily Prayer Companion",
     description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
-    images: ["/og-image.png"],
   },
   icons: {
     icon: [
