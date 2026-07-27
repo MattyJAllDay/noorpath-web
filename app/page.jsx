@@ -161,15 +161,15 @@ const cardData = {
     label: 'PRIVACY FIRST',
     title: 'Private by design. Always.',
     stat: '0',
-    statLabel: 'data points sent to servers',
+    statLabel: 'ads, trackers, or data sold',
     statColor: C.turquoise,
     dark: true,
     body: [
-      'Your journal entries, prayer history, cycle data — none of it ever leaves your device. Not to us. Not to anyone.',
-      'There is no NoorPath account required. Your data stays on your device. Your spiritual practice belongs to you alone.',
+      'Your cycle data never leaves your device — it is never backed up, never transmitted, never shared. Not with us. Not with anyone.',
+      'No account is required to use NoorPath. Cloud backup is optional and Premium-only — if you never turn it on, your practice stays on your device.',
       'We built NoorPath this way deliberately. Your spiritual practice is between you and Allah.',
     ],
-    list: ['Zero ad tracking', 'No account required', 'On-device storage only', 'No data harvesting'],
+    list: ['Zero ad tracking', 'No account required', 'Cycle data never leaves your device', 'No data harvesting'],
   },
   ads: {
     label: 'BUSINESS MODEL',
@@ -729,8 +729,8 @@ function CardPrivacy({ onOpen }) {
     }}>
       <div style={label('rgba(175,228,222,0.6)')}>PRIVACY FIRST</div>
       <div style={{ fontFamily:mn, fontWeight:700, fontSize:72, color:C.turquoise, lineHeight:1 }}>0</div>
-      <div style={{ fontFamily:bd, fontSize:12, color:'rgba(245,240,232,0.4)', marginBottom:16 }}>data points sent to servers</div>
-      {['Zero ad tracking','No account required','On-device storage only'].map(t => (
+      <div style={{ fontFamily:bd, fontSize:12, color:'rgba(245,240,232,0.4)', marginBottom:16 }}>ads, trackers, or data sold</div>
+      {['Zero ad tracking','No account required','Cycle data never leaves your device'].map(t => (
         <div key={t} style={{ fontFamily:bd, fontSize:13, color:'rgba(245,240,232,0.55)', marginBottom:6 }}>
           <span style={{ color:C.turquoise, marginRight:8 }}>—</span>{t}
         </div>
