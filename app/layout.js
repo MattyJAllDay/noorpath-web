@@ -1,17 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const metadata = {
   title: "NoorPath — Your Daily Prayer Companion",
@@ -63,16 +50,14 @@ export default function RootLayout({ children }) {
             "applicationCategory": "LifestyleApplication",
             "offers": {
               "@type": "Offer",
-              "price": "0",
-              "priceCurrency": "USD"
+              "price": "0"
             },
-            "url": "https://noorpath.app"
+            "url": "https://noorpath.app",
+            "installUrl": "https://apps.apple.com/app/noorpath-prayer-companion/id6758610154"
           })}}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className="antialiased">
         {children}
       </body>
     </html>
