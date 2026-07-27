@@ -105,7 +105,7 @@ const cardData = {
     statLabel: null,
     dark: true,
     body: [
-      'NoorPath shows you exactly how long until your next prayer — with your local prayer times calculated for your location.',
+      'NoorPath shows you exactly how long until your next prayer, with your local prayer times calculated for your location.',
       'Tap CHECK IN when you\'ve prayed. That\'s all it takes to maintain your streak.',
       'Prayer times are calculated precisely for your location, using your chosen Islamic method.',
     ],
@@ -120,7 +120,7 @@ const cardData = {
     dark: false,
     body: [
       'Every salah you pray is tracked with a single tap. Your streak counts consecutive days where you\'ve prayed all five.',
-      'Your streak is designed to pause, not break. Pick up where you left off — without shame or guilt.',
+      'Your streak is designed to pause, not break. Pick up where you left off, without shame or guilt.',
       'Consistency is built slowly. NoorPath celebrates every prayer, not just perfect days.',
     ],
     list: null,
@@ -153,7 +153,7 @@ const cardData = {
     body: [
       'NoorPath offers structured journeys through key surahs and themes. Each journey is broken into focused sessions you can complete at your own pace.',
       'After each session, a reflection prompt helps you connect with what you\'ve read. Your progress is saved so you always return to the right place.',
-      'New guided journeys added monthly — each one a different theme.',
+      'New guided journeys added monthly, each one a different theme.',
     ],
     list: null,
   },
@@ -165,8 +165,8 @@ const cardData = {
     statColor: C.turquoise,
     dark: true,
     body: [
-      'Your cycle data never leaves your device — it is never backed up, never transmitted, never shared. Not with us. Not with anyone.',
-      'No account is required to use NoorPath. Cloud backup is optional and Premium-only — if you never turn it on, your practice stays on your device.',
+      'Your cycle data never leaves your device - it is never backed up, never transmitted, never shared. Not with us. Not with anyone.',
+      'No account is required to use NoorPath. Cloud backup is optional and Premium-only. If you never turn it on, your practice stays on your device.',
       'We built NoorPath this way deliberately. Your spiritual practice is between you and Allah.',
     ],
     list: ['Zero ad tracking', 'No account required', 'Cycle data never leaves your device', 'No data harvesting'],
@@ -179,7 +179,7 @@ const cardData = {
     dark: false,
     body: [
       'We don\'t run ads. We don\'t sell your data to advertisers.',
-      'NoorPath is sustained by a simple subscription — nothing more. Your prayer time will never be interrupted by an advertisement.',
+      'NoorPath is sustained by a simple subscription, nothing more. Your prayer time will never be interrupted by an advertisement.',
     ],
     list: null,
   },
@@ -190,7 +190,7 @@ const cardData = {
     statLabel: null,
     dark: false,
     body: [
-      'During exempt days, NoorPath automatically pauses your streak — protecting your consistency record without you having to do anything.',
+      'During exempt days, NoorPath automatically pauses your streak, protecting your consistency record without you having to do anything.',
       'No broken chains. No awkward manual adjustments. No app that treats your natural cycle as a failure.',
       'Your full practice is honoured. Your streak resumes exactly where it left off.',
     ],
@@ -240,12 +240,12 @@ const cardData = {
 function PricingOverlayContent() {
   const features = [
     ['Monthly Quran Journeys', 'A new 7-day guided journey, every month.'],
-    ['Complete Prayer History', 'Your full record — every prayer, every month, every year.'],
+    ['Complete Prayer History', 'Your full record: every prayer, every month, every year.'],
     ['Cycle-Aware Tracking', 'Prayer tracking that honours your cycle. No gaps, no guilt.'],
     ['Premium Adhan Collection', 'Six recitations from the world\'s finest voices.'],
     ['Premium Widgets', 'Your practice on your home screen, every day.'],
     ['Streak Protection', 'Switch phones. Your streak comes with you.'],
-    ['Focus Mode', 'Compass, adhan, and calm — at every prayer time.'],
+    ['Focus Mode', 'Compass, adhan, and calm at every prayer time.'],
   ];
   const dl = 'rgba(245,240,232,0.08)';
   const dt = 'rgba(245,240,232,0.45)';
@@ -262,7 +262,7 @@ function PricingOverlayContent() {
           <span style={{ color:C.turquoise, fontSize:16, lineHeight:1, marginTop:2 }}>{'\u2713'}</span>
           <div>
             <span style={{ fontFamily:bd, fontSize:15, color:C.textLight, fontWeight:600 }}>{name}</span>
-            {desc && <span style={{ fontFamily:bd, fontSize:14, color:dt, marginLeft:8 }}>— {desc}</span>}
+            {desc && <span style={{ fontFamily:bd, fontSize:14, color:dt, marginLeft:8 }}>- {desc}</span>}
           </div>
         </div>
       ))}
@@ -280,7 +280,7 @@ function PricingOverlayContent() {
           borderRadius:999, padding:'3px 10px',
         }}>BEST VALUE</span>
         <div style={{ fontFamily:bd, fontSize:24, fontWeight:700, color:C.textLight, marginBottom:4 }}>Annual</div>
-        <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Best value — save when you pay yearly</div>
+        <div style={{ fontFamily:bd, fontSize:13, color:dm }}>Save when you pay yearly</div>
       </div>
       <div style={{
         background:'rgba(245,240,232,0.04)', border:'1px solid rgba(245,240,232,0.06)',
@@ -550,10 +550,10 @@ function CardHero() {
         </h1>
 
         <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:16 }}>
-          NoorPath is a calm, private, and ad-free companion for your daily prayers. Built for Muslims who want to show up consistently — without pressure.
+          NoorPath is a calm, private, and ad-free companion for your daily prayers. Built for Muslims who want to show up consistently, without pressure.
         </p>
         <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:440, marginBottom:40 }}>
-          NoorPath is the Islamic prayer tracker built for real life — not the ideal version of it. Whether you pray all five or you&#39;re working back toward consistency, NoorPath meets you where you are.
+          NoorPath is the Islamic prayer tracker built for real life, not the ideal version of it. Whether you pray all five or you&#39;re working back toward consistency, NoorPath meets you where you are.
         </p>
 
         <a href="https://apps.apple.com/app/noorpath-prayer-companion/id6758610154"
@@ -781,7 +781,7 @@ function CardWomen({ onOpen }) {
           <div style={{ fontFamily:bd, fontSize:15, fontWeight:600, color:C.espresso, marginBottom:16 }}>
             Cycle-aware. Streak-protected. Fiqh-considered.
           </div>
-          {['Prayers pause on exempt days — automatically','Your streak stays intact throughout','"I prayed today" override, always available'].map(t => (
+          {['Prayers pause automatically on exempt days','Your streak stays intact throughout','"I prayed today" override, always available'].map(t => (
             <div key={t} style={{ display:'flex', alignItems:'center', gap:10, marginBottom:8 }}>
               <span style={{ width:6, height:6, borderRadius:'50%', background:C.turquoise, flexShrink:0 }}/>
               <span style={{ fontFamily:bd, fontSize:13, color:C.textSec }}>{t}</span>
@@ -794,7 +794,7 @@ function CardWomen({ onOpen }) {
             Most apps don&#39;t know you exist.
           </div>
           <p style={{ fontFamily:bd, fontSize:15, fontWeight:400, color:'#7A6E62', lineHeight:1.6 }}>
-            NoorPath tracks your true consistency — the days you could pray, not just the days you did. Predictions, analytics, and a practice that works with your body, not against it.
+            NoorPath tracks your true consistency: the days you could pray, not just the days you did. Predictions, analytics, and a practice that works with your body, not against it.
           </p>
         </div>
       </div>
@@ -996,13 +996,13 @@ export default function Home() {
             A prayer companion that grows with you.
           </h2>
           <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640, marginBottom:16 }}>
-            Most prayer apps stop at reminders. NoorPath goes further — logging every salah, building your history, and showing you patterns you&#39;d never notice on your own. Your Fajr consistency. Your strongest day of the week. The prayers that slip most often.
+            Most prayer apps stop at reminders. NoorPath goes further, logging every salah, building your history, and showing you patterns you&#39;d never notice on your own. Your Fajr consistency. Your strongest day of the week. The prayers that slip most often.
           </p>
           <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640, marginBottom:16 }}>
-            Your practice is personal. NoorPath keeps it that way — no social feeds, no public profiles, no comparison. Just you, your prayers, and a record of every step you&#39;ve taken.
+            Your practice is personal. NoorPath keeps it that way: no social feeds, no public profiles, no comparison. Just you, your prayers, and a record of every step you&#39;ve taken.
           </p>
           <p style={{ fontFamily:bd, fontSize:16, lineHeight:1.7, color:C.textSec, maxWidth:640 }}>
-            Built for Muslims who want to show up — on their own terms. Free to start. Premium for those who want to go deeper.
+            Built for Muslims who want to show up, on their own terms. Free to start. Premium for those who want to go deeper.
           </p>
         </div>
         <CardWisdom onOpen={() => setActiveCard(cardData.wisdom)} />

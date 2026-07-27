@@ -65,7 +65,7 @@ export default function TermsOfService() {
         </Section>
 
         <Section n="3" title="Religious Content Disclaimer">
-          <Para>NoorPath is a personal practice companion. It is not a source of religious rulings (fatwa) and does not offer religious guidance, opinions, or advice. All content within the app — including prayer time calculations, Quran translations, recitations, adhkar, and reflection material — is provided for personal practice support only.</Para>
+          <Para>NoorPath is a personal practice companion. It is not a source of religious rulings (fatwa) and does not offer religious guidance, opinions, or advice. All content within the app (including prayer time calculations, Quran translations, recitations, adhkar, and reflection material) is provided for personal practice support only.</Para>
           <Para>For questions on matters of fiqh, aqidah, or any religious ruling, please consult a qualified scholar within your tradition. Prayer times are calculated algorithmically and are provided as a guide; they may vary from locally observed times, and you should consult your local mosque or qualified authority where precision matters for your practice.</Para>
         </Section>
 
@@ -104,7 +104,7 @@ export default function TermsOfService() {
         </Section>
 
         <Section n="7" title="Intellectual Property">
-          <Para>All content within NoorPath — including design, text, graphics, Quran journey content, and software — is owned by NoorPath or its licensors and protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from NoorPath content without express written permission.</Para>
+          <Para>All content within NoorPath (including design, text, graphics, Quran journey content, and software) is owned by NoorPath or its licensors and protected by applicable intellectual property laws. You may not reproduce, distribute, or create derivative works from NoorPath content without express written permission.</Para>
           <Para>Quranic text and translations are used in accordance with their respective licences and remain the property of their respective rights holders. Adhan recitations are licensed from their respective reciters and rights holders.</Para>
         </Section>
 

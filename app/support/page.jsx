@@ -51,7 +51,7 @@ export default function Support() {
         </div>
 
         <p style={intro}>
-          Have a question or a problem? Email us — we read every message. Below are answers to
+          Have a question or a problem? Email us - we read every message. Below are answers to
           the things people ask most.
         </p>
 

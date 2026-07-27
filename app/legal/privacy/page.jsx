@@ -61,7 +61,7 @@ export default function PrivacyPolicy() {
             'Your chosen display name and avatar, stored locally on your device',
             'Prayer check-in records and streak data',
             'Reflection entries you write within the app',
-            'Cycle tracking information, if you choose to enable this feature (treated as sensitive health data — see Section 3)',
+            'Cycle tracking information, if you choose to enable this feature (treated as sensitive health data - see Section 3)',
             'Your email address, if you create an account (used to sign you in and enable Cloud Backup) or sign up for updates',
             'Subscription status, managed by Apple and our subscription management service (see Section 5)',
           ]} />
@@ -78,7 +78,7 @@ export default function PrivacyPolicy() {
 
           <SubHead>Anonymous usage data:</SubHead>
           <List items={[
-            'To see which features are used and improve the app, we collect anonymous, aggregated usage data — for example, which onboarding steps are completed. This is not linked to your identity and is never used for advertising or profiling.',
+            'To see which features are used and improve the app, we collect anonymous, aggregated usage data, such as which onboarding steps are completed. This is not linked to your identity and is never used for advertising or profiling.',
           ]} />
         </Section>
 
@@ -98,7 +98,7 @@ export default function PrivacyPolicy() {
         <Section n="4" title="Data Storage and Security">
           <Para>Most NoorPath data is stored locally on your device and does not leave it.</Para>
           <Para>Premium subscribers who enable Cloud Backup have their prayer history and streak data encrypted and stored with our cloud infrastructure provider. Data in Cloud Backup is encrypted in transit and at rest.</Para>
-          <Para>Adhan audio is bundled within the app. Widget data is shared only between the app and your home screen via your device's secure App Group — it does not leave your device.</Para>
+          <Para>Adhan audio is bundled within the app. Widget data is shared only between the app and your home screen via your device's secure App Group - it does not leave your device.</Para>
           <Para>We retain personal data only for as long as you use the app. If you uninstall NoorPath and have not enabled Cloud Backup, your data is permanently deleted from your device. If you have Cloud Backup enabled and request account deletion, your backed-up data is permanently deleted within 30 days. You may request deletion at any time by contacting <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>.</Para>
         </Section>
 
@@ -107,11 +107,11 @@ export default function PrivacyPolicy() {
           <List items={[
             'A cloud infrastructure provider (encrypted storage for Premium Cloud Backup)',
             'A subscription management service (receipt validation and entitlement)',
-            'Apple (payment processing for all in-app purchases — Apple is the merchant of record)',
+            'Apple (payment processing for all in-app purchases - Apple is the merchant of record)',
             'An email delivery service (for opted-in communications only)',
             'A geocoding service that converts your device coordinates into a city or region name for display (used when location features are active)',
           ]} />
-          <Para>We do not use advertising networks or social media trackers, and we do not sell your data. The limited, anonymous usage analytics we collect (see Section 1) are stored in our own infrastructure, not a third-party analytics platform. We can provide the names of our specific service providers on request — contact <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>.</Para>
+          <Para>We do not use advertising networks or social media trackers, and we do not sell your data. The limited, anonymous usage analytics we collect (see Section 1) are stored in our own infrastructure, not a third-party analytics platform. We can provide the names of our specific service providers on request - contact <a href="mailto:support@noorpath.app" style={link}>support@noorpath.app</a>.</Para>
         </Section>
 
         <Section n="6" title="Children and Family Use">
