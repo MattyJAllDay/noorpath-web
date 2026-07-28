@@ -1,14 +1,14 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "NoorPath — Your Daily Prayer Companion",
+  title: "NoorPath - Prayer Companion",
   description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
   metadataBase: new URL("https://noorpath.app"),
   alternates: {
     canonical: "https://noorpath.app",
   },
   openGraph: {
-    title: "NoorPath — Your Daily Prayer Companion",
+    title: "NoorPath - Prayer Companion",
     description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
     url: "https://noorpath.app",
     siteName: "NoorPath",
@@ -17,7 +17,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NoorPath — Your Daily Prayer Companion",
+    title: "NoorPath - Prayer Companion",
     description: "NoorPath is a calm, private Islamic prayer tracker and daily companion. Track your five daily prayers, build consistency, and grow your practice. Free to download.",
   },
   icons: {
