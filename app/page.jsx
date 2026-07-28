@@ -136,10 +136,11 @@ const cardData = {
       'It\'s not a score. It\'s not a competition. It\'s a quiet, personal reflection of your journey.',
     ],
     noorGrid: [
-      { state: 'Dim', desc: 'Just starting out' },
-      { state: 'Bright', desc: 'Building momentum' },
-      { state: 'Radiant', desc: 'Consistent practice' },
-      { state: 'Luminous', desc: 'Deeply established' },
+      { state: 'First Light', desc: 'Every journey begins with a single flame.' },
+      { state: 'Kindled', desc: 'The first spark takes hold.' },
+      { state: 'Glowing', desc: 'Seven days of showing up. Your light is seen.' },
+      { state: 'Radiant', desc: 'A month of devotion. Your warmth reaches others.' },
+      { state: 'Full Light', desc: 'Pure light. A hundred days of faithful return.' },
     ],
     list: null,
   },
@@ -662,7 +663,7 @@ function CardNoor({ onOpen }) {
         marginBottom:16,
       }}/>
       <div style={{ fontFamily:mn, fontSize:24, fontWeight:700, color:C.espresso }}>Level 1</div>
-      <div style={{ fontFamily:bd, fontSize:13, color:C.textTert }}>0 XP</div>
+      <div style={{ fontFamily:bd, fontSize:13, color:C.textTert }}>0 Noor</div>
     </div>
   );
 }
