@@ -78,7 +78,7 @@ export default function TermsOfService() {
           <Para>The core practice features of NoorPath are free and will remain free. This includes prayer times, qibla, adhan, daily prayer tracking, and access to the essential features needed to use the app as a prayer companion.</Para>
 
           <SubHead>Premium subscription</SubHead>
-          <Para>Premium is an optional paid subscription. Current pricing is shown in the app before you subscribe, and on our App Store listing, in your local currency.</Para>
+          <Para>Premium is an optional paid subscription that unlocks additional features such as cycle-aware tracking, complete prayer history, and an expanded adhan collection. Current pricing is shown in the app before you subscribe, and on our App Store listing, in your local currency.</Para>
 
           <SubHead>Free trial</SubHead>
           <Para>New Premium subscribers receive a 7-day free trial. You will not be charged until the trial ends.</Para>
