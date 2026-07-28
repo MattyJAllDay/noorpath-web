@@ -902,8 +902,10 @@ function Footer() {
     }}>
       <span style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)' }}>© 2026 NoorPath</span>
       <div className="footer-links">
-        {[['Privacy Policy','/legal/privacy'],['Terms of Service','/legal/terms'],['Contact','mailto:support@noorpath.app']].map(([t,h]) => (
-          <a key={t} href={h} style={{ fontFamily:bd, fontSize:13, color:'rgba(41,22,2,0.25)', textDecoration:'none', marginLeft:24 }}>{t}</a>
+        {[['Instagram','https://www.instagram.com/getnoorpath/'],['TikTok','https://www.tiktok.com/@getnoorpath'],['Privacy Policy','/legal/privacy'],['Terms of Service','/legal/terms'],['Contact','mailto:support@noorpath.app']].map(([t,h]) => (
+          <a key={t} href={h}
+             {...(h.startsWith('http') ? { target:'_blank', rel:'noopener noreferrer' } : {})}
+             style={{ fontFamily:bd, fontSize:13, color: h.startsWith('http') ? 'rgba(41,22,2,0.5)' : 'rgba(41,22,2,0.25)', textDecoration:'none', marginLeft:24 }}>{t}</a>
         ))}
       </div>
     </footer>
