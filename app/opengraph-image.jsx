@@ -93,7 +93,7 @@ export default async function OGImage() {
           position: 'absolute', left: 694, top: 265,
           fontFamily: '"IBM Plex Sans"', fontWeight: 400, fontSize: 16, color: '#7A6E62',
         }}>
-          Nothing leaves your device.
+          Your cycle data never leaves your device.
         </div>
 
         {/* Divider — y=320 */}
